@@ -4,13 +4,15 @@
 	
 	<mapper namespace="Bbs"><!--여기는 myBatis 영역  -->
 
-	<!--select  -->
+	<!--모든 글 리스트  -->
 	<select id="getlist" resultType="mul.cam.food.dto.BbsDto" >
-	select * from recipe;
-	
+	select * from recipe;	
 	
 	</select>
 	
+	
+	<!-- 검색 글 리스트  -->
+
 	<!-- bbs wirte  -->
 	
 	<insert id="bbswrite" parameterType="mul.cam.food.dto.BbsDto">
@@ -26,7 +28,7 @@
 	
 	</select>
 	
-		<select id="getBbs" parameterType="Integer" resultType="mul.cam.food.dto.BbsDto">
+	<select id="getBbs" parameterType="Integer" resultType="mul.cam.food.dto.BbsDto">
 		select thumbnail ,title, content, tag
 		from recipe
 		where seq=#{seq}		
@@ -36,4 +38,24 @@
 		insert into reply(seq, content, writer )
 		values(#{seq}, #{content}, #{writer})
 	</insert>
+	
+	<select id="getSearchList" parameterType="mul.cam.food.dto.BbsParam"  resultType="mul.cam.food.dto.BbsDto">
+		select *
+			  from recipe
+			  where 1=1
+			  <if test="choice != null and choice != '' and search != null and search != '' ">
+			  	<if test="choice == 'title'">
+			  		and title like concat('%', #{search},'%')
+			  	</if>
+			  	<if test="choice == 'content'">
+			  		and content like concat('%', #{search},'%')
+			  	</if>
+			  	<if test="choice == 'writer'">
+			  		and writer=#{search}
+			  	</if>			  	
+			  </if>
+			  order by regdate asc
+
+	</select>
+	
 	</mapper>

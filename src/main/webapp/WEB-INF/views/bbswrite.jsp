@@ -46,7 +46,7 @@
 				id="navbarNavDropdown">
 				<ul class="navbar-nav">
 					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="#">Home</a></li>
+						aria-current="page" href="bbslist.do">Home</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">게시판</a></li>
 
 					<li class="nav-item dropdown"><a

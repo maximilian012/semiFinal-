@@ -1,5 +1,4 @@
 <%@page import="mul.cam.food.dao.MemberDao"%>
-<%@page import="mul.cam.food.dto.MemberDto"%>
 <%@page import="mul.cam.food.dto.BbsDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>

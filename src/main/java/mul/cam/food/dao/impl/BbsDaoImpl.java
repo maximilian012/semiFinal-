@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import mul.cam.food.dao.BbsDao;
 import mul.cam.food.dto.BbsComment;
 import mul.cam.food.dto.BbsDto;
+import mul.cam.food.dto.BbsParam;
 import mul.cam.food.dto.MemberDto;
 
 
@@ -40,6 +41,10 @@ public class BbsDaoImpl implements BbsDao {
 	@Override
 	public int commentWrite(BbsComment bbs) {		
 		return session.insert(ns + "commentWrite", bbs);
+	}
+	@Override
+	public List<BbsDto> getSearchlist(BbsParam param) {		
+		return session.selectList(ns+"getSearchList", param);
 	}
 
 	

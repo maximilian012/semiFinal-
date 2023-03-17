@@ -8,6 +8,7 @@ import com.google.gson.JsonObject;
 
 import mul.cam.food.dto.BbsComment;
 import mul.cam.food.dto.BbsDto;
+import mul.cam.food.dto.BbsParam;
 import mul.cam.food.dto.MemberDto;
 
 public interface BbsService {
@@ -15,7 +16,9 @@ public interface BbsService {
 	boolean bbswrite(BbsDto dto);
 
 	List<BbsDto> getlist();
-
+	
+	// searchResult
+	List<BbsDto> getSearchList(BbsParam param);
 
 	JsonObject SummerNoteImageFile(MultipartFile file);
 
@@ -23,5 +26,6 @@ public interface BbsService {
 	BbsDto getBbs(int seq);
 	
 	boolean commentWrite(BbsComment bbs);
+
 	
 }

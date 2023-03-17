@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -27,6 +28,7 @@ import com.google.gson.JsonObject;
 
 import mul.cam.food.dto.BbsComment;
 import mul.cam.food.dto.BbsDto;
+import mul.cam.food.dto.BbsParam;
 import mul.cam.food.dto.MemberDto;
 import mul.cam.food.service.BbsService;
 
@@ -172,9 +174,21 @@ public class BbsController {
 
 	@ResponseBody
 	@RequestMapping(value="search.do" , method = RequestMethod.POST)
-	public String searchBbslist(Model model,HttpServletRequest req) {
+	public List<BbsDto> searchBbslist(String search, String choice) {
+		System.out.println(search);
+		System.out.println(choice);
+		
+		BbsParam param = new BbsParam();
+		
+		param.setChoice(choice);
+		param.setSearch(search);
+		
+		List<BbsDto> list = service.getSearchList(param);
+		System.out.println(list.size());
 
-		return "bbslist";
+		
+		
+		return list;
 	}
 	
 	

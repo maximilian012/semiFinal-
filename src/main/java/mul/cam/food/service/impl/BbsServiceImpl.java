@@ -16,8 +16,10 @@ import com.google.gson.JsonObject;
 import mul.cam.food.dao.BbsDao;
 import mul.cam.food.dto.BbsComment;
 import mul.cam.food.dto.BbsDto;
+import mul.cam.food.dto.BbsParam;
 import mul.cam.food.dto.MemberDto;
 import mul.cam.food.service.BbsService;
+
 
 @Service
 public class BbsServiceImpl implements BbsService {
@@ -76,6 +78,12 @@ public class BbsServiceImpl implements BbsService {
 	public boolean commentWrite(BbsComment bbs) {
 		int n = dao.commentWrite(bbs);
 		return n>0?true:false;
+	}
+
+	@Override
+	public List<BbsDto> getSearchList(BbsParam param) {		
+		
+		return dao.getSearchlist(param);
 	}
 
 

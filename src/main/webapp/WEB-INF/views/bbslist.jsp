@@ -290,11 +290,31 @@ padding: 0px 20px;
 .bbs-search-form {
 width: 60%;
     margin-right: 1rem;
-    margin-left: 11rem;
+    margin-left: 1rem;
 }
 
 .font-color {
 	color: black;
+}
+
+
+.custom-select {
+	display: inline-block;
+    width: 8%;
+    height: calc(1.5em + 0.75rem + 2px);
+    padding: 0.375rem 1.75rem 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    vertical-align: middle;
+    background: #fff url(data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e) right 0.75rem center/8px 10px no-repeat;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin-left: 8rem;
 }
 
 </style>
@@ -308,7 +328,7 @@ width: 60%;
 
 
 <body>
-       <div class='header'>
+<!--        <div class='header'>
        	<div class="bob_head">
        	 <h1>				
 		  <a href="#" class="logo">
@@ -345,7 +365,81 @@ width: 60%;
        	</div>
 		 
        	</div>
-       </div>
+       </div> -->
+       
+       	<nav class="navbar navbar-expand-lg navbar-light bg-light"
+		style="background-color: red !important;">
+		<!-- Container wrapper -->
+		<div class="container-fluid" style="height: 100px; font-weight: 700;">
+			<!-- Toggle button -->
+			<button class="navbar-toggler" type="button"
+				data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<i class="fas fa-bars"></i>
+			</button>
+
+			<!-- Collapsible wrapper -->
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<!-- Navbar brand -->
+				<a class="navbar-brand mt-2 mt-lg-0" href="#"> <img
+					src="resources/images/logo.png" height="100" alt="Logo"
+					loading="lazy" />
+				</a>
+				<!-- Left links -->
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item"><a class="nav-link" href="#">카테고리</a></li>
+					<li class="nav-item"><a class="nav-link" href="login.do">로그인</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">회원가입</a></li>
+				</ul>
+				<!-- Left links -->
+			</div>
+			<!-- Collapsible wrapper -->
+
+			<!-- Right elements -->
+			<div class="d-flex align-items-center">
+				<!-- Icon -->
+				<a class="text-reset me-3" href="#"> <i
+					class="fas fa-shopping-cart"></i>
+				</a>
+
+				<!-- Notifications -->
+				<div class="dropdown">
+					<a class="text-reset me-3 dropdown-toggle hidden-arrow" href="#"
+						id="navbarDropdownMenuLink" role="button"
+						data-mdb-toggle="dropdown" aria-expanded="false"> <i
+						class="fas fa-bell"></i> <span
+						class="badge rounded-pill badge-notification bg-danger">1</span>
+					</a>
+					<ul class="dropdown-menu dropdown-menu-end"
+						aria-labelledby="navbarDropdownMenuLink">
+						<li><a class="dropdown-item" href="#">Some news</a></li>
+						<li><a class="dropdown-item" href="#">Another news</a></li>
+						<li><a class="dropdown-item" href="#">Something else here</a>
+						</li>
+					</ul>
+				</div>
+				<!-- Avatar -->
+				<div class="dropdown">
+					<a class="dropdown-toggle d-flex align-items-center hidden-arrow"
+						href="#" id="navbarDropdownMenuAvatar" role="button"
+						data-mdb-toggle="dropdown" aria-expanded="false"> <img
+						src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
+						class="rounded-circle" height="25"
+						alt="Black and White Portrait of a Man" loading="lazy" />
+					</a>
+					<ul class="dropdown-menu dropdown-menu-end"
+						aria-labelledby="navbarDropdownMenuAvatar">
+						<li><a class="dropdown-item" href="#">My profile</a></li>
+						<li><a class="dropdown-item" href="#">Settings</a></li>
+						<li><a class="dropdown-item" href="#">Logout</a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- Right elements -->
+		</div>
+		<!-- Container wrapper -->
+	</nav>
        
     <div class="container main">
 	   	<div class="category_tag_div">
@@ -361,6 +455,12 @@ width: 60%;
 	   	</div>
 
       <form class="d-flex">
+      	<select class="custom-select" id="choice" name="choice">
+					<option selected>검색</option>
+					<option value="title">제목</option>
+					<option value="content">내용</option>
+					<option value="writer">작성자</option>
+		</select>
         <input id="search" name="search" class="form-control me-2 bbs-search-form" type="search" placeholder="따뜻한 한끼를 검색해 보세요" aria-label="Search">
         <button class="btn btn-outline-success" type="button" onclick="bbssearch()">search</button>
       </form>
@@ -492,7 +592,7 @@ width: 60%;
       </h2>
       
       <!-- 게시판 메인 -->
-      	<table class="bbs-table">
+      	<table class="bbs-table" id="bbs-table">
 		      	
 		<%
 		if(list == null || list.size() == 0){
@@ -540,8 +640,42 @@ width: 60%;
 	
 	<button onclick="location.href='bbswrite.do'">글쓰기</button>
 
+	<footer class="bg-dark text-center text-white">
+		<!-- Grid container -->
+		<div class="container p-4">
+			<!-- Section: Social media -->
+			<section class="mb-4">
+				<!-- Facebook -->
+				<a class="btn btn-outline-light btn-floating m-1" href="#!"
+					role="button"><i class="fab fa-facebook-f"> <img
+						src="resources/images/facebook.png">
+				</i></a>
 
-	
+				<!-- Twitter -->
+				<a class="btn btn-outline-light btn-floating m-1" href="#!"
+					role="button"><i class="fab fa-twitter"></i></a>
+
+				<!-- Google -->
+				<a class="btn btn-outline-light btn-floating m-1" href="#!"
+					role="button"><i class="fab fa-google"></i></a>
+			</section>
+			<!-- Section: Social media -->
+
+			<!-- Section: Text -->
+			<section class="mb-4">
+				<p>3조 프로젝트</p>
+			</section>
+			<!-- Section: Text -->
+		</div>
+		<!-- Grid container -->
+
+		<!-- Copyright -->
+		<div class="text-center p-3"
+			style="background-color: rgba(0, 0, 0, 0.2);">
+			Copyright2023.Multicampus_3조</div>
+		<!-- Copyright -->
+	</footer>
+<!-- 	
 	<footer class="bbs-footer">
 		<div class="container bbs-footerMenu">
 		   	<div class="category_tag_div">
@@ -569,22 +703,43 @@ width: 60%;
 				</select>
 			</div>
 		</div>
-	</footer>
+	</footer> -->
 <script>
 function bbssearch() {
 	let searchV = document.getElementById('search').value
-	
-	console.log(searchV);
+	let choice = document.getElementById('choice').value;
 	
 	$.ajax({
 		url:"search.do",
 		type:"post",
 		dataType: "json",
-		data: {"search": searchV},
+		data: {"search": searchV, "choice":choice},
 		async:true,
 		success:function( list ) {
-			alert(JSON.stringify(list))
-			//list.map((dto)=> alert(dto.name))
+
+			let table = document.getElementById("bbs-table");
+			while ( table.hasChildNodes() )
+			{
+				table.removeChild( table.firstChild );       
+			}
+			let html = "";
+			list.map((dto)=> {
+				
+				html += '<td class="bbs-recipt" onclick="location.href = ' + "'bbsdetail.do?seq=" +dto.seq+"'" +'"' +">";
+				html += '<div class="overflowHidden text-center bbs-thumbnali">';
+				html += dto.thumbnail;
+				html += '</div>';
+				html += '<p id="recipt-title">'+dto.title+'</p>';
+				html += '<div class="hash-tag" id="recipt-hashtag">'
+				html += '<span>'+dto.tag+'</span>';
+				html += '</div>'
+				html += '<input hidden id="seq" name="seq" value="'+dto.seq+'"/>';
+				html += '</td>';
+		
+			})
+
+			$("#bbs-table").append(html);
+			
 		},
 		error:function() {
 			alert('error');
@@ -595,7 +750,7 @@ function bbssearch() {
 
 function bbsdetail() {
 	let seq = document.getElementById('seq').value;
-	console.log(seq)
+
 	location.href = "bbsdetail.do?seq="+seq;
 }
 
