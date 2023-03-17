@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.google.gson.JsonObject;
 
 import mul.cam.food.dao.BbsDao;
+import mul.cam.food.dto.BbsComment;
 import mul.cam.food.dto.BbsDto;
 import mul.cam.food.dto.MemberDto;
 import mul.cam.food.service.BbsService;
@@ -32,16 +33,12 @@ public class BbsServiceImpl implements BbsService {
 	}
 
 	@Override
-	public List<BbsDto> testlist() {
+	public List<BbsDto> getlist() {
 		
-		return dao.testlist();
+		return dao.getlist();
 	}
 
-	@Override
-	public MemberDto loginAf(MemberDto dto) {
-		
-		return dao.loginAf(dto);
-	}
+
 
 	@Override
 	public JsonObject SummerNoteImageFile(MultipartFile file) {
@@ -70,6 +67,16 @@ public class BbsServiceImpl implements BbsService {
 
 	}
 
+	@Override
+	public BbsDto getBbs(int seq) {		
+		return dao.getBbs(seq);
+	}
+
+	@Override
+	public boolean commentWrite(BbsComment bbs) {
+		int n = dao.commentWrite(bbs);
+		return n>0?true:false;
+	}
 
 
 }
