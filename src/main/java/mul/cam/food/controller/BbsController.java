@@ -213,16 +213,17 @@ public class BbsController {
 		return "bbsdetail";
 	}		
 	
-	// 게시글 수정
-	@RequestMapping(value = "bbsupdate.do", method = RequestMethod.POST)
-	public String bbsupdate(Model model, BbsDto dto, int seq) {
+	// 게시글 수정 0320
+	@GetMapping(value = "bbsupdate.do")
+	public String bbsupdate(Model model, int seq) {
+		BbsDto dto = service.getBbs(seq);
 		model.addAttribute("dto", dto);
 		
 		return "bbsupdate";
 	}
 	
 	// 게시글 수정 이후
-	@RequestMapping(value = "bbsupdateAf.do", method = RequestMethod.POST)
+	@GetMapping(value = "bbsupdateAf.do")
 	public String bbsupdateAf(Model model, BbsDto dto) {
 		System.out.println(dto.toString());
 		boolean isS = service.updateBbs(dto);
@@ -289,4 +290,34 @@ public class BbsController {
 			return "redirect:/bbsdetail.do?seq=" + bbs.getSeq();
 		}
 	
+		// 0320 추가
+		// 댓글 수정
+		@GetMapping(value = "commentUpdate.do")
+		public String commentUpdate(Model model, BbsComment bbs) {
+			boolean isS = service.commentUpdate(bbs);
+			if(isS) {
+				System.out.println("댓글 수정에 성공했습니다");
+			}else {
+				System.out.println("댓글 수정에 실패했습니다");
+			}
+			model.addAttribute("commentupdate", bbs);
+			
+			return "bbsdetail";
+		}
+		
+		// 댓글 삭제
+		@PostMapping(value = "commentDelete.do")
+		public String commentDelete(Model model, int seq) {
+			System.out.println("BbsController BbsDelete " + new Date());
+			boolean isS = service.deleteBbs(seq);
+			if(isS) {
+				System.out.println("댓글 삭제에 성공했습니다");
+			}else {
+				System.out.println("댓글 삭제에 실패했습니다");
+			}
+			model.addAttribute("result", "delete success");
+			
+			return "message";
+			
+		}
 }

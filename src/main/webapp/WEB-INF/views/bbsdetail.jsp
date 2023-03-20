@@ -1,3 +1,4 @@
+<%@page import="mul.cam.food.dto.BbsComment"%>
 <%@page import="mul.cam.food.dao.MemberDao"%>
 <%@page import="mul.cam.food.dto.MemberDto"%>
 <%@page import="mul.cam.food.dto.BbsDto"%>
@@ -9,6 +10,7 @@
  	MemberDto login = (MemberDto)session.getAttribute("login");
 	BbsDto dto = (BbsDto)request.getAttribute("bbsdto");
 	String uploadFilePath = (String)request.getAttribute("uploadFilePath");
+	BbsComment bbs = (BbsComment)request.getAttribute("commentupdate");
 
 %>
 <!DOCTYPE html>
@@ -31,6 +33,17 @@
 	textarea {
 		border:1px solid #ddd;
 	} 
+	p {
+	margin-top:10px;
+	}
+	
+	button {
+	border:none;
+	background:#fafad2;
+	color:#333;
+	width:100px;
+	height:37px;
+	}
 	
 </style>
 </head>
@@ -58,8 +71,7 @@
 	  <div class="p-4 p-md-5 mb-4 rounded text-bg-dark">
 	    <div class="col-md-6 px-0" style="width:900px; height:500px;">
 	    	<%=dto.getThumbnail() %>
-	     	<input type="hidden", name="thumbnail" value='<%=dto.getThumbnail() %>' >
-	    	<div id="thumimg" th:utext="<%=dto.getThumbnail() %>"></div>
+	     	<input type="hidden" name="thumbnail" value='<%=dto.getThumbnail() %>' >
 	    </div>
 	  </div>
 
@@ -74,19 +86,22 @@
 	        <hr>
 	        
 	        <h2>댓글 목록</h2>
-	        <table class="table" style="border:none;">
-	          <thead>
-	            <tr>
-	              <th style="width:200px;">작성자</th>
-	              <th>내용</th>
-	            </tr>
-	          </thead>
-	          <tbody id="tbody">
-	            <tr>
-	            	<td> <a href="">수정</a> / <a href="">삭제</a> </td>
-	            </tr>
-	          </tbody>
-	        </table>
+	        <form method="post" action="commentUpdateAf.do">
+		        <table class="table" style="border:none;">
+		          <thead>
+		            <tr>
+		              <th style="width:200px;">작성자</th>
+		              <th>내용</th>
+		            </tr>
+		          </thead>
+		          <tbody id="tbody">
+
+		            <tr>
+		            	<td> <a href="commentUpdate.do?seq='<%=dto.getSeq() %>' ">수정</a> / <a href="commentDelete.do">삭제</a> </td>
+		            </tr>
+		          </tbody>
+		        </table>
+	        </form>
 	       </article>
 	      <br>  	        
 	      <article class="blog-post">
@@ -94,7 +109,7 @@
 	        <form action="commentWriteAf.do" method="post">
 	        	<input type="hidden" name="seq" id="seq" value="<%=dto.getSeq() %>"> 
 	         		<p>
-	         			<label>댓글 작성자</label> <input type="text" name="writer" style="border:1px solid rgba(224, 223, 226, 0.6); border-radius:30px;"> 
+	         			<label>댓글 작성자</label> <input type="text" name="writer" value="<%=login.getUserId() %>" style="border-bottom: 2px solid rgba(224, 223, 226, 0.6); border:none;" readonly="readonly"> 
 	         		</p>
 	        		<p>
 		        	<textarea rows="8" cols="100" name="content"></textarea>
@@ -102,10 +117,11 @@
 		        	
 		         <p>무분별한 댓글은 삭제조치 될 수 있으니 이점 양해 부탁드립니다.</p>
 		         
+		         <!-- 0320 버튼 태그 수정 -->
 		         <div style="text-align:center; width:742px; margin-top:20px;">
-		        	<button type="submit" style="border:none; background:#fafad2; color:#333; width:100px; height:37px;">전송하기</button>
-		        	<button type="button" onclick="location.href='bbslist.do'" style="border:none; background:#fafad2; color:#333; width:100px; height:37px;">목록으로</button>
-	        		<button type="button" style="border:none; background:#fafad2; color:#333; width:100px; height:37px;" id="updateBtn">수정하기</button>
+		        	<button type="submit" id="submitBtn">전송하기</button>
+		        	<button type="button" onclick="location.href='bbslist.do'">목록으로</button>
+	        		<button type="button" onclick="location.href='bbsupdate.do?seq=<%=dto.getSeq() %>'">수정하기</button>
 	        	</div>
 	        </form>
 	      </article>
@@ -150,7 +166,7 @@
         </footer>
 
 
-	<script type="text/javascript">
+<script type="text/javascript">
   	$('#summernote').summernote({
 		height: 300,
 		width : 1000,
@@ -166,37 +182,7 @@
 			
 	}); 
   	
-  	$(document).ready(function(){
-
-  		$("#updateBtn").click(function(){
-
-  			var form = document.createElement('form');
-
-  			var objs;
-
-  			objs = document.createElement('input');
-
-  			objs.setAttribute('seq', seq);
-
-  			form.appendChild(objs);
-
-  			form.setAttribute('method', 'post');
-
-  			form.setAttribute('action', "/bbsupdate.do");
-
-  			document.body.appendChild(form);
-
-  			form.submit();
-
-  		});	
-
-  		});	
-  	
-  	$("#updateBtn").click(function(){
-  		location.href="bbsupdate.do?seq="+$('#seq').val();
-  		
-  	});
-	
+ 	
 		/*이미지 태그 추출*/
 	$(function getImageByTagName(){
 	    const dbValue = document.getElementById('thumimg');
@@ -222,31 +208,37 @@
 
 	        reader.readAsDataURL(event.target.files[0]);
 	 }
+</script>
+<script type="text/javascript">
+$("#submitBtn").click(function() {
 	
-		$(document).ready(function() {
-			$.ajax({
-				url:"./commentList.do",
-				type:"get",
-				data: {"seq" : <%=dto.getSeq() %>},
-				success:function(list){
-					alert('성공적으로 댓글이 작성되었습니다');
-					
-					$("#tbody").html("");
-					
-					$.each(list, function(index, item){
-						let str = "<tr>"
-								+	"<td style='width:200px;'>" + item.writer + "</td>"
-								+	"<td>" + item.content + "</td>"
-								+ "</tr>";
-						$("#tbody").append(str);
-					});
-				},
-				error:function() {
-					alert('오류가 발생했습니다');
-				}
-			});		
-		});
+	$.ajax({
+		url:"commentList.do",
+		type:"post",
+		success:function(list){
+			var comments = "";
+			if(list.length < 1) {
+				comments = "등록된 댓글이 없습니다.";
+			}else {
 
+				$.each(list, function(index, item){
+					let str = "<tr>"
+							+	"<td style='width:200px;'>" + item.writer + "</td>"
+							+	"<td>" + item.content + "</td>"
+							+ "</tr>";
+					$("#tbody").append(str);
+					alert('성공적으로 댓글이 작성되었습니다');
+				});
+			}
+			$("#tbody").html(comments);
+			
+		},
+		error:function() {
+			alert('오류가 발생했습니다');
+		}
+	});		
+});
+	
 	</script>
 	<script>
 
@@ -278,6 +270,6 @@
 		});
 	}
 
-  </script>
+</script>
 </body>
 </html>

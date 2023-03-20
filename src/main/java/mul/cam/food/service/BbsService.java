@@ -46,10 +46,11 @@ public interface BbsService {
 	// 댓글 목록
 	List<BbsComment> commentList(int seq);	
 	
+	// 0321 수정
 	// 댓글 수정
-	boolean updateComment(BbsComment bbs);
+	boolean commentUpdate(BbsComment bbs);
 	
 	// 댓글 삭제
-	boolean deleteComment(BbsComment bbs);
+	boolean commentDelete(BbsComment bbs);
 
 }

@@ -142,9 +142,9 @@ tr pre{
     background: #fff;
 }
 
+/* 수정한 부분 */
 #title {
     border: none;
-    border-bottom: 1px solid #40514E;
     width: 400px;
     height: 26px;
 }

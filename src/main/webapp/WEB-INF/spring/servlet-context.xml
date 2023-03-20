@@ -26,9 +26,9 @@
 
 	</bean>
 
-	<!-- 공통 패키지(경로) -->
+	<!-- 공통 패키지(경로) --><!-- 0320수정 -->
 	<context:component-scan
-		base-package="mul.cam.food" />
+		base-package="mul.cam.food.*" />
 
 
 	<!-- ajax 사용허가 -->

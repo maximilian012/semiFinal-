@@ -38,9 +38,10 @@ public interface BbsDao {
 		// 댓글 목록
 		List<BbsComment> commentList(int seq);
 		
+		// 0321 수정
 		// 댓글 수정
-		int updateComment(BbsComment bbs);
+		int commentUpdate(BbsComment bbs);
 		
 		// 댓글 삭제
-		int deleteComment(BbsComment bbs);
+		int commentDelete(BbsComment bbs);
 }

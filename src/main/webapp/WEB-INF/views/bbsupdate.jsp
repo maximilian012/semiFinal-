@@ -1,11 +1,7 @@
+<%@page import="mul.cam.food.dto.MemberDto"%>
 <%@page import="mul.cam.food.dto.BbsDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-<%
-BbsDto dto = (BbsDto)request.getAttribute("dto");
-System.out.println(dto.toString());
-%>        
 
 <!DOCTYPE html>
 <html>
@@ -51,44 +47,109 @@ border-bottom: 2px solid #ddd;
 
 }
 </style>
+
+<%
+BbsDto dto = (BbsDto)request.getAttribute("dto");
+MemberDto login = (MemberDto)session.getAttribute("login");		
+
+%>        
+
 <body>
 <h3>게시글 수정하기</h3>
 <div id="content-wrapper">
-	<form action="bbsupdateAf.do" id="frm" method="post">
-		<input type="hidden" id="seq" name="seq" value="<%=dto.getSeq() %>" >
-		<textarea class="summernote" name="thumbnail"><%=dto.getThumbnail() %></textarea>
-		<div style="margin-bottom:15px;">
-			ID ▶ <input type="text" name="writer" value="<%=dto.getWriter() %>">
+	<form action="bbsupdateAf.do" id="frm" method="get">
+		<input type="hidden" name="writer" value="<%=login.getUserId() %>">
+		<input type="hidden" name="auth" value="<%=login.getAuth()%>">
+		<div class="mb-3">
+
+			<label for="title">썸네일</label>
+			  <textarea class="summernote" name="thumbnail" rows="18"><%=dto.getThumbnail() %></textarea>
+				
 		</div>
-		<div style="margin-bottom:15px;">
-			Title ▶ <input type="text" name="title" id="title" value='<%=dto.getTitle() %>'>
+		<div class="mb-3">
+
+			<label for="title">제목</label>
+
+			<input type="text" class="form-control" name="title" id="title" value="<%=dto.getTitle() %>">
+
 		</div>
-		Content ▼ <textarea class="summernote" id="content" name="content"><%=dto.getContent()  %></textarea> 
-		<div style="margin-bottom:15px;">
-			Ingredients ▶<input type="text" name="ingredients" value='<%=dto.getIngredients() %>'>
+		<div class="mb-3">
+
+			<label for="title">카테고리</label>
+
+				<div class="custom-control custom-checkbox">
+				<input type="checkbox" id="jb-checkbox" class="custom-control-input" name="category" value="1"  onclick="clickCheck(this)">
+				<label class="custom-control-label" for="jb-checkbox">양식</label>
+				</div>
+				<div class="custom-control custom-checkbox">
+				<input type="checkbox" id="jb-checkbox" class="custom-control-input" name="category" value="2"  onclick="clickCheck(this)">
+				<label class="custom-control-label" for="jb-checkbox">중식</label>
+				</div>
+				<div class="custom-control custom-checkbox">
+				<input type="checkbox" id="jb-checkbox" class="custom-control-input" name="category" value="3"  onclick="clickCheck(this)">
+				<label class="custom-control-label" for="jb-checkbox">일식</label>
+				</div>
+				<div class="custom-control custom-checkbox">
+				<input type="checkbox" id="jb-checkbox" class="custom-control-input" name="category" value="4"  onclick="clickCheck(this)">
+				<label class="custom-control-label" for="jb-checkbox">분식</label>
+				</div>
+				<div class="custom-control custom-checkbox">
+				<input type="checkbox" id="jb-checkbox" class="custom-control-input" name="category" value="5"  onclick="clickCheck(this)">
+				<label class="custom-control-label" for="jb-checkbox">한식</label>
+				</div>
+				<div class="custom-control custom-checkbox">
+				<input type="checkbox" id="jb-checkbox" class="custom-control-input" name="category" value="6"  onclick="clickCheck(this)">
+				<label class="custom-control-label" for="jb-checkbox">디저트</label>
+				</div>
+
 		</div>
-		<div style="margin-bottom:15px;">
-			CookingTime ▶<input type="text" style="text-align:right;" name="cookingtime" value='<%=dto.getCookingtime() %>'>분
-		</div>
-		<div style="margin-bottom:15px;">
-			Servings per container ▶<input type="text" name="serving" value='<%=dto.getServing() %>' style="text-align:right;">인분
-		</div>
-		<div style="margin-bottom:15px;">
-			Category ▶<input type="text" name="category" value='<%=dto.getCategory() %>'>
-		</div>
-		<div style="margin-bottom:15px;">
-			Register Date ▶<input type="text" name="regdate" value="<%=dto.getRegdate() %>" >
-		</div>
-		<div style="margin-bottom:15px;">
-		Stars ▶<input type="text" name="star" value='<%=dto.getStar() %>'>
-		</div>
-		<div style="margin-bottom:15px;">
-		Tags ▶<input type="text" name="tag" value='<%=dto.getTag() %>'>
-		</div>
-		<div id="button-wrapper">
-			<button type="button" id="updateBtn" style="height:35px;" class="btn btn-outline-warning">수정하기</button>
-			<button type="button" id="listBtn" style="height:35px;" class="btn btn-outline-warning" onclick="location.href='bbslist.do';">뒤로가기</button>
-			<a class="btn btn-outline-warning" id="deleteBtn" style="height:35px;">삭제하기</a>
+
+		<div class="mb-3">
+
+					<label for="reg_id">조리시간</label>
+
+					<input type="text" class="form-control" name="cookingtime" id="cookingtime" value="<%=dto.getCookingtime() %>">
+
+				</div>
+				
+				<div class="mb-3">
+
+					<label for="reg_id">인분</label>
+
+					<input type="text" class="form-control" name="serving" id="serving" value="<%=dto.getServing() %>">
+
+				</div>
+
+				
+
+				<div class="mb-3">
+
+					<label for="content">레시피 재료</label>
+
+					<textarea class="form-control" rows="5" name="ingredients" id="ingredients"><%=dto.getIngredients() %></textarea>
+
+				</div>
+
+				
+
+				<div class="mb-3">
+
+					<label for="tag">TAG</label>
+
+					<input type="text" class="form-control" name="tag" id="tag" value="<%=dto.getTag() %>">
+
+				</div>
+			<div class="mb-3">
+			<label for="tag">내용</label>
+				 <textarea class="summernote" name="content" rows="18"><%=dto.getContent() %></textarea>
+				
+
+			</div>
+
+		<div class="pt-1 text-right">
+			<a id="updateBtn" style="height:35px;" class="btn btn-outline-warning">수정하기</a>
+			<a id="listBtn" style="height:35px;" class="btn btn-outline-warning" onclick="location.href='bbsdetail.do?seq=<%=dto.getSeq() %>'">뒤로가기</a>
+			<a id="deleteBtn" style="height:35px;" class="btn btn-outline-warning">삭제하기</a>
 		</div>
 	</form>
 </div>

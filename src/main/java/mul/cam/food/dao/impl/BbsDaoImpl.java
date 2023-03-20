@@ -89,13 +89,14 @@ public class BbsDaoImpl implements BbsDao {
 		return session.selectList(ns + "commentList", seq);
 	}
 	
+	// 0321 수정
 	@Override
-	public int updateComment(BbsComment bbs) {		// 댓글 수정
+	public int commentUpdate(BbsComment bbs) {		// 댓글 수정
 		return session.update(ns + "updateComment", bbs);
 	}
 	
 	@Override
-	public int deleteComment(BbsComment bbs) {		// 댓글 삭제
+	public int commentDelete(BbsComment bbs) {		// 댓글 삭제
 		return session.delete(ns + "deleteComment", bbs);
 	}
 	

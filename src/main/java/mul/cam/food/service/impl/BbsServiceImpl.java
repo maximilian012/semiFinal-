@@ -136,17 +136,18 @@ public class BbsServiceImpl implements BbsService {
 			return dao.commentList(seq);
 		}
 		
+		// 0321 수정
 		// 댓글 수정
 		@Override
-		public boolean updateComment(BbsComment bbs) {
-			int n = dao.updateComment(bbs);
+		public boolean commentUpdate(BbsComment bbs) {
+			int n = dao.commentUpdate(bbs);
 			return n>0?true:false;
 		}
 		
 		// 댓글 삭제
 		@Override
-		public boolean deleteComment(BbsComment bbs) {
-			int n = dao.deleteComment(bbs);
+		public boolean commentDelete(BbsComment bbs) {
+			int n = dao.commentDelete(bbs);
 			return n>0?true:false;
 		}
 }
