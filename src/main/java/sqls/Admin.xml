@@ -61,7 +61,7 @@
 	update user set delflg = 0 where seq = #{seq}
 	
 	</update>
-		<!--recipe 테이블의 delf를 0으로 update하고 게시글에서 delf가 0인것은 삭제된 것 처럼 보여주기  -->
+		<!--recipe 테이블의 delf를 0으로 update하고 게시글에서 delf가 0인것은 삭제된 것 처럼 보여주기  ㅎㅎㅎㅎㅎ-->
 	
 	<update id="delfUp">
 	

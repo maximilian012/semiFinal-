@@ -25,7 +25,7 @@
 	<!-- 회원 가입 -->
 	<insert id="addmember" parameterType="mul.cam.food.dto.MemberDto">
 		insert into user(userId, password, email, name, age, address, regdate, delflg, auth)
-		values(#{userId}, #{password}, #{email}, #{name}, #{age}, #{address}, now(), "0","0")
+		values(#{userId}, #{password}, #{email}, #{name}, #{age}, #{address}, now(), "3","0")
 	</insert>
 	
 	<!-- 로그인 -->

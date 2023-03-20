@@ -17,7 +17,7 @@ public class BbsDto implements Serializable{
 	private String regdate;
 	private double star;
 	private String tag;
-	private int delf;
+	private String delf;
 	
 	
 	public BbsDto() {
@@ -25,10 +25,8 @@ public class BbsDto implements Serializable{
 	}
 
 
-
-
 	public BbsDto(int seq, String writer, String thumbnail, String title, String content, String ingredients,
-			String cookingtime, String serving, int category, String regdate, double star, String tag, int delf) {
+			String cookingtime, String serving, int category, String regdate, double star, String tag, String delf) {
 		super();
 		this.seq = seq;
 		this.writer = writer;
@@ -44,8 +42,6 @@ public class BbsDto implements Serializable{
 		this.tag = tag;
 		this.delf = delf;
 	}
-
-
 
 
 	public int getSeq() {
@@ -168,20 +164,14 @@ public class BbsDto implements Serializable{
 	}
 
 
-
-
-	public int getDelf() {
+	public String getDelf() {
 		return delf;
 	}
 
 
-
-
-	public void setDelf(int delf) {
+	public void setDelf(String delf) {
 		this.delf = delf;
 	}
-
-
 
 
 	@Override
@@ -191,7 +181,8 @@ public class BbsDto implements Serializable{
 				+ ", serving=" + serving + ", category=" + category + ", regdate=" + regdate + ", star=" + star
 				+ ", tag=" + tag + ", delf=" + delf + "]";
 	}
-
+	
+	
 
 	
 	

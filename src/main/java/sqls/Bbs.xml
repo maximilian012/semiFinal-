@@ -28,11 +28,11 @@
 	</select>
 
 	<!--모든 글 리스트 -->
-	<select id="getlist" parameterType="mul.cam.food.dto.BbsParam" resultType="mul.cam.food.dto.BbsDto" >
-		select seq, writer, title, thumbnail, content, ingredients, cookingtime, serving , category, regdate, star, tag
+	<select id="getlist" parameterType="mul.cam.food.dto.BbsParam" resultType="mul.cam.food.dto.BbsDto" > <!-- 수정 -->
+		select seq, writer, title, thumbnail, content, ingredients, cookingtime, serving , category, regdate, star, tag, delf 
 		from 
 			( select row_number()over(order by regdate desc) as rnum,
-				seq, writer, title, thumbnail, content, ingredients, cookingtime, serving , category, regdate, star, tag
+				seq, writer, title, thumbnail, content, ingredients, cookingtime, serving , category, regdate, star, tag, delf
 			  from recipe
 			  where 1=1
 			  <if test="choice != null and choice != '' and search != null and search != '' ">
@@ -55,16 +55,10 @@
 
 	<!-- bbs wirte -->
 
-	<insert id="bbswrite" parameterType="mul.cam.food.dto.BbsDto">
+	<insert id="bbswrite" parameterType="mul.cam.food.dto.BbsDto"> <!-- 수정 -->
 
-		insert into recipe(writer,
-		title, thumbnail, content, ingredients,
-		cookingtime, serving ,
-		category, regdate, star, tag, delf)
-		values(#{writer}, #{title}, #{thumbnail},
-		#{content}, #{ingredients}, #{cookingtime},
-		#{serving}, #{category},
-		now(), 0, #{tag}, 0)
+		insert into recipe(writer, thumbnail, title, content, ingredients, cookingtime, serving ,category, regdate, star, tag, delf)
+		values(#{writer}, #{thumbnail}, #{title},#{content}, #{ingredients}, #{cookingtime},#{serving}, #{category},now(), ${star}, #{tag}, '3')
 
 	</insert>
 
@@ -77,7 +71,7 @@
 	</select>
 	<!-- 게시글 상세보기 -->
 	<select id="detailBbs" resultType="mul.cam.food.dto.BbsDto">
-		select seq, writer, title, thumbnail, content, ingredients, cookingtime, serving , category, regdate, star, tag
+		select seq, writer, title, thumbnail, content, ingredients, cookingtime, serving , category, regdate, star, tag, delf
 		from recipe
 		where seq=#{seq}		
 	</select>
@@ -129,9 +123,11 @@
 	
 	
 		<!-- 게시판 수정 -->
-	<update id="updateBbs" parameterType="mul.cam.food.dto.BbsDto">
+	<update id="updateBbs" parameterType="mul.cam.food.dto.BbsDto"><!-- 수정 -->
 		update recipe
-		set thumbnail=#{thumbnail}, title=#{title}, content=#{content}, ingredients=#{ingredients}, cookingtime=#{cookingtime}, serving=#{serving}, category=#{category}, regdate=now(), tag=#{tag}
+		set thumbnail=#{thumbnail}, title=#{title},
+		 content=#{content}, ingredients=#{ingredients},
+		  cookingtime=#{cookingtime}, serving=#{serving}, category=#{category}, regdate=now(), tag=#{tag}, delf=#{delf}
 		where seq=#{seq}
 	</update>
 	

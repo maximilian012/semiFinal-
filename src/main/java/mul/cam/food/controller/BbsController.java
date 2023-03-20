@@ -44,7 +44,7 @@ public class BbsController {
 	BbsService service;
 
 	@GetMapping(value = "mainhome.do")
-	public String mainhome(Model model, HttpServletRequest req) {
+	public String mainhome(Model model, HttpServletRequest req, String auth) {
 //		System.out.println("MemberController mainhome() " + new Date());	
 
 //		System.out.println(req.getSession().getAttribute("login")); 
@@ -54,7 +54,7 @@ public class BbsController {
 
 		model.addAttribute("food", food);
 		model.addAttribute("recent", recent);
-
+		//"bbslist.do?auth=" + <%= dto.getAuth()%>;
 		return "mainhome";
 	}
 	

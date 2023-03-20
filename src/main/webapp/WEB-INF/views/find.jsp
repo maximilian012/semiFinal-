@@ -37,7 +37,7 @@
       	<h1>User ID Check</h1>
       	
       	<form action="find_id_Af.do" method="post" class="more-padding" autocomplete="off">
-          <input type="email" id="email_1" name="email" placeholder="이메일">
+          <input type="email" id="email_id" name="email" placeholder="이메일">
           <button type="submit" id="find_id_btn" class="button submit">아이디 찾기</button>
           <button type="button" onclick="history.go(-1)" class="button">로그인하러 가기</button>
         </form>
@@ -47,21 +47,21 @@
 	  <div class="signin">
 	  	<h1>PassWord Check</h1>
 	  	<form action="find_pwd_Af.do" method="post" class="more-padding" autocomplete="off">
-	  	    <input type="email" id="email_2" name="email" placeholder="이메일">
+	  	    <input type="email" id="email_pwd" name="email" placeholder="이메일">
 			<button type="submit" id="find_pwd_btn"  class="button submit">패스워드 찾기</button>
 			<button type="button" onclick="history.go(-1)" class="button">로그인하러 가기</button>
 		</form>
 	  </div>
      </div>
     <div class="leftbox">
-      <a href=><img class="logo" src="./images/homebob.png"/></a>
+	  <a href="mainhome.do"><img class="logo" src="./images/homebob.png"/></a>
       <p class="desc">회원님의 <span>"HomeBOB"</span>을</p>
       <p>책임지겠습니다.</p>
       <p class="account">forget your id?</p>
       <button id="signin" class="button">password check</button>
     </div>
     <div class="rightbox">
-      <a href=><img class="logo" src="./images/homebob.png"/></a>
+      <a href="mainhome.do"><img class="logo" src="./images/homebob.png"/></a>
       <p class="desc">회원님의 <span>"HomeBOB"</span>을</p>
       <p>책임지겠습니다.</p>
       <p class="account">forget your password?</p>
@@ -90,7 +90,7 @@ $(function(){
 	// 아이디 찾기 버튼 입력 시
 	$("#find_id_btn").click(function(event) {
 		 
-		 if($("#email").val().trim() == ""){
+		 if($("#email_id").val().trim() == ""){
 			 
 			 event.preventDefault(); // submit 버튼 취소
 			 alert("이메일을 입력해주십시오.");
@@ -102,7 +102,7 @@ $(function(){
 	
 	// 패스워드 찾기 버튼 입력 시
 	$("#find_pwd_btn").click(function(event) {
-		 if($("#email").val().trim() == ""){
+		 if($("#email_pwd").val().trim() == ""){
 					 
 			 event.preventDefault(); // submit 버튼 취소
 			 alert("이메일을 입력해주십시오.");

@@ -12,7 +12,7 @@
     	String search = (String)request.getAttribute("search");
     	MemberDto login = (MemberDto)session.getAttribute("login");	
     %>
-    
+
     
     
 <!DOCTYPE html>
@@ -545,7 +545,7 @@ function callModal(id){
 	$.ajax({
 		url: "./getuserInfo.do",
 		type: "post",
-		data: {"user_id": id},
+		data: {"userId": id},
 		success:function(data){
 			
 			//alert('success');
@@ -553,10 +553,13 @@ function callModal(id){
 			$(".modal-body").html("");
 			$("#modals").empty();
 				let str = "<tr class='modal-bodybody'>"
-						+ "<td>아이디: " + data.user_id  + "</td>"
+						+ "<td>아이디: " + data.userId  + "</td>"
 						+ "</tr>"
 						+ "<tr>"
 						+ "<td>나이: " + data.age + "</td>"
+						+ "</tr>"
+						+ "<tr>"
+						+ "<td>이메일: " + data.email + "</td>"
 						+ "</tr>"
 						+ "<tr>"
 						+ "<td> 주소: " + data.address + "</td>"
@@ -583,7 +586,7 @@ function callModal2(id){
 	$.ajax({
 		url: "./getListCnt.do",
 		type: "post",
-		data: {"user_id": id},
+		data: {"userId": id},
 		success:function(data){
 			
 			//alert('success');
@@ -638,7 +641,7 @@ function callModal3(id){
 	$.ajax({
 		url: "./getComentCnt.do",
 		type: "post",
-		data: {"user_id": id},
+		data: {"userId": id},
 		success:function(data){
 			
 			//alert('success');
