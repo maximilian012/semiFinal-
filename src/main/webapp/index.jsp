@@ -8,7 +8,7 @@
 </head>
 <body>
 <%
-	response.sendRedirect("mainhome.do");
+	response.sendRedirect("bbslist.do");
 %>
 
 </body>
