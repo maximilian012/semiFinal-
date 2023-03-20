@@ -24,7 +24,239 @@
 <!-- include summernote css/js -->
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+<style type="text/css">
+body {
+	margin: 0;
+	font-family: 'Noto Sans KR', sans-serif;
+}
 
+a {
+	text-decoration: none;
+}
+
+img {
+	width: 100% !important;
+}
+
+header {
+	width: auto;
+	height: 110px;
+	background-color: #ff0000;
+	/*#ffd26f #ffe64f #fff9ee */
+}
+
+header #headerNav {
+	width: 1200px;
+	margin: 0 auto;
+	background-color: #fff9ee;
+	height: 110px;
+	position: relative;
+}
+
+header img {
+	float: left;
+}
+
+header ul {
+	list-style: none;
+	float: left;
+	margin: 0 auto;
+	/* height: 110px; */
+	text-align: center;
+}
+
+header .member {
+	float: right;
+}
+
+header ul li {
+	float: left;
+	font-weight: 700;
+	font-size: 20px;
+	/* height: 30px; */
+	vertical-align: middle;
+	margin-top: 40px;
+	width: 120px;
+}
+
+#headerNav ul li ul {
+	width: 1200px;
+	background-color: royalblue;
+	position: absolute;
+	left: 0;
+	top: 110px;
+	padding: 0;
+	z-index: 10;
+}
+
+header .categoryHide {
+	display: none;
+}
+
+header a {
+	cursor: pointer;
+}
+
+.nav-link {
+	font-size: 22px;
+}
+
+#main-image {
+	width: 100%;
+	height: 700px;
+	overflow: hidden;
+	position: relative;
+	margin: 0 auto;
+}
+
+#main-image ul {
+	list-style: none;
+	width: 625%;
+	position: absolute;;
+	top: 0;
+	left: 0;
+	margin: 0;
+	padding: 0;
+	height: 700px;
+}
+
+.image_box li {
+	float: left;
+	display: inline-block;
+	width: 16%;
+}
+
+main {
+	/* 	width: 1200px; */
+	margin: 0 auto;
+}
+
+#recipe-post {
+	margin: 0 auto;
+}
+.card p img {
+	max-width: 100% !important;
+	height: 370px !important;
+}
+
+@media screen and (min-width:1024px) {
+	.g-3 {
+		width: 1300px;
+		margin: 0 auto;
+	}
+	.input-group {
+		width: 1256px;
+		margin: 50px auto;
+	}
+}
+
+.carousel-control-prev-icon:after {
+	content: "";
+}
+
+.carousel-control-next-icon:after {
+	content: "";
+}
+
+.carousel-indicators [data-mdb-target] {
+	width: 30px;
+	height: 10px;
+	background-color: #fff9ee;
+}
+
+.row-cols-3>* {
+	margin-top: 50px;
+}
+
+.carousel-caption {
+	right: 64%;
+	bottom: 14.25rem;
+	font-size: 45px;
+	width: 30%;
+	left: 10%;
+	font-weight: 700;
+}
+
+.carousel-item h5 {
+	font-size: 2.25rem;
+}
+
+@media screen and (min-width:1024px) {
+	.center-image {
+		width: 100%;
+		background-color: rgb(244, 238, 231);
+		margin: 50px 0;
+	}
+	.center-style {
+		width: 1400px;
+		margin: 0 auto;
+	}
+	.tag-style {
+		text-align: center;
+		font-size: 24px;
+		border: 2px solid orange;
+		border-radius: 31px;
+		padding: 5px 0;
+	}
+	.tag-style a {
+		width: 100%;
+		display: inherit;
+	}
+	.small-img {
+		height: 400px;
+		background-color: #fff9ee;
+	}
+	.small-img p img {
+		height: 200px !important;
+	}
+	.small-img p {
+		margin-top: 20px;
+	}
+}
+
+.small-img:hover {
+	color: red;
+	cursor: pointer;
+}
+
+.arrow-img {
+	width: 100px;
+	height: 100px;
+}
+
+.tag-style a:hover {
+	text-decoration: underline;
+}
+
+.card-ceter-title {
+	text-align: center;
+	margin-top: 30px;
+}
+
+.card-bottom-title {
+	text-align: center;
+}
+
+.carousel-item {
+	transition-duration: .9s;
+}
+
+.my-change {
+	transition: transform 0.2s ease-in-out;
+	transition-duration: 1s;
+}
+
+@media screen and (max-width:1023px) {
+	.small-img p img {
+		height: 160px !important;
+		background-color: orange;
+	}
+}
+
+.cursor-change{
+	cursor: pointer;
+}
+</style>
 	
 </head>
 
@@ -33,48 +265,116 @@
 %> 
 <body>
 	
+	<!-- login 전일 때 나오는 Navbar -->
+	<%
+	if (login == null) {
+	%>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<div class="container-fluid">
-			<a class="navbar-brand" href="#" ><img alt="" src="./images/logo.png" width="60" height="60" align="left"></a>
+		<!-- Container wrapper -->
+		<div class="container-fluid" style="height: 100px; font-weight: 700;">
+			<!-- Toggle button -->
 			<button class="navbar-toggler" type="button"
-				data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-				aria-controls="navbarNavDropdown" aria-expanded="false"
+				data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
 				aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
+				<i class="fas fa-bars"></i>
 			</button>
-			<div class="collapse navbar-collapse justify-content-between"
-				id="navbarNavDropdown">
-				<ul class="navbar-nav">
-					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="bbslist.do">Home</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">게시판</a></li>
 
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#"
-						id="navbarDropdownMenuLink" role="button"
-						data-bs-toggle="dropdown" aria-expanded="false"> 카테고리 </a>
-						<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-							<li><a class="dropdown-item" href="#">종류</a></li>
-							<li><a class="dropdown-item" href="#">재료</a></li>
-							<li><a class="dropdown-item" href="#">방법</a></li>
-							<li><a class="dropdown-item" href="#">테마</a></li>
-							<li><a class="dropdown-item" href="#">기념일</a></li>
-							<li><a class="dropdown-item" href="#">도구</a></li>
-						</ul></li>
+			<!-- Collapsible wrapper -->
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<!-- Navbar brand -->
+				<a class="navbar-brand mt-2 mt-lg-0" href="#"> <img
+					src="resources/images/logo.png" height="100" alt="Logo"
+					loading="lazy" />
+				</a>
+				<!-- Left links -->
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item"><a class="nav-link" href="#">카테고리</a></li>
+					<li class="nav-item"><a class="nav-link" href="bbslist.do">게시판</a></li>
+					<li class="nav-item"><a class="nav-link" href="login.do">로그인</a></li>
+					<li class="nav-item"><a class="nav-link" href="regi.do">회원가입</a></li>
 				</ul>
-				<ul class="navbar-nav">
-					<li class="nav-item" style="text-align: right"><a
-						class="nav-link" href="#">로그인</a></li>
-					<li class="nav-item" style="text-align: right"><a
-						class="nav-link" href="#">회원가입</a></li>
+				<!-- Left links -->
+			</div>
+			<!-- Collapsible wrapper -->
+
+			<!-- Right elements -->						
+		<!-- Right elements -->
+		</div>
+		<!-- Container wrapper -->
+	</nav>
+	<%
+	}
+	%>
+	<!-- Navbar -->
+	
+	<%
+	if (login != null) {
+	%>
+	<!-- login 하면 나오는 Navbar -->
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<!-- Container wrapper -->
+		<div class="container-fluid" style="height: 100px; font-weight: 700;">
+			<!-- Toggle button -->
+			<button class="navbar-toggler" type="button"
+				data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<i class="fas fa-bars"></i>
+			</button>
+
+			<!-- Collapsible wrapper -->
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<!-- Navbar brand -->
+				<a class="navbar-brand mt-2 mt-lg-0" href="#"> <img
+					src="resources/images/logo.png" height="100" alt="Logo"
+					loading="lazy" />
+				</a>
+				<!-- Left links -->
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item"><a class="nav-link" href="#">카테고리</a></li>
+					<li class="nav-item"><a class="nav-link" href="bbslist.do">게시판</a></li>
+				</ul>
+				<!-- Left links -->
+			</div>
+			<!-- Collapsible wrapper -->
+
+			<!-- Right elements -->
+			<div clas="dropdown">
+				<p style="margin: 0 15px 0 0"><%=login.getUserId()%>
+					님 반갑습니다!
+				</p>
+			</div>
+			<div class="dropdown">
+				<a class="dropdown-toggle d-flex align-items-center hidden-arrow"
+					href="#" id="navbarDropdownMenuAvatar" role="button"
+					data-mdb-toggle="dropdown" aria-expanded="false"> <img
+					src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
+					class="rounded-circle" height="25"
+					alt="Black and White Portrait of a Man" loading="lazy" />
+				</a>
+
+				<ul class="dropdown-menu dropdown-menu-end"
+					aria-labelledby="navbarDropdownMenuAvatar">
+					<li><a class="dropdown-item" href="#">My profile</a></li>
+					<li><a class="dropdown-item" href="#">Settings</a></li>
+					<li><a class="dropdown-item" href="#">Logout</a></li>
 				</ul>
 			</div>
+		<%
+		}
+		%>
+		<!-- Right elements -->
 		</div>
+		<!-- Container wrapper -->
 	</nav>
-	<div style="width: 1000px; height: 1000px;" >
+	<!-- Navbar -->
+	<div style="margin: 0 auto;">
 	<main role="main" class="container">
-		<form action="bbswriteAF.do" method="post" enctype="multipart/form-data" name="writeForm" onsubmit="return valid();">
-		 <input type="hidden" name="writer" value="<%=login.getUser_id() %>">
+		<form action="bbswriteAFs.do" method="post" enctype="multipart/form-data" id="writeForm"  name="writeForm">
+	<!-- 	<form action="#" method="get" enctype="multipart/form-data" id="writeForm"  name="writeForm" > --> 	
+		 <input type="hidden" name="writer" value="<%=login.getUserId() %>">
+		 <input type="hidden" name="auth" value="<%=login.getAuth()%>">
 				<div class="mb-3">
 
 					<label for="title">썸네일</label>
@@ -161,6 +461,33 @@
 
 			</div>
 
+			<div class="pt-1 text-right">
+				<button class="btn btn btn-success" type="button" onclick="history.back()" 
+					style="width: 10%; padding: 5px;">목록보기</button>
+				<button class="btn btn btn-success" type="reset"
+					style="width: 10%; padding: 5px;">다시쓰기</button>
+				<button class="btn btn btn-success" type="submit"
+					style="width: 10%; padding: 5px;" >작성완료</button>
+			</div>
+		</form>
+
+	
+	</main>
+	</div>
+
+
+	
+	<div class="b-example-divider "></div>
+	<div class="container-fluid ">
+<!--    <footer class="py-3 my-4">
+    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+      
+    </ul>
+    <p class="text-center text-muted">© 2023 Company, Inc</p>
+  </footer>  -->
+</div>
+
+
 			
 		<script>
 		$('.summernote').summernote({
@@ -176,8 +503,9 @@
 		}
 		
 		function valid(){
-			
+			let writeForm = document.getElementById("writeForm");
 			const title = writeForm.title;
+
 			if (title.value == "") {
 				alert("제목을 입력하세요");
 				title.focus();
@@ -197,7 +525,7 @@
 			}
 			const cookingtime = writeForm.cookingtime;
 			if (cookingtime.value == "") {
-				alert("요리시간을 입력하세요");
+				alert("조리시간을 입력하세요");
 				cookingtime.focus();
 				return false;
 			}
@@ -215,9 +543,10 @@
 			} */
 			flag = false;
 			const category = writeForm.category;
+			console.log(category);
 			for(i=0; i < category.length; i++){
 				if(category[i].checked){			// 이 부분과
-					str += category[i].value + "\n";  	// 이 부분도 매우 중요한 부분
+					//str += category[i].value + "\n";  	// 이 부분도 매우 중요한 부분
 					flag = true;
 				}
 			}
@@ -233,46 +562,12 @@
 				content.focus();
 				return false;
 			}
-			const regdate = writeForm.regdate;
-			if (regdate.value == "") {
-				alert("조리시간을 입력하세요");
-				regdate.focus();
-				return false;
-			}
-			const star = writeForm.star;
-			if (star.value == "") {
-				alert("평점을 입력하세요");
-				star.focus();
-				return false;
-			}
+
+			
+			return flag;
 			
 		}
 		
 		</script>
-			<div class="pt-1 text-right">
-				<button class="btn btn btn-success" type="button" onclick="history.back()" 
-					style="width: 10%; padding: 5px;">목록보기</button>
-				<button class="btn btn btn-success" type="reset"
-					style="width: 10%; padding: 5px;">다시쓰기</button>
-				<button class="btn btn btn-success" type="submit"
-					style="width: 10%; padding: 5px;">작성완료</button>
-			</div>
-		</form>
-
-	
-	</main>
-	</div>
-	
-
-	
-	<div class="b-example-divider "></div>
-	<div class="container-fluid ">
-<!--    <footer class="py-3 my-4">
-    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-      
-    </ul>
-    <p class="text-center text-muted">© 2023 Company, Inc</p>
-  </footer>  -->
-</div>
 </body>
 </html>

@@ -3,201 +3,179 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+<meta name="generator" content="Hugo 0.108.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>HOME BOB : 로그인 창</title>
 
-<%-- 네이버 로그인 API --%>
-<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
-
+<%-- css 로드 --%>
+<link rel="stylesheet" type="text/css" href="./css/login.css" >
 
 <%-- jQuery --%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
-<script src="https://kit.fontawesome.com/53a8c415f1.js" crossorigin="anonymous"></script>
+<%-- 부트스트랩 --%>
+<%-- 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+--%>
 
 <%-- cookie 저장 --%>
 <script src="http://lab.alexcican.com/set_cookies/cookie.js" type="text/javascript" ></script>
 
-<style type="text/css">
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Noto Sans KR", sans-serif;
-}
-
-.h1{
-  color: FFE5A3;
-}
-
-.img{
-  width: 30%;
-  align-items: center;
-  flex-direction: column;
-}
-
-
-.wrap {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-}
-
-.label{
-	color: white;
-	font-size: 2em;
-}
-
-.login {
-  width: 40%;
-  height: 600px;
-  background-color: #FFF1CD;
-  border-radius: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-.login_sns {
-  padding: 20px;
-  display: flex;
-}
-
-.login_sns li {
-  padding: 0px 15px;
-}
-
-.login_sns a {
-  width: 50px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px;
-  border-radius: 50px;
-  background: white;
-  font-size: 20px;
-  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.4), -3px -3px 5px rgba(0, 0, 0, 0.1);
-}
-
-.login_id {
-  margin-top: 20px;
-  width: 100%;
-}
-
-.login_id input {
-  width: 100%;
-  height: 50px;
-  border-radius: 30px;
-  margin-top: 10px;
-  padding: 0px 20px;
-  border: 1px solid lightgray;
-  outline: none;
-}
-
-.login_pwd {
-  margin-top: 20px;
-  width: 100%;
-}
-
-.login_pwd input {
-  width: 100%;
-  height: 50px;
-  border-radius: 30px;
-  margin-top: 10px;
-  padding: 0px 20px;
-  border: 1px solid lightgray;
-  outline: none;
-}
-
-.login_etc {
-  padding: 10px;
-  width: 80%;
-  font-size: 14px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-weight: bold;
-}
-
-.button {
-  margin-top: 10px;
-  width: 80%;
-}
-.button button {
-  width: 100%;
-  height: 50px;
-  border: 0;
-  outline: none;
-  border-radius: 40px;
-  background: #FFE5A3;
-  color: white;
-  font-size: 1.2em;
-  letter-spacing: 2px;
-}
-
-
-</style>
-
 </head>
 <body>
 
-<div style="text-align: center;">
-	<a href=><img alt="로고" class="img" src="./images/logo.png"></a><br>
-</div>
-<h1 style="text-align:center;">로그인</h1>
-
-
-<div class="wrap">
-	<div class="login">
-
-		<form action="loginAf.do" method="post">
-			<div class="login_id">
-				<label class="label">아이디</label>
-				<input type="text" id="id" name="user_id" placeholder="아이디">
+<div class="container">
+  <div class="welcome">
+    <div class="pinkbox">
+    
+      <div class="signup nodisplay">
+      
+      	<h1>register</h1>
+      	
+      	<form action="regiAf.do" method="post" autocomplete="off">
+      	  <div class="id_check_button">
+          	<input type="text" id="id" name="userId" placeholder="아이디">
+          	<button type="button" id="idChkBtn">중복 체크</button>
+          </div>
+          <p id="idcheck" style="display:none;"></p> 
+          <input type="password" id="pwd" name="password" placeholder="비밀번호">
+          <input type="password" id="pwd_2" placeholder="비밀번호 확인">
+          <div class="personal_class">
+	          <input type="text" id="name" name="name" class="personal" placeholder="이름">
+	          <input type="text" id="age" name="age" class="personal" placeholder="나이">
+          </div>
+          <input type="email" id="email" name="email" placeholder="이메일">
+          <input type="text" id="address" name="address" placeholder="주소">
+          <button type="submit" id="create_id" class="button submit">회원가입</button>
+        </form>
+	  </div>
+	  
+	  <div class="signin">
+	  	<h1>sign in</h1>
+	  	<form action="loginAf.do" method="post" class="more-padding" autocomplete="off">
+			<input type="text" id="id" name="userId" placeholder="아이디">
+			<input type="text" id="pwd" name="password" placeholder="패스워드">
+         	<div class="checkbox">
+				<input type="checkbox" id="chk_save_id" class="checkbox">
+				<label for="chk_save_id">remember me</label>
 			</div>
-			<div class="login_pwd">
-				<label class="label">패스워드</label>
-				<input type="text" id="pwd" name="password" placeholder="패스워드">
-			</div><br>
-			<div class="checkbox">
-				<input type="checkbox" id="chk_save_id">아이디 저장
-			</div>
-			<div class="button">
-				<button type="submit" id="login">로그인</button>
-				<button type="button" id="account">회원가입</button>
-				<button type="button" id="find_id">아이디/패스워드 찾기</button>
-			</div>
-			<div class="login_sns">
-				<li><a href="naver.com"><i class="fab fa-naver"></i></a></li>
-				<li><a href="kakao.com"><i class="fab fa-kakao"></i></a></li>
-				<li><a href="google.com"><i class="fab fa-google"></i></a></li>
-			</div>
+			
+			<button type="submit" id="login"  class="button submit">로그인</button>
+			<button type="button" id="find_id"  class="button">아이디/패스워드 찾기</button>
 		</form>
-	</div>
+	  </div>
+     </div>
+    <div class="leftbox">
+      <a href=><img class="logo" src="./images/homebob.png"/></a>
+      <p class="desc">회원님의 <span>"HomeBOB"</span>을</p>
+      <p>책임지겠습니다.</p>
+      <p class="account">have an account?</p>
+      <button id="signin" class="button">login</button>
+    </div>
+    <div class="rightbox">
+      <a href=><img class="logo" src="./images/homebob.png"/></a>
+      <p class="desc">회원님의 <span>"HomeBOB"</span>을</p>
+      <p>책임지겠습니다.</p>
+      <p class="account">don't have an account?</p>
+      <button id="signup" class="button">sign up</button>
+    </div>
+ </div>
 </div>
+    
 
 <script type="text/javascript">
 $(function() {
 	
-	// 회원가입 창으로 이동
-	$("#account").click(function() {
-		location.href = "regi.do";		
+	$('#signup').click(function() {
+		  $('.pinkbox').css('transform', 'translateX(80%)');
+		  $('.signin').addClass('nodisplay');
+		  $('.signup').removeClass('nodisplay');
+	});
+
+	$('#signin').click(function() {
+	  $('.pinkbox').css('transform', 'translateX(0%)');
+	  $('.signup').addClass('nodisplay');
+	  $('.signin').removeClass('nodisplay');
 	});
 	
+	/* 회원 가입 부분 */
+	// id 중복체크
+	$("#idChkBtn").click(function() {		
+			
+		$.ajax({
+			type:"post",
+			url:"idcheck.do",
+			data:{ "id":$("#id").val() },
+			success:function(msg){				
+				if(msg == "YES"){
+					// 빈 칸 방지
+					if ($("#id").val().trim() == ""){
+						alert("아이디를 입력하십시오.");
+					}else{
+						$("#idcheck").css("color", "#0000ff");
+						$("#idcheck").text("사용할 수 있는 아이디입니다");
+						$("#idcheck").show();
+					}
+				}else{
+					$("#idcheck").css("color", "#ff0000");
+					$("#idcheck").text("사용중인 아이디입니다");
+					$("#idcheck").show();
+					$("#id").val("");
+				}
+			},
+			error:function(){
+				alert('error');
+			}
+		});
+	});
+	
+	// 회원가입 버튼
+	$("#create_id").click(function(event){
+		
+		// 빈 칸이 있으면 알림
+	    if ($("#id").val().trim() == "" || $("#pwd").val().trim() == "" || $("#pwd_2").val().trim() == "" || $("#name").val().trim() == "" || $("#age").val().trim() == "" || $("#address").val().trim() == "") {
+	      alert("빈 칸을 모두 채워주세요.");
+	      event.preventDefault(); // submit 버튼 취소
+	      return false; // 함수 실행 중지
+	    }
+		
+		// pwd 확인
+		if($("#pwd").val() != $("#pwd_2").val() ){
+			alert("비밀번호를 확인해주세요.");
+			
+			$("#pw").val("").focus();
+			$("#pw2").val("");
+			
+			// 기본 동작 취소 함수
+			event.preventDefault();	// submit 버튼 취소
+			
+			return false;	// 함수 실행 중지
+		};
+		<%-- 비밀번호 자릿 수 설정 
+			}else if ($("#pw").val().length < 8) {
+				alert("비밀번호는 8자 이상으로 설정해야 합니다.");
+				$("#pw").val("").focus();
+				return false;} --%> 
+		
+	});
+		
 	// 아이디/비번 찾기로 이동
 	$("#find_id").click(function() {
 		location.href = "find.do";		
 	});
 	
 	// 쿠키 값 저장, 쿠키 없으면 null
-	let user_id = $.cookie("user_id");
+	let userId = $.cookie("userId");
 
-	if(user_id != null){	// 저장한 id가 있음
-		$("#id").val(user_id);
+	if(userId != null){	// 저장한 id가 있음
+		$("#id").val(userId);
 		$("#chk_save_id").prop("checked", true);
 	};
 
@@ -210,11 +188,11 @@ $(function() {
 				$("#chk_save_id").prop("checked", false);
 			}else{
 				// cookie를 저장
-				$.cookie("user_id", $("#id").val().trim(), { expires:7, path:'./' });	// expires 만료 날짜, ./ 현재 경로
+				$.cookie("userId", $("#id").val().trim(), { expires:7, path:'./' });	// expires 만료 날짜, ./ 현재 경로
 			}
 			
 		}else{
-			$.removeCookie("user_id", { path:'./' });
+			$.removeCookie("userId", { path:'./' });
 		}	
 	});
 });

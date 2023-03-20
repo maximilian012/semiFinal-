@@ -20,302 +20,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="./css/bbslist.css" >
+  <script type="text/javascript" src="./jquery/jquery.twbsPagination.min.js"></script>
 
 <style type="text/css">
-body {
-	font-size: 16px;
-    font-weight: normal;
-    line-height: 1.5;
-    color: #777;
-    letter-spacing: 0;
-    -webkit-text-size-adjust: none;
-
-}
-
-
-.header{
-	position: relative;
-    width: 100%;
-    min-width: 1300px;
-    height: 150px;
-    box-sizing: border-box;
-    z-index: 13;
-    background: #f5f5dc;
-    font-family: 'Noto Sans KR', sans-serif;
-
-}
-
-
-
-
-.header > .bob_head {
-    width: 1280px;
-    height: 105px;
-    margin: 0 auto;
-    position: relative;
-}
-
- .header > .bob_head > h1 {
-position: relative;
-    float: left;
-    display: block;
-    width: 130px;
-    height: 105px;
-
-}
-
- .header > .bob_head > h1 > .logo {
-position: absolute;
-    top: 38%;
-    display: block;
-    width: 240px;
-    height: 140px;
-    margin-left: 0px;
-    margin-top: -33px;
-    background: url(./images/homebob.png) no-repeat;
-    background-size: 140px;
-}
-
-.right-header {
-	float:right;
-}
-
-.header > .bob_head> .gnb_head_area{
-width: 1070px;
-    height: 75px;
-    /* margin-left: 370px; */
-    position: relative;
-    padding-top: 46px;
-    text-align: left;
-    vertical-align: top;
-    display: table;
-    font-size: xx-large;
-}
-
-.header > .bob_head > .gnb_head_area .bob_head_form {
-    float: left;
-    position: relative;
-}
-
-
-.header > .bob_head > .gnb_head_area .tag_top {
-    text-align: right;
-    float: right;
-    width: 300px;
-    overflow: hidden;
-}
-
-
-.main {
-	margin-top: 2rem;
-}
-
-.search_area {
-width: auto;
-    height: 500px;
-    border: 1px solid;
-}
-
-
-.top-5{
-	top: -5px;
-}
-
-.category_tag_div {
-	height: 5rem;
-}
-
-.category_tag {
-	width: 33%;
-	float: left;
-	font-size: xx-large;
-}
-
-.category-main{
-	margin-top: 1rem;
-	position: relative;
-    margin: 0 auto;
-    vertical-align: top;
-    display: block;
-    clear: both;
-    border-top: 2px solid #f64646;
-}
-.category {
-    position: relative;
-    width: 100%;
-    display: block;
-    clear: both;
-    margin-top: 1rem;
-    overflow-x: hidden !important;
-}
-
-.category-main th {
-    font-size: 19px;
-    color: #666;
-    font-weight: bold;
-    border-bottom: 1px solid #bbbbbb;
-    background: #f9f9f9;
-    padding: 20px;
-    width: 100px;
-    text-align: center;
-}
-
-.category-main td {
-    border-bottom: 1px solid #bbbbbb;
-    padding: 20px;
-}
-
-.category-main a {
-    font-size: 19px;
-    color: #666;
-}
-
-.category-main a:after {
-    width: 1px;
-    height: 18px;
-    background: #c2c2c2;
-    display: inline-block;
-    content: '';
-    margin: 0 20px;
-}
-
-.bbs-main {
-	width: 100%;
-
-	margin-top: 2rem;
-}
-
-.bbs-recipt {
-	/*width: 25%;  */
-	float: left;
-	font-size: x-large;
-	padding-right: 0.5rem;
-    padding-left: 0.5rem;
-   -webkit-transform: scale(1);
-    cursor: pointer; 
-    margin-top: 1rem;
-    
-}
-
-.bbs-recipt p{
-	margin-bottom: 0px;
-	 
-}
-.overflowHidden{
-  overflow: hidden;
-}
-.bbs-thumbnali {
- 	width: 255px;
-    height: 165px; 
-   object-fit:cover; 
-   transform:scale(1.0);        
-
-   transition: transform .5s;
-
-
-   
-}
-.bbs-recipt:hover  img{
-   transform:scale(1.5);
-   transition: transform .5s;}
-
-
-.hash-tag {
-	font-size: small;
-	float: left;
-
-}
-
-.bbs-table {
-margin-left: 1rem;
-}
-
-.bob_head_headline {
-padding-left: 19rem;
-    font-size: 50px;
-    margin-top: 0px;
-    top: -1rem;
-}
-
-.bbs-footer {
-position: relative;
-    width: 100%;
-    min-width: 1300px;
-    display: block;
-    clear: both;
-    padding-bottom: 40px;
-    background: #f5f5dc;
-
-}
-
-
-
-.content {
-
-position: relative;
-    width: 1280px;
-    margin: 0 auto;
-    vertical-align: top;
-    display: block;
-    clear: both;
-list-style: none;
-}
-
-.bss-footer-info {
-    margin-top: 38px;
-}
-.bss-footer-info-left {
-	float: left;
-    width: 70%;
-    line-height: 1.2 !important;
-
-}
-
-.bss-footer-info-right {
-float: right;
-    text-align: right;
-    padding-right: 4rem;
-    color: #fff;
-}
-
-.bss-footer-info-right select {
-padding: 0px 20px;
-    border-radius: 20px;
-	margin-right:3rem;
-    height: 43px;
-    color: #666;
-
-}
-
-.bbs-search-form {
-width: 60%;
-    margin-right: 1rem;
-    margin-left: 1rem;
-}
-
-.font-color {
-	color: black;
-}
-
-
-.custom-select {
-	display: inline-block;
-    width: 8%;
-    height: calc(1.5em + 0.75rem + 2px);
-    padding: 0.375rem 1.75rem 0.375rem 0.75rem;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #495057;
-    vertical-align: middle;
-    background: #fff url(data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e) right 0.75rem center/8px 10px no-repeat;
-    border: 1px solid #ced4da;
-    border-radius: 0.25rem;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    margin-left: 8rem;
-}
 
 </style>
 
@@ -324,48 +32,13 @@ width: 60%;
 	MemberDto login = (MemberDto)session.getAttribute("login");
 	List<BbsDto> list = (List<BbsDto>)request.getAttribute("bbslist");
 	String uploadFilePath = (String)request.getAttribute("uploadFilePath");
+	int pageBbs = (Integer)request.getAttribute("pageBbs");
+	int pageNumber = (Integer)request.getAttribute("pageNumber");
+	
 %> 
 
 
 <body>
-<!--        <div class='header'>
-       	<div class="bob_head">
-       	 <h1>				
-		  <a href="#" class="logo">
-		  </a>
-		 </h1>
-		 <div class="gnb_head_area">
-       	  <div class="bob_head_form">
-    	     <div class="dropdown">
-				  <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				    카테고리
-				  </a>
-			
-				  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-				    <a class="dropdown-item" href="mainhome.do">home</a>
-				    <a class="dropdown-item" href="#">Another action</a>
-				    <a class="dropdown-item" href="#">Something else here</a>
-				  </div>
-		 	</div>
-       	  </div>
-       	  <div class="bob_head_form bob_head_headline">
-       	  	<span>게시판</span>       	  
-       	  </div>
-
-		  <div class="tag_top">		 						
-				<a>
-					로그인
-				</a>
-			 
-				<a >
-					회원가입
-				</a>	
-			 </div>
-
-       	</div>
-		 
-       	</div>
-       </div> -->
        
        	<nav class="navbar navbar-expand-lg navbar-light bg-light"
 		style="background-color: red !important;">
@@ -382,7 +55,7 @@ width: 60%;
 			<!-- Collapsible wrapper -->
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<!-- Navbar brand -->
-				<a class="navbar-brand mt-2 mt-lg-0" href="#"> <img
+				<a class="navbar-brand mt-2 mt-lg-0" href="mainhome.do"> <img
 					src="resources/images/logo.png" height="100" alt="Logo"
 					loading="lazy" />
 				</a>
@@ -454,7 +127,7 @@ width: 60%;
 			</div>
 	   	</div>
 
-      <form class="d-flex">
+      <form class="d-flex" action="search.do" method="post">
       	<select class="custom-select" id="choice" name="choice">
 					<option selected>검색</option>
 					<option value="title">제목</option>
@@ -462,7 +135,7 @@ width: 60%;
 					<option value="writer">작성자</option>
 		</select>
         <input id="search" name="search" class="form-control me-2 bbs-search-form" type="search" placeholder="따뜻한 한끼를 검색해 보세요" aria-label="Search">
-        <button class="btn btn-outline-success" type="button" onclick="bbssearch()">search</button>
+        <button class="btn btn-outline-success" type="submit" >search</button>
       </form>
       
       <div class="category category-main">
@@ -584,10 +257,10 @@ width: 60%;
 			</tbody>
 		</table>
       </div>
-      
+<%--       
       <div class="bbs-main">
       <!-- 게시판 소개글? -->
-      <h2 class="text-center">
+      <h2 class="text-center" id="bbsname">
       	전체 게시판
       </h2>
       
@@ -607,7 +280,7 @@ width: 60%;
 		}else{
 		%>
 		
-<tbody>
+		<tbody>
       			<tr>
 		<%
 		
@@ -615,17 +288,19 @@ width: 60%;
 			{
 				BbsDto dto = list.get(i);
 		%>
-			<td class="bbs-recipt" onclick="location.href = 'bbsdetail.do?seq=<%=dto.getSeq() %>'">
-						<div class="overflowHidden text-center bbs-thumbnali">
-							<%-- <img alt="" src="<%=dto.getThumbnail()%>" class="text-center"> --%>
-							<%=dto.getThumbnail()%>
-						</div>			
+			<td class="card bbs-recipt " onclick="location.href = 'bbsdetail.do?seq=<%=dto.getSeq() %>'">
+				<div class="overflowHidden bbs-thumbnali">
+					<%=dto.getThumbnail()%>
+				</div>	
+				<div class="card-body">					
 						<p id="recipt-title"><%=dto.getTitle() %></p>
 						<div class="hash-tag" id="recipt-hashtag">
 						 <span><%=dto.getTag() %></span>
 						</div>
-						<input hidden id="seq" name="seq" value="<%=dto.getSeq() %>"/>						
+						<input hidden id="seq" name="seq" value="<%=dto.getSeq() %>"/>	
+				</div>					
 			</td>
+			
 		<%
 			}
 		}
@@ -633,8 +308,73 @@ width: 60%;
 		</tr>
 		</tbody>
   
-      	</table>  	
+      	</table>  
+      	
+      	 <div class="container page-bar">
+			<nav aria-label="Page navigation">
+			    <ul class="pagination" id="pagination" style="justify-content:center"></ul>
+			</nav>
+		 </div>	
+  	   </div> --%>
+      <div class="bbs-main">
+      <!-- 게시판 소개글? -->
+      <h2 class="text-center" id="bbsname">
+      	전체 게시판
+      </h2>
+      
+      <!-- 게시판 메인 -->
+      	<table class="bbs-table" id="bbs-table">
+		      	
+		<%
+		if(list == null || list.size() == 0){
+		%>
+		<tbody>
+			<tr>
+				<td colspan="4">작성된 글이 없습니다</td>
+			</tr>
+		</tbody>
+
+	    <%
+		}else{
+		%>
+		
+		<tbody>
+      			<tr>
+		<%
+		
+			for(int i = 0;i < list.size(); i++)
+			{
+				BbsDto dto = list.get(i);
+		%>
+			<td class="card bbs-recipt " onclick="location.href = 'bbsdetail.do?seq=<%=dto.getSeq() %>'">
+				<div class="overflowHidden bbs-thumbnali">
+					<%=dto.getThumbnail()%>
+				</div>	
+				<div class="card-body">					
+						<p id="recipt-title"><%=dto.getTitle() %></p>
+						<div class="hash-tag" id="recipt-hashtag">
+						 <span><%=dto.getTag() %></span>
+						</div>
+						<input hidden id="seq" name="seq" value="<%=dto.getSeq() %>"/>	
+				</div>					
+			</td>
+			
+		<%
+			}
+		}
+		%>
+		</tr>
+		</tbody>
+  
+      	</table>  
+      	
+      	 <div class="container page-bar">
+			<nav aria-label="Page navigation">
+			    <ul class="pagination" id="pagination" style="justify-content:center"></ul>
+			</nav>
+		 </div>	
   	   </div>
+ 
       
 	</div>
 	
@@ -675,78 +415,27 @@ width: 60%;
 			Copyright2023.Multicampus_3조</div>
 		<!-- Copyright -->
 	</footer>
-<!-- 	
-	<footer class="bbs-footer">
-		<div class="container bbs-footerMenu">
-		   	<div class="category_tag_div">
-		   	    <a class="category_tag text-center font-color">			
-				 인기 레시피
-				</a>
-				<a class="category_tag text-center font-color">
-				 셰프의 팁
-				</a>
-				<a class="category_tag text-center font-color">
-				 신규 레시피
-				</a>
-		   	</div>
-		</div>
-		<div class="container category_tag_div">
-			<div class="bss-footer-info-left text-center">
-				<h3>3조세끼</h3>
-				<span class="copy">Copyright ⓒ3조세끼 All Rights Reserved.</span>
-			</div>
-			<div class="bss-footer-info-right text-center">
-				<select name="" id="" title="패밀리 사이트 바로가기" onchange="if(this.value) window.open(this.value);">
-					<option value="0">SITE Map</option>
-					<option value="">메인</option>
-					<option value="">글쓰기</option>					
-				</select>
-			</div>
-		</div>
-	</footer> -->
+
 <script>
-function bbssearch() {
-	let searchV = document.getElementById('search').value
-	let choice = document.getElementById('choice').value;
-	
-	$.ajax({
-		url:"search.do",
-		type:"post",
-		dataType: "json",
-		data: {"search": searchV, "choice":choice},
-		async:true,
-		success:function( list ) {
 
-			let table = document.getElementById("bbs-table");
-			while ( table.hasChildNodes() )
-			{
-				table.removeChild( table.firstChild );       
-			}
-			let html = "";
-			list.map((dto)=> {
-				
-				html += '<td class="bbs-recipt" onclick="location.href = ' + "'bbsdetail.do?seq=" +dto.seq+"'" +'"' +">";
-				html += '<div class="overflowHidden text-center bbs-thumbnali">';
-				html += dto.thumbnail;
-				html += '</div>';
-				html += '<p id="recipt-title">'+dto.title+'</p>';
-				html += '<div class="hash-tag" id="recipt-hashtag">'
-				html += '<span>'+dto.tag+'</span>';
-				html += '</div>'
-				html += '<input hidden id="seq" name="seq" value="'+dto.seq+'"/>';
-				html += '</td>';
-		
-			})
+$(document).ready(
+		$('#pagination').twbsPagination({
+			startPage: <%=pageNumber+1 %>,
+		    totalPages: <%=pageBbs%>,
+		    visiblePages: 10,
+		    first: '<span srid-hidden="true">«</span>', 
+		    prev:"이전",
+		    next:"다음",
+		    last: '<span srid-hidden="true">»</span>',
+		    initiateStartPageClick: false,
+		    onPageClick: function (event, page) {
+		    	let choice = document.getElementById('choice').value;
+		    	let search = document.getElementById('search').value;
+		    	location.href = "bbslist.do?choice=" + choice + "&search=" + search + "&pageNumber=" + (page-1) ;
+		    }
+		})
+)
 
-			$("#bbs-table").append(html);
-			
-		},
-		error:function() {
-			alert('error');
-		}
-	})
-	
-}
 
 function bbsdetail() {
 	let seq = document.getElementById('seq').value;

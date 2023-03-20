@@ -160,7 +160,7 @@ width: 1070px;
 	<div style="width: 1000px; height: 1000px;" >
 	<main role="main" class="container">
 		<form action="bbswriteAF.do" method="post" enctype="multipart/form-data">
-		 <input type="hidden" name="writer" value="<%=login.getUser_id() %>">
+		 <input type="hidden" name="writer" value="<%=login.getUserId() %>">
 				<div class="mb-3">
 
 					<label for="title">썸네일</label>

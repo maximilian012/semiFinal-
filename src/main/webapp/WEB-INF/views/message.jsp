@@ -45,7 +45,7 @@ if(message != null && !message.equals("")){
 		%>
 		<script type="text/javascript">
 		alert("가입되지 않았습니다 다시 가입해 주십시오");
-		location.href = "regi.do";
+		location.href = "login.do";
 		</script>
 		<%		
 	}
@@ -58,6 +58,7 @@ if(login != null && !login.equals("")){
 		<script type="text/javascript">
 		alert("로그인되었습니다");
 		location.href = "mainhome.do";
+
 		</script>
 		<%
 	}else{

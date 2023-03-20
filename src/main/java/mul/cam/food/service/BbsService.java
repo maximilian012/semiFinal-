@@ -15,8 +15,13 @@ public interface BbsService {
 
 	boolean bbswrite(BbsDto dto);
 
-	List<BbsDto> getlist();
+	List<BbsDto> getlist(BbsParam param);
+	List<BbsDto> getFirstlist();
+	List<BbsDto> mainHomegetBbs();
+
+	List<BbsDto> recentBbs();
 	
+	int getAllBbsLen(BbsParam param);
 	// searchResult
 	List<BbsDto> getSearchList(BbsParam param);
 
@@ -28,4 +33,23 @@ public interface BbsService {
 	boolean commentWrite(BbsComment bbs);
 
 	
+	// 게시글 상세보기
+	BbsDto detailBbs(int seq);	
+	
+	// 게시글 수정
+	boolean updateBbs(BbsDto dto);			
+	
+	// 게시글 삭제
+	boolean deleteBbs(int seq);			
+
+	
+	// 댓글 목록
+	List<BbsComment> commentList(int seq);	
+	
+	// 댓글 수정
+	boolean updateComment(BbsComment bbs);
+	
+	// 댓글 삭제
+	boolean deleteComment(BbsComment bbs);
+
 }

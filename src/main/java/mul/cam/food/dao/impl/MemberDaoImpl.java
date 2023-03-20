@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import mul.cam.food.dao.MemberDao;
+import mul.cam.food.dto.BbsDto;
 import mul.cam.food.dto.MemberDto;
 
 @Repository // 저장소
@@ -47,6 +48,16 @@ public class MemberDaoImpl implements MemberDao{
 	@Override
 	public String find_pwd(String email) {
 		return session.selectOne(ns + "find_pwd", email);
+	}
+
+	@Override
+	public MemberDto getMydata(MemberDto dto) {
+		return session.selectOne( ns + "getMydata", dto);
+	}
+
+	@Override
+	public List<BbsDto> getMyrecipe(MemberDto dto) {
+		return session.selectList(ns + "getMyrecipe", dto);
 	}
 	
 }

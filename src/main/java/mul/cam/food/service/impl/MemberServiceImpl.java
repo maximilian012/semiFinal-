@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import mul.cam.food.dao.MemberDao;
+import mul.cam.food.dto.BbsDto;
 import mul.cam.food.dto.MemberDto;
 import mul.cam.food.service.MemberService;
 
@@ -51,6 +52,16 @@ public class MemberServiceImpl implements MemberService{
 	public String find_pwd(String email) {
 		System.out.println("dao.find_id(email):" + dao.find_id(email));
 		return dao.find_pwd(email);
+	}
+
+	@Override
+	public MemberDto getMydata(MemberDto dto) {
+		return dao.getMydata(dto);
+	}
+
+	@Override
+	public List<BbsDto> getMyrecipe(MemberDto dto) {
+		return dao.getMyrecipe(dto);
 	}
 	
 }

@@ -2,6 +2,7 @@ package mul.cam.food.service;
 
 import java.util.List;
 
+import mul.cam.food.dto.BbsDto;
 import mul.cam.food.dto.MemberDto;
 
 public interface MemberService {
@@ -14,4 +15,9 @@ public interface MemberService {
 	String find_id(String email);
 	String find_pwd(String email);
 	
+	
+	// 230320 추가 
+	MemberDto getMydata(MemberDto dto);
+	
+	List<BbsDto> getMyrecipe(MemberDto dto);
 }

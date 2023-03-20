@@ -4,14 +4,14 @@
 
 	<mapper namespace="Member">
 	<select id="loginMember" parameterType="mul.cam.food.dto.MemberDto" resultType="mul.cam.food.dto.MemberDto">
-	select user_id, name
+	select userId, name
 	from user
-	where user_id=#{user_id} and password=#{password}
+	where userId=#{userId} and password=#{password}
 </select>
 
 	<!-- 전체 회원 조회 -->
 	<select id="allMember" resultType="mul.cam.food.dto.MemberDto">
-		select user_id, password, email, name, age, address, regdate, delflg
+		select userId, password, email, name, age, address, regdate, delflg
 		from user
 	</select>
 	
@@ -19,26 +19,26 @@
 	<select id="idcheck" parameterType="String" resultType="Integer">
 		select count(*)
 		from user
-		where user_id=#{id}
+		where userId=#{id}
 	</select>
 	
 	<!-- 회원 가입 -->
 	<insert id="addmember" parameterType="mul.cam.food.dto.MemberDto">
-		insert into user(user_id, password, email, name, age, address, regdate, delflg)
-		values(#{user_id}, #{password}, #{email}, #{name}, #{age}, #{address}, now(), "0")
+		insert into user(userId, password, email, name, age, address, regdate, delflg, auth)
+		values(#{userId}, #{password}, #{email}, #{name}, #{age}, #{address}, now(), "0","0")
 	</insert>
 	
 	<!-- 로그인 -->
 	<select id="login" parameterType="mul.cam.food.dto.MemberDto"
 		resultType="mul.cam.food.dto.MemberDto">
-		select user_id, password
+		select *
 		from user
-		where user_id=#{user_id} and password=#{password}
+		where userId=#{userId} and password=#{password}
 	</select>
 	
 	<!-- 아이디 찾기 -->
 	<select id="find_id" parameterType="String" resultType="String">
-		select user_id
+		select userId
 		from user
 		where email=#{email}
 	</select>
@@ -48,6 +48,23 @@
 		select password
 		from user
 		where email=#{email}
+	</select>
+	
+	
+	<!-- 230320 추가 -->
+	<!-- 나의 정보 가져오기  -->
+	<select id="getMydata" parameterType="mul.cam.food.dto.MemberDto" resultType="mul.cam.food.dto.MemberDto">
+		select * 
+		from user
+		where userId=#{userId}
+	</select>
+	
+	<!-- 내가 쓴 글 가져오기 -->
+	<select id="getMyrecipe" parameterType="mul.cam.food.dto.MemberDto" resultType="mul.cam.food.dto.BbsDto">
+		select r.seq, r.writer ,r.title, r.thumbnail, r.star, r.regdate, r.tag
+		from recipe r, user u
+		where u.userId = r.writer and u.userId = #{userId}
+		order by r.seq desc;
 	</select>
 	
 	</mapper>

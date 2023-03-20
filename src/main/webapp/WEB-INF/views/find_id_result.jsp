@@ -103,7 +103,7 @@
 
 <div class="wrap">
 	<div class="form">
-				아이디:<h3 id="id">${find_id}</h3>
+				<h3 id="id">${id}</h3>
 			<div class="button">
 				<button type="button" id="go_login">로그인으로 이동</button>
 			</div>

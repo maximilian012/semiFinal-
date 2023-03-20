@@ -9,11 +9,6 @@
 <%-- jQuery --%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
-<script src="https://kit.fontawesome.com/53a8c415f1.js" crossorigin="anonymous"></script>
-
-<%-- cookie 저장 --%>
-<script src="http://lab.alexcican.com/set_cookies/cookie.js" type="text/javascript" ></script>
 
 <style type="text/css">
 * {
@@ -89,26 +84,27 @@
   letter-spacing: 2px;
 }
 
-
 </style>
 
 </head>
 <body>
 
 <div style="text-align: center;">
-	<a href=><img alt="로고" class="img" src="./images/logo.png"></a><br>
+	<a href=><img alt="로고" class="img" src="./images/homebob.png"></a><br>
 </div>
 <h1 style="text-align:center;">패스워드 찾기</h1>
 
 
+
 <div class="wrap">
 	<div class="form">
-			<h2>패스워드는 ${pwd}입니다.</h2>
+			<h2>${pwd}</h2>
 			<div class="button">
 				<button type="button" id="go_login">로그인으로 이동</button>
 			</div>
 	</div>
 </div>
+
 <script type="text/javascript">
 $(function(){
 	$("#go_login").click(function(){
