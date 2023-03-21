@@ -11,77 +11,98 @@
 
 
 <style type="text/css">
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&family=Sunflower:wght@300&display=swap');
-
-body {
-  background: #FFF9EE;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Noto Sans KR", sans-serif;
 }
 
-.box {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: #FFBB0A;
-  width: 320px;
-  height: 500px;
-  border-radius: 5px;
-  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
-  text-align: center;
+.h1{
+  color: FFE5A3;
 }
 
-h1 {
-  font-family: "Open Sans", sans-serif;
-  text-shadow: 2px 0 10px #ce7d88;
-  margin-top: 40px;
-  text-transform: uppercase;
-  color: white;
-  font-size: 2em;
-  letter-spacing: 8px;
+.img{
+  width: 30%;
+  align-items: center;
+  flex-direction: column;
 }
 
-h3{
-font-family: 'Noto Sans KR', sans-serif;
- margin-top:100px;
- text-shadow: 2px 0 10px #ce7d88;
- font-size: 2em;
+
+.wrap {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
 }
 
-button {
-  font-family: "Open Sans", sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  font-size: 7px;
-  font-weight: bold;
-  border-radius: 8px;
-  margin: auto;
+.label{
+	color: white;
+	font-size: 2em;
+}
+
+.form {
+  width: 40%;
+  height: 600px;
+  background-color: #FFF1CD;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+.form_email {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.form_email input {
+  width: 100%;
+  height: 50px;
+  border-radius: 30px;
+  margin-top: 10px;
+  padding: 0px 20px;
+  border: 1px solid lightgray;
   outline: none;
-  display: block;
-}
-
-button:hover {
-  background: #ffffff !important;
-  color: #000000 !important;
-  transition: background-color 0.5s ease-out;
 }
 
 .button {
-  width: 70%;
-  padding: 12px;
-  margin-top: 70px;
-  background: white;
-  color: #ce7d88;
-  border: solid 1px #FFBB0A;
+  margin-top: 10px;
+  width: 80%;
 }
+.button button {
+  width: 100%;
+  height: 50px;
+  border: 0;
+  outline: none;
+  border-radius: 40px;
+  background: #FFE5A3;
+  color: white;
+  font-size: 1.2em;
+  letter-spacing: 2px;
+}
+
 </style>
 
 </head>
 <body>
 
-<div class="box">
-	<h1>password check</h1>
-	<h3 id="id">${pwd}</h3>
-	<button type="button" id="go_login" class="button">로그인으로 이동</button>
+<div style="text-align: center;">
+	<a href=><img alt="로고" class="img" src="./images/homebob.png"></a><br>
+</div>
+<h1 style="text-align:center;">패스워드 찾기</h1>
+
+
+
+<div class="wrap">
+	<div class="form">
+			<h2>${pwd}</h2>
+			<div class="button">
+				<button type="button" id="go_login">로그인으로 이동</button>
+			</div>
+	</div>
 </div>
 
 <script type="text/javascript">
