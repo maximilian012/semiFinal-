@@ -300,4 +300,12 @@ width: 60%;
     margin-left: 8rem;
 }
 
+.writeButton {
+    float: right;
+    margin-top: 1rem;
+    margin-right: 3rem;
+}
 
+.bbsname{
+    padding-left: 3rem;
+}

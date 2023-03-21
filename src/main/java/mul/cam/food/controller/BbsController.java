@@ -45,15 +45,13 @@ public class BbsController {
 
 	@GetMapping(value = "mainhome.do")
 	public String mainhome(Model model, HttpServletRequest req) {
-//		System.out.println("MemberController mainhome() " + new Date());	
-
-//		System.out.println(req.getSession().getAttribute("login")); 
 
 		List<BbsDto> food = service.mainHomegetBbs();
 		List<BbsDto> recent = service.recentBbs();
 
 		model.addAttribute("food", food);
 		model.addAttribute("recent", recent);
+
 
 		return "mainhome";
 	}
@@ -80,23 +78,15 @@ public class BbsController {
 			pageBbs += 1;
 		}
 		
-		if(param.getChoice() == null 
-		   || param.getChoice().equals("")
-		   || param.getSearch().equals("")
-		   || param.getSearch().equals("")
-		  ) {
-			param.setChoice("검색");
-			param.setSearch("");
-		}
 		
-		System.out.println(len);
 		
 		model.addAttribute("bbslist", list);
 		model.addAttribute("pageBbs", pageBbs);
-		model.addAttribute("pageNumber", param.getPageNumber());
+		model.addAttribute("pageNumber", param.getPageNumber());		
 		model.addAttribute("choice", param.getChoice());
 		model.addAttribute("search", param.getSearch());
-
+		model.addAttribute("boardName", "전체게시판");
+	
 
 		return "bbslist";
 	}
@@ -174,6 +164,12 @@ public class BbsController {
 		model.addAttribute("pageNumber", param.getPageNumber());
 		model.addAttribute("choice", param.getChoice());
 		model.addAttribute("search", param.getSearch());
+		System.out.println(param.getChoice() + " in controller");
+		if(param.getChoice() == null) {
+			model.addAttribute("boardName", "전체게시판");
+		} else {
+			model.addAttribute("boardName", "검색결과");
+		}
 
 		
 		
