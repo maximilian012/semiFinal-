@@ -48,10 +48,7 @@ public class BbsDaoImpl implements BbsDao {
 		return session.selectOne(ns + "getBbs", seq);
 	}
 	
-	@Override
-	public int commentWrite(BbsComment bbs) {		
-		return session.insert(ns + "commentWrite", bbs);
-	}
+
 	@Override
 	public List<BbsDto> getSearchlist(BbsParam param) {		
 		return session.selectList(ns+"getSearchList", param);
@@ -89,6 +86,12 @@ public class BbsDaoImpl implements BbsDao {
 		return session.selectList(ns + "commentList", seq);
 	}
 	
+	@Override
+	public int commentWrite(BbsComment bbs) {		// 댓글쓰기
+		return session.insert(ns + "commentWrite", bbs);
+	}
+	
+	
 	// 0321 수정
 	@Override
 	public int commentUpdate(BbsComment bbs) {		// 댓글 수정
@@ -96,8 +99,8 @@ public class BbsDaoImpl implements BbsDao {
 	}
 	
 	@Override
-	public int commentDelete(BbsComment bbs) {		// 댓글 삭제
-		return session.delete(ns + "deleteComment", bbs);
+	public int commentDelete(int seq) {		// 댓글 삭제
+		return session.delete(ns + "deleteComment", seq);
 	}
 	
 

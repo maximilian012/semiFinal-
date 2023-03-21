@@ -127,14 +127,11 @@
 		</if>
 	</select>
 	
-	
 	<select id="getBbs" parameterType="Integer" resultType="mul.cam.food.dto.BbsDto">
 		select writer, thumbnail, title, content, ingredients, cookingtime, serving, category, regdate, star, tag, delf
 		from recipe
 		where seq=#{seq}
 	</select>
-	
-	
 	
 	<!-- 게시판 수정 -->
 	<update id="updateBbs" parameterType="mul.cam.food.dto.BbsDto">
@@ -152,15 +149,15 @@
 	
 	<!--  댓글 쓰기 -->
 	<insert id="commentWrite" parameterType="mul.cam.food.dto.BbsComment">
-		insert into reply(seq, writer, content)
-		values(#{seq}, #{writer}, #{content})
+		insert into reply(recipeSeq, content, writer)
+		values(#{recipeSeq}, #{content}, #{writer})
+
 	</insert>
 	
 	<!--  댓글 목록 -->
 	<select id="commentList" parameterType="Integer" resultType="mul.cam.food.dto.BbsComment">
-		select seq, content, writer
+		select seq, recipeSeq, content, writer
 		from reply
-		where seq=#{seq}
 		</select>
 	
 	<!-- 0321추가 -->
@@ -168,12 +165,12 @@
 	<update id="commentUpdate" parameterType="mul.cam.food.dto.BbsComment">
 		update reply
 		set writer=#{writer}, content=#{content}
-		where seq=#{seq}
+		where seq=#{seq} and recipeSeq=#{recipeSeq}
 	</update>
 	
 	<!-- 댓글 삭제 -->
 	<delete id="commentDelete" parameterType="mul.cam.food.dto.BbsComment">
 		delete from reply
-		where seq=#{seq}
+		where seq=#{seq} and recipeSeq=#{recipeSeq}
 	</delete>
 </mapper>

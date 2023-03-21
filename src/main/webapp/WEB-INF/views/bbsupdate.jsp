@@ -149,7 +149,7 @@ MemberDto login = (MemberDto)session.getAttribute("login");
 		<div class="pt-1 text-right">
 			<a id="updateBtn" style="height:35px;" class="btn btn-outline-warning">수정하기</a>
 			<a id="listBtn" style="height:35px;" class="btn btn-outline-warning" onclick="location.href='bbsdetail.do?seq=<%=dto.getSeq() %>'">뒤로가기</a>
-			<a id="deleteBtn" style="height:35px;" class="btn btn-outline-warning">삭제하기</a>
+			<a href='"commentDelete.do?seq=" + <%=dto.getSeq() %>' id="deleteBtn" style="height:35px;" class="btn btn-outline-warning">삭제하기</a>
 		</div>
 	</form>
 </div>

@@ -51,6 +51,6 @@ public interface BbsService {
 	boolean commentUpdate(BbsComment bbs);
 	
 	// 댓글 삭제
-	boolean commentDelete(BbsComment bbs);
+	boolean commentDelete(int seq);
 
 }

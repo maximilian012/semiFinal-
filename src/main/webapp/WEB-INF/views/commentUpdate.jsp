@@ -75,42 +75,7 @@
         </nav>
         
      <main class="container">
-	  <div class="p-4 p-md-5 mb-4 rounded text-bg-dark">
-	    <div class="col-md-6 px-0" style="width:900px; height:500px;">
-	    	<%=dto.getThumbnail() %> 
-	    </div>
-	  </div>
-
-	  <div class="row g-5">
-	    <div class="col-md-8">
-	     	
-	      <article class="blog-post">
-	        <h2 class="blog-post-title mb-1" id="title"><%=dto.getTitle() %></h2>
-	        <p class="blog-post-meta">작성자 : <%=dto.getWriter() %></p>
-			<p class="blog-post-meta">작성일 : <%=dto.getRegdate() %></p>
-	        <pre id="content"><%=dto.getContent() %></pre>
-	        <hr>
-	        
-	        <h2>댓글 목록</h2>
-	        <form method="get" action="commentupdate.do" id="frm">
-		        <table class="table" style="border:none;">
-		          <thead>
-		            <tr>
-		              <th>번호</th>
-		              <th style="width:200px;">작성자</th>
-		              <th>내용</th>
-		            </tr>
-		          </thead>
-		          <tbody id="tbody">
-		          <div>
-		            <a href='commentUpdate.do?seq=<%=dto.getSeq() %>' role="button" id="abtn">수정하기</a> | 
-		            <a href='commentDelete.do?seq=<%=dto.getSeq() %>' role="button" id="abtn">삭제하기</a>
-				  </div>
-		          </tbody>
-		        </table>
-	        </form>
-	       </article>
-	      <br>  	        
+       
 	      <article class="blog-post">
 	        <h2 class="blog-post-title mb-1">댓글 입력하기</h2>
 	        <form action="commentWrite.do" method="post">
@@ -133,37 +98,6 @@
 	      </article>
     	</div>
 		
-		<!-- 사이드 메뉴 재료부터 태그까지 -->
-	    <div class="col-md-4" style="background:#FFF6BD; border-radius:12px; color:#333;">
-	      <div class="position-sticky" style="top: 2rem;">
-	        <div class="p-4 mb-3 bg-light rounded">
-	          <h4 class="fst-italic">재료</h4>
-	          <p class="mb-0"><%=dto.getIngredients() %></p>
-	        </div>
-			<br>
-	        <div class="p-4">
-	          <h4 class="fst-italic">조리시간</h4>
-	          <p class="mb-0"><%=dto.getCookingtime() %></p>
-	        </div>
-			<br>
-	        <div class="p-4">
-	          <h4 class="fst-italic">Servings</h4>
-          	  <p class="mb-0"><%=dto.getServing() %> 인분</p>
-        	</div>
-        	<br>
-        	<div class="p-4">
-	          <h4 class="fst-italic">별점</h4>
-          	  <p class="mb-0"><%=dto.getStar() %> 점</p>
-        	</div>
-        	<br>
-        	<div class="p-4">
-	          <h4 class="fst-italic">태그</h4>
-          	  <p class="mb-0"><%=dto.getTag() %></p>
-        	</div>
-      	  </div>
-    	</div>
-  </div>
-
 </main>
         
         <!-- 하단 푸터 -->
@@ -172,49 +106,7 @@
         </footer>
 
 
-<script type="text/javascript">
-  	$('#summernote').summernote({
-		height: 300,
-		width : 1000,
-		minHeight: null,
-		maxHeight: null,
-		focus: true,
-		lang: "ko-KR",
-		callbacks: {
-			onImageUpload : function(files){
-				sendFile(files[0],this);
-			}
-		}
-			
-	}); 
-  	
- 	
-		/*이미지 태그 추출*/
-	$(function getImageByTagName(){
-	    const dbValue = document.getElementById('thumimg');
-	    const tag = dbValue.getElementsByTagName('img');
-	    const tagLength = tag.length;
-	    if(tag.length>=1){
-	        for(let i=0; i<tagLength; i++){
-	            $(".contentImg").append(tag[0]);
-	        }
-	    }else if(tag.length==0){
-	        $(".contentImg").append('<img src="/images/no_image.png">');
-	    }
-	});
 
-	 function setThumbnail(event) {
-	        var reader = new FileReader();
-
-	        reader.onload = function(event) {
-	          var img = document.createElement("img");
-	          img.setAttribute("src", event.target.result);
-	          document.querySelector("div#thumimg").appendChild(img);
-	        };
-
-	        reader.readAsDataURL(event.target.files[0]);
-	 }
-</script>
 <script type="text/javascript">
 $(document).ready(function(){
 
@@ -240,8 +132,6 @@ $(document).ready(function(){
 	});		
 });
 	
-	</script>
-	<script>
 
   $.ajax({
 	  url: "bbsdetail.do?seq="+ <%=dto.getSeq() %> ,
@@ -253,32 +143,12 @@ $(document).ready(function(){
   
 
 		
-	function sendFile(file, editor){
-		var data = new FormData();
-		data.append("file", file);
-		console.log(file);
-		$.ajax({
-			data : data,
-			type : "POST",
-			url : "SummerNoteImageFile",
-			contentType : false,
-			processData : false,
-			success : function(data){
-				console.log(data);
-				console.log(editor);
-				$(editor).summernote("insertImage",data.url);
-			}
-		});
-	}
-
-	
 	/* 삭제하기 버튼 */
 	$("#deleteBtn").on("click", function(){
 	    $("#frm").attr("action", "commentDelete.do");
 	    $("#frm").attr("method", "post");
 	    $("#frm").submit();
 	});
-	
 	
 </script>
 </body>

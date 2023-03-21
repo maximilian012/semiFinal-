@@ -85,11 +85,7 @@ public class BbsServiceImpl implements BbsService {
 		return dao.getBbs(seq);
 	}
 
-	@Override
-	public boolean commentWrite(BbsComment bbs) {
-		int n = dao.commentWrite(bbs);
-		return n>0?true:false;
-	}
+
 
 	@Override
 	public List<BbsDto> getSearchList(BbsParam param) {		
@@ -136,6 +132,14 @@ public class BbsServiceImpl implements BbsService {
 			return dao.commentList(seq);
 		}
 		
+		// 댓글 쓰기
+		@Override
+		public boolean commentWrite(BbsComment bbs) {
+			int n = dao.commentWrite(bbs);
+			return n>0?true:false;
+		}
+		
+		
 		// 0321 수정
 		// 댓글 수정
 		@Override
@@ -146,8 +150,9 @@ public class BbsServiceImpl implements BbsService {
 		
 		// 댓글 삭제
 		@Override
-		public boolean commentDelete(BbsComment bbs) {
-			int n = dao.commentDelete(bbs);
+		public boolean commentDelete(int seq) {
+			int n = dao.commentDelete(seq);
 			return n>0?true:false;
 		}
+		
 }

@@ -43,5 +43,5 @@ public interface BbsDao {
 		int commentUpdate(BbsComment bbs);
 		
 		// 댓글 삭제
-		int commentDelete(BbsComment bbs);
+		int commentDelete(int seq);
 }
