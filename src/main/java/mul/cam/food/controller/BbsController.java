@@ -86,7 +86,6 @@ public class BbsController {
 		model.addAttribute("choice", param.getChoice());
 		model.addAttribute("search", param.getSearch());
 		model.addAttribute("boardName", "전체게시판");
-	
 
 		return "bbslist";
 	}
@@ -163,8 +162,7 @@ public class BbsController {
 		model.addAttribute("pageBbs", pageBbs);
 		model.addAttribute("pageNumber", param.getPageNumber());
 		model.addAttribute("choice", param.getChoice());
-		model.addAttribute("search", param.getSearch());
-		System.out.println(param.getChoice() + " in controller");
+		model.addAttribute("search", param.getSearch());		
 		if(param.getChoice() == null) {
 			model.addAttribute("boardName", "전체게시판");
 		} else {
@@ -180,9 +178,6 @@ public class BbsController {
 	
 	@RequestMapping(value = "searchMove.do", method = RequestMethod.POST)
 	public String searchMove(String search, String choice, Model model) {
-		System.out.println(search);
-		System.out.println(choice);
-
 		BbsParam param = new BbsParam();
 
 		param.setChoice(choice);
@@ -273,8 +268,6 @@ public class BbsController {
 		// 댓글 작성
 		@PostMapping(value = "commentWriteAf.do")
 		public String commentWriteAf(BbsComment bbs) {
-			System.out.println("BbsController BbsComment " + new Date());
-			System.out.println(bbs.toString());
 			boolean isS = service.commentWrite(bbs);
 			if(isS) {
 				System.out.println("댓글작성에 성공했습니다");

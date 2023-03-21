@@ -32,8 +32,20 @@
 }
 
 .bbsname{
-    padding-left: 3rem;
+    padding-left: 5rem;
 }
+
+.category-image {
+ width: 52% !important;
+    margin-left: 2.5rem;
+} 
+
+.category-text {
+	
+    font-size: large
+}
+
+
 </style>
 
 </head>
@@ -222,122 +234,61 @@
       
       <div class="category category-main">
       	<table>
-			<tbody>				
-				<tr>
-					<th>종류</th>
-					<td>
-					
-					<a href="">밥</a>
-					
-					<a href="">반찬</a>
-					
-					<a href="">국물</a>
-					
-					<a href="">면</a>
-					
-					<a href="">디저트</a>
-					
-					<a href="">분식</a>
-					
-					<a href="">샐러드</a>
-					
-					<a href="">음료</a>
-					
-					<a href="">기타</a>
-					
-					</td>
-				</tr>
-				
-				<tr>
-					<th>재료</th>
-					<td>
-					
-					<a href="">쇠고기</a>
-					
-					<a href="">돼지고기</a>
-					
-					<a href="">닭고기</a>
-					
-					<a href="">채소</a>
-					
-					<a href="">해물</a>
-					
-					<a href="">계란</a>
-					
-					<a href="">유제품</a>
-					
-					<a href="">기타</a>
-					
-					</td>
-				</tr>
-				
-				<tr>
-					<th>방법</th>
-					<td>
-					
-					<a href="">구이</a>
-					
-					<a href="">찜</a>
-					
-					<a href="">국탕찌개</a>
-					
-					<a href="">볶음</a>
-					
-					<a href="">조림</a>
-					
-					<a href="">튀김</a>
-					
-					<a href="">무침·비빔</a>
-					
-					<a href="">기타</a>
-					
-					</td>
-				</tr>
-				
-				<tr>
-					<th>테마</th>
-					<td>
-					
-					<a href="">스피드</a>
-					
-					<a href="">브런치</a>
-					
-					<a href="">집밥</a>
-					
-					<a href="">야식</a>
-					
-					<a href="">간식</a>
-					
-					<a href="">도시락</a>
-					
-					<a href="">1인분</a>
-					
-					<a href="">해장</a>
-					
-					<a href="">채식</a>
+      		<tr>
+      			<td>
+		      			<figure class="snip1384">
+						  <img class="category-image" alt="" src="./images/sushi.png">
+						  <figcaption>
+						    <h3>일식</h3>
+						  </figcaption>
+						  <a class="figure-a" href="#"></a>
+						</figure>
 
-					<a href="">다이어트</a>
-					
-					</td>
-				</tr>
-				
-				<tr>
-					<th>기념일</th>
-					<td>
-					
-					<a href="">명절</a>
-					
-					<a href="">생일</a>
-					
-					<a href="">카레데이</a>
-			
-					<a href="">크리스마스</a>
-					
-					</td>
-				</tr>			
-				
-			</tbody>
-		</table>
+      			</td>
+      			 <td>
+      		 			 <figure class="snip1384">
+						  <img class="category-image" alt="" src="./images/steak.png">
+						  <figcaption>
+						    <h3>양식</h3>
+						  </figcaption>
+						  <a class="figure-a" href="#"></a>
+						</figure>
+      			</td>
+      			
+      			 <td>
+      				 <figure class="snip1384">
+						  <img class="category-image" alt="" src="./images/bibimbap.png">
+						  <figcaption>
+						    <h3>한식</h3>
+						  </figcaption>
+						  <a class="figure-a" href="#"></a>
+						</figure>
+      			</td>    		
+      			
+      			 <td>
+      					 <figure class="snip1384">
+						  <img class="category-image" alt="" src="./images/bao.png">
+						  <figcaption>
+						    <h3>증식</h3>
+						  </figcaption>
+						  <a class="figure-a" href="#"></a>
+						</figure>
+      			</td>        			
+      			 <td>
+      					 <figure class="snip1384">
+						  <img class="category-image" alt="" src="./images/cake.png">
+						  <figcaption>
+						    <h3>디저트</h3>
+						  </figcaption>
+						  <a class="figure-a" href="#"></a>
+						</figure>
+      			</td>      				
+      		</tr>
+      		
+      	
+      	</table>
+
+    
       </div>
 
       <div class="bbs-main">
@@ -370,7 +321,24 @@
 			for(int i = 0;i < list.size(); i++)
 			{
 				BbsDto dto = list.get(i);
-		%>
+				if(dto.getDelf().equals("1")){
+					%>
+					<td class="card bbs-recipt ">
+						<div class="overflowHidden bbs-thumbnali">
+							 <img alt="" src="./images/x.png"> 
+						</div>	
+						<div class="card-body">					
+								<p id="recipt-title">@@@@@@@@@</p>
+								<div class="hash-tag" id="recipt-hashtag">
+								 <span>관리자에 의해 삭제되었습니다</span>
+								</div>
+						</div>					
+					</td>
+					
+					<%					
+					}else {
+						%>
+
 			<td class="card bbs-recipt " onclick="location.href = 'bbsdetail.do?seq=<%=dto.getSeq() %>'">
 				<div class="overflowHidden bbs-thumbnali">
 					<%=dto.getThumbnail()%>
@@ -383,6 +351,9 @@
 						<input hidden id="seq" name="seq" value="<%=dto.getSeq() %>"/>	
 				</div>					
 			</td>
+						<%
+			}
+		%>
 			
 		<%
 			}
@@ -481,6 +452,12 @@ function bbsdetail() {
 
 	location.href = "bbsdetail.do?seq="+seq;
 }
+
+$(".hover").mouseleave(
+		  function () {
+		    $(this).removeClass("hover");
+		  }
+		);
 
 </script>
 
