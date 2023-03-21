@@ -340,7 +340,7 @@ and
 
 .small-img {
 	height: 400px;
-	background-color: #fff9ee;
+	background-color: #FFF6BD;
 }
 
 .small-img p img {
@@ -360,7 +360,7 @@ and
 .arrow-img {
 	width: 100px;
 	height: 100px;
-	background-color: pink;
+	background-color: #FFBB0A;
 }
 
 .tag-style a:hover {
@@ -460,7 +460,7 @@ and
 		background-color: #fff9ee;
 	}
 	.d-flex {
-		margin-top: 50px;
+		/* margin-top: 50px; */
 	}
 	.minmax2 {
 		font-size: 23px !important;
@@ -493,7 +493,20 @@ and
     outline: 0;
     box-shadow: inset 0 0 0 1px #3b71ca;
 }
+
+@media screen and (min-width:369px) and (max-width:767px){
+	h5.card-title.minmax2{
+		font-size:20px;
+	}
+}
+
+@media screen and (max-width:368px){
+	h5.card-title.minmax2{
+		font-size:16px;
+	}
+}
 </style>
+
 
 </head>
 
@@ -531,7 +544,7 @@ and
 	if (login == null ) {
 	%>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light"
-		style="background-color: orange !important">
+		style="background-color: #FFF6BD !important">
 		<!-- Container wrapper -->
 		<div class="container-fluid" style="height: 100px; font-weight: 700;">
 			<!-- Toggle button -->
@@ -591,7 +604,7 @@ and
 	%>
 	<!-- login 하면 나오는 Navbar -->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light"
-		style="background-color: orange !important">
+		style="background-color: #FFF6BD !important">
 		<!-- Container wrapper -->
 		<div class="container-fluid" style="height: 100px; font-weight: 700;">
 			<!-- Toggle button -->

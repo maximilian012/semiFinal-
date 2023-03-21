@@ -7,11 +7,11 @@
 <%
 MemberDto myData = (MemberDto) request.getAttribute("myData");
 List<BbsDto> myRecipe = (List<BbsDto>) request.getAttribute("myRecipe");
-int pageBbs = (Integer)request.getAttribute("pageBbs");
-int pageNumber = (Integer)request.getAttribute("pageNumber");
+int pageBbs = (Integer) request.getAttribute("pageBbs");
+int pageNumber = (Integer) request.getAttribute("pageNumber");
 
-System.out.println("pageBbs "+pageBbs);
-System.out.println("pageNumber "+pageNumber);
+// System.out.println("pageBbs " + pageBbs);
+// System.out.println("pageNumber " + pageNumber);
 %>
 <!DOCTYPE html>
 <html>
@@ -34,11 +34,13 @@ System.out.println("pageNumber "+pageNumber);
 <script type="text/javascript"
 	src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"></script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-<script type="text/javascript" src="./jquery/jquery.twbsPagination.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script type="text/javascript"
+	src="./jquery/jquery.twbsPagination.min.js"></script>
 <style type="text/css">
-.hoverStyle:hover{
-	color: red !important;
+.hoverStyle:hover {
+	color: #FFBB0A !important;
 	cursor: pointer;
 }
 
@@ -69,18 +71,29 @@ System.out.println("pageNumber "+pageNumber);
 	padding: 20px 0;
 	font-size: 20px;
 }
-.btn-link {
-    --mdb-btn-font-weight: 500;
-    --mdb-btn-color: #3b71ca;
-    --mdb-btn-hover-color: "" !important;
-    --mdb-btn-hover-bg: "" !important; 
-    --mdb-btn-focus-color: #3566b6;
-    --mdb-btn-active-color: #3260ac;
-    --mdb-btn-disabled-color: #9e9e9e;
-    --mdb-btn-box-shadow: none;
+
+.btn-link { -
+	-mdb-btn-font-weight: 500; -
+	-mdb-btn-color: #3b71ca; -
+	-mdb-btn-hover-color: "" !important; -
+	-mdb-btn-hover-bg: "" !important; -
+	-mdb-btn-focus-color: #3566b6; -
+	-mdb-btn-active-color: #3260ac; -
+	-mdb-btn-disabled-color: #9e9e9e; -
+	-mdb-btn-box-shadow: none;
 }
-.ms-3{
+
+.ms-3 {
 	margin-left: 0 !important;
+}
+
+.myStyleForm {
+	width: 1300px;
+	margin: 50px auto;
+}
+
+.dataWidth {
+	width: 100% !important;
 }
 </style>
 </head>
@@ -108,14 +121,14 @@ System.out.println("pageNumber "+pageNumber);
 				<div class="d-flex align-items-center">
 
 					<div class="ms-3 myStyle">
-						<p class="fw-bold mb-1">나의 정보</p>
-						<p class="text-muted mb-0">
+						<p class="fw-bold mb-1 dataWidth">나의 정보</p>
+						<p class="text-muted mb-0 dataWidth">
 							이름 :
 							<%=myData.getName()%></p>
-						<p class="text-muted mb-0">
+						<p class="text-muted mb-0 dataWidth">
 							이메일 :
 							<%=myData.getEmail()%></p>
-						<p class="text-muted mb-0">
+						<p class="text-muted mb-0 dataWidth">
 							주소 :
 							<%=myData.getAddress()%></p>
 					</div>
@@ -123,11 +136,15 @@ System.out.println("pageNumber "+pageNumber);
 			</li>
 		</ul>
 
-		<div style="width: 1300px; margin: 0 auto; text-align: center">
+		<div
+			style="width: 1300px; margin: 0 auto; text-align: center; margin-top: 34px;">
 			<button type="button" class="btn btn-success"
 				style="font-size: 18px; font-weight: 700" onclick="mainhome()">메인홈</button>
 			<button type="button" class="btn btn-danger"
 				style="font-size: 18px; font-weight: 700" onclick="bbslist()">게시판</button>
+			<button type="button" class="btn btn-info"
+				style="font-size: 18px; font-weight: 700" onclick="myList()">전체
+				글</button>
 		</div>
 
 		<script type="text/javascript">
@@ -136,6 +153,9 @@ System.out.println("pageNumber "+pageNumber);
 			}
 			function bbslist() {
 				location.href = "bbslist.do";
+			}
+			function myList() {
+				location.href="setting.do";
 			}
 		</script>
 
@@ -158,17 +178,28 @@ System.out.println("pageNumber "+pageNumber);
 			}
 			%>
 		</table> --%>
+		<form class="d-flex myStyleForm" action="setting.do" method="get">
+			<select class="custom-select" id="choice" name="choice"
+				style="width: 150px">
+				<option selected>검색</option>
+				<option value="title">제목</option>
+				<option value="content">내용</option>
+			</select> <input id="search" name="search"
+				class="form-control me-2 bbs-search-form" type="search"
+				placeholder="내가 쓴 글을 검색할 수 있어요!" aria-label="Search">
+			<button class="btn btn-outline-success" type="submit">search</button>
+		</form>
 
 		<ul class="list-group list-group-light">
 			<%
 			if (myRecipe == null || myRecipe.size() == 0) {
 			%>
 			<li
-				class="list-group-item d-flex justify-content-between align-items-center" >
+				class="list-group-item d-flex justify-content-between align-items-center">
 				<div class="ms-3">
 					<p class="fw-bold mb-1">작성된 글이 없습니다.</p>
 				</div>
-				</li>
+			</li>
 			<%
 			} else {
 			for (int i = 0; i < myRecipe.size(); i++) {
@@ -182,7 +213,7 @@ System.out.println("pageNumber "+pageNumber);
 					<%=recipe.getThumbnail()%>
 					<div class="ms-3" style="margin-left: 30px !important;">
 						<p class="fw-bold mb-1"><%=recipe.getTitle()%></p>
-						<p class="mb-0"><%=recipe.getTag()%></p>						
+						<p class="mb-0"><%=recipe.getTag()%></p>
 					</div>
 				</div> <%-- <a class="btn btn-link btn-rounded btn-sm" href="#" role="button"><%=recipe.getStar()%></a> --%>
 				<p class="btn-link" style="text-align: right;"><%=recipe.getRegdate()%></p>
@@ -191,12 +222,13 @@ System.out.println("pageNumber "+pageNumber);
 			<%
 			}
 			%>
-			
+
 			<div class="container page-bar">
 				<nav aria-label="Page navigation">
-				    <ul class="pagination" id="pagination" style="justify-content:center"></ul>
+					<ul class="pagination" id="pagination"
+						style="justify-content: center"></ul>
 				</nav>
-			 </div>	
+			</div>
 			<%
 			}
 			%>
@@ -204,11 +236,11 @@ System.out.println("pageNumber "+pageNumber);
 		</ul>
 
 	</div>
-	
+
 	<script type="text/javascript">
 	$(document).ready(
 			$('#pagination').twbsPagination({
-				startPage: <%=pageNumber+1 %>,
+				startPage: <%=pageNumber + 1%>,
 			    totalPages: <%=pageBbs%>,
 			    visiblePages: 10,
 			    first: '<span srid-hidden="true">«</span>', 
@@ -217,8 +249,9 @@ System.out.println("pageNumber "+pageNumber);
 			    last: '<span srid-hidden="true">»</span>',
 			    initiateStartPageClick: false,
 			    onPageClick: function (event, page) {
-			    //	alert(page);
-			    	location.href = "setting.do?pageNumber=" + (page-1) ;
+			    	let choice = document.getElementById('choice').value;
+			    	let search = document.getElementById('search').value;
+			    	location.href = "setting.do?choice=" + choice + "&search=" + search + "&pageNumber=" + (page-1) ;
 			    }
 			})
 	);
@@ -226,6 +259,7 @@ System.out.println("pageNumber "+pageNumber);
 	function recipeMove(seq) {
 		location.href="bbsdetail.do?seq=" + seq;
 	}
+	
 	</script>
 </body>
 </html>

@@ -145,31 +145,43 @@ public class MemberController {
 	public String setting(Model model, HttpServletRequest req, BbsParam param) {
 		System.out.println("MemberController setting " + new Date());
 		
-		System.out.println("getPageNumber" +param.getPageNumber()); 
+//		System.out.println("getPageNumber" +param.getPageNumber()); 
 		
 		MemberDto login = (MemberDto) req.getSession().getAttribute("login");
+		
 		int pn = param.getPageNumber();  // 0 1 2 3 4
 		int start = 1 + (pn * 10);	// 1  11
 		int end = (pn + 1) * 10;
 		System.out.println("start "+start);
 		System.out.println("end "+end);
+		System.out.println("login "+login.getUserId());
 		
 		param.setStart(start);
 		param.setEnd(end);		
-		param.setwriter(login.getUserId());		
-
+		param.setWriter(login.getUserId());			
+		
+		MemberDto myData = service.getMydata(login);
+//		List<BbsDto> myRecipe = service.getMyrecipe(login);
+		List<BbsDto> myRecipe = service.getMyrecipePage(param);
 		
 		int len = service.getMyBbsLen(param);
 		
 		System.out.println("len "+ len);
+		System.out.println(myRecipe.toString());
 		
 		int pageBbs = len / 10;		// 25 / 10 -> 2
 		if((len % 10) > 0) {
 			pageBbs = pageBbs + 1;
 		}
 		
-		MemberDto myData = service.getMydata(login);
-		List<BbsDto> myRecipe = service.getMyrecipe(login);
+		if(param.getChoice() == null 
+				   || param.getChoice().equals("")
+				   || param.getSearch().equals("")
+				  ) {
+					param.setChoice("검색");
+					param.setSearch("");
+				}
+		
 		
 //		System.out.println( "test myData "+myData);
 //		System.out.println("test myRecipe "+myRecipe);
@@ -179,7 +191,9 @@ public class MemberController {
 		model.addAttribute("myRecipe", myRecipe); // 내가 쓴 게시판 정보
 		model.addAttribute("pageBbs", pageBbs); // 총페이지수 
 		model.addAttribute("pageNumber", param.getPageNumber()); // 현재 페이지
-
+		model.addAttribute("choice", param.getChoice());
+		model.addAttribute("search", param.getSearch());
+		
 		return "setting";
 	}
 
