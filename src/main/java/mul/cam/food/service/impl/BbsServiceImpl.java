@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.google.gson.JsonObject;
 
 import mul.cam.food.dao.BbsDao;
+import mul.cam.food.dto.BbsCategory;
 import mul.cam.food.dto.BbsComment;
 import mul.cam.food.dto.BbsDto;
 import mul.cam.food.dto.BbsParam;
@@ -91,11 +92,7 @@ public class BbsServiceImpl implements BbsService {
 		return n>0?true:false;
 	}
 
-	@Override
-	public List<BbsDto> getSearchList(BbsParam param) {		
-		
-		return dao.getSearchlist(param);
-	}
+
 
 	@Override
 	public int getAllBbsLen(BbsParam param) {
@@ -148,5 +145,17 @@ public class BbsServiceImpl implements BbsService {
 		public boolean deleteComment(BbsComment bbs) {
 			int n = dao.deleteComment(bbs);
 			return n>0?true:false;
+		}
+
+
+		@Override
+		public List<BbsDto> getCategorySearchList( BbsParam param) {
+			return dao.getCategorySearchList( param);
+		}
+
+
+		@Override
+		public int getAllCategoryBbsLen(BbsParam param) {
+			return dao.getAllCategoryBbsLen(param);
 		}
 }

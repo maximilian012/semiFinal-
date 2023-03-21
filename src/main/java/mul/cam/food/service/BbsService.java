@@ -6,6 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.JsonObject;
 
+import mul.cam.food.dto.BbsCategory;
 import mul.cam.food.dto.BbsComment;
 import mul.cam.food.dto.BbsDto;
 import mul.cam.food.dto.BbsParam;
@@ -23,7 +24,10 @@ public interface BbsService {
 	
 	int getAllBbsLen(BbsParam param);
 	// searchResult
-	List<BbsDto> getSearchList(BbsParam param);
+	List<BbsDto> getCategorySearchList(BbsParam param);
+
+	// 카테고리별 글의 갯수
+		int getAllCategoryBbsLen(BbsParam param);
 
 	JsonObject SummerNoteImageFile(MultipartFile file);
 

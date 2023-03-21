@@ -56,7 +56,9 @@
 	int pageBbs = (Integer)request.getAttribute("pageBbs");
 	int pageNumber = (Integer)request.getAttribute("pageNumber");
 	String boardName = (String)request.getAttribute("boardName");
-	System.out.println(boardName);
+	int category = (Integer)request.getAttribute("category");
+	System.out.println(pageNumber);
+	System.out.println(pageBbs);
 %> 
 
 
@@ -236,52 +238,77 @@
       	<table>
       		<tr>
       			<td>
-		      			<figure class="snip1384">
+      				<a href="categorysearch.do?category=3&pageNumber=0">
+      					<figure class="snip1384">
 						  <img class="category-image" alt="" src="./images/sushi.png">
 						  <figcaption>
-						    <h3>일식</h3>
+						    <h3 style="margin-left: 39px">일식</h3>
 						  </figcaption>
-						  <a class="figure-a" href="#"></a>
+
 						</figure>
+      				</a>
+		      		
 
       			</td>
       			 <td>
-      		 			 <figure class="snip1384">
-						  <img class="category-image" alt="" src="./images/steak.png">
-						  <figcaption>
-						    <h3>양식</h3>
-						  </figcaption>
-						  <a class="figure-a" href="#"></a>
-						</figure>
+	      			 <a href="categorysearch.do?category=1&pageNumber=0">
+	      			 		 <figure class="snip1384">
+							  <img class="category-image" alt="" src="./images/steak.png">
+							  <figcaption>
+							    <h3 style="margin-left: 39px">양식</h3>
+							  </figcaption>
+							</figure>
+	      			 
+	      			 </a>
+	      		 	
       			</td>
       			
       			 <td>
-      				 <figure class="snip1384">
+      			 	<a href="categorysearch.do?category=5&pageNumber=0">
+      			 		<figure class="snip1384">
 						  <img class="category-image" alt="" src="./images/bibimbap.png">
 						  <figcaption>
-						    <h3>한식</h3>
+						    <h3 style="margin-left: 37px">한식</h3>
 						  </figcaption>
-						  <a class="figure-a" href="#"></a>
 						</figure>
+      			 	</a>
+      		
       			</td>    		
       			
       			 <td>
-      					 <figure class="snip1384">
+      			 	<a href="categorysearch.do?category=2&pageNumber=0">
+      			 	    <figure class="snip1384">
 						  <img class="category-image" alt="" src="./images/bao.png">
 						  <figcaption>
-						    <h3>증식</h3>
+						    <h3 style="margin-left: 39px">중식</h3>
 						  </figcaption>
-						  <a class="figure-a" href="#"></a>
 						</figure>
-      			</td>        			
+      			 	</a>
+  
+      			</td>
+      			<td>
+      				<a href="categorysearch.do?category=4&pageNumber=0">
+      				    <figure class="snip1384">
+						  <img class="category-image" alt="" src="./images/tteokbokki.png">
+						  <figcaption>
+						    <h3 style="margin-left: 36px">분식</h3>
+						  </figcaption>
+		
+						</figure>
+      				</a>
+
+      			</td>         			
       			 <td>
-      					 <figure class="snip1384">
+      			 	<a href="categorysearch.do?category=6&pageNumber=0">
+      			 	    <figure class="snip1384">
 						  <img class="category-image" alt="" src="./images/cake.png">
 						  <figcaption>
-						    <h3>디저트</h3>
+						    <h3 style="margin-left: 26px">디저트</h3>
 						  </figcaption>
-						  <a class="figure-a" href="#"></a>
 						</figure>
+      			 	
+      			 	</a>
+
       			</td>      				
       		</tr>
       		
@@ -297,6 +324,7 @@
       <h2 class="bbsname text-center" id="bbsname">
       	<%= boardName %>
       </h2>
+      <input hidden name="category" id="category" value="<%=category %>"/>
       	
       <!-- 게시판 메인 -->
       	<table class="bbs-table" id="bbs-table">
@@ -426,7 +454,12 @@ $(document).ready(
 		    onPageClick: function (event, page) {
 		    	let choice = document.getElementById('choice').value;
 		    	let search = document.getElementById('search').value;
-		    	location.href = "bbslist.do?choice=" + choice + "&search=" + search + "&pageNumber=" + (page-1) ;
+		    	let category = document.getElementById('category').value;
+		    	if(category === "0") {
+		    		location.href = "bbslist.do?choice=" + choice + "&search=" + search + "&pageNumber=" + (page-1);		    		
+		    	} else {
+		    		location.href = "categorysearch.do?category=" + category + "&pageNumber=" + (page-1);
+		    	}
 		    }
 		})
 )

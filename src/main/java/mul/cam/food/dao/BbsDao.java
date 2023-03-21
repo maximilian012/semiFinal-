@@ -2,6 +2,7 @@ package mul.cam.food.dao;
 
 import java.util.List;
 
+import mul.cam.food.dto.BbsCategory;
 import mul.cam.food.dto.BbsComment;
 import mul.cam.food.dto.BbsDto;
 import mul.cam.food.dto.BbsParam;
@@ -18,8 +19,11 @@ public interface BbsDao {
 	int getAllBbsLen(BbsParam param);
 	
 	// searchList
-	List<BbsDto> getSearchlist(BbsParam param);
 	List<BbsDto> recentBbs();
+	List<BbsDto> getCategorySearchList(BbsParam param);
+	
+	// 카테고리별 글의 갯수
+	int getAllCategoryBbsLen(BbsParam param);
 	
 	BbsDto getBbs(int seq);
 	

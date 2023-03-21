@@ -140,7 +140,7 @@ width: auto;
 }
 
 .category-main td {
-    border-bottom: 1px solid #bbbbbb;
+    border-bottom: 2px solid red;
     padding: 20px;
 }
 
@@ -301,7 +301,7 @@ width: 60%;
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,700);
 @import url(https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css);
 figure.snip1384 {
-
+cursor: pointer;
 }
 figure.snip1384 * {
   -webkit-box-sizing: border-box;
@@ -313,6 +313,7 @@ figure.snip1384 img {
   max-width: 100%;
   backface-visibility: hidden;
   vertical-align: top;
+  
 }
 
 figure.snip1384 figcaption {
@@ -329,8 +330,8 @@ figure.snip1384 figcaption {
 } 
 figure.snip1384 figcaption {
   z-index: 1;
-  padding: 40px;
-  margin-left: 14px;
+  padding: 20px;
+
 }
 figure.snip1384 h3,
 figure.snip1384 .links {
@@ -374,6 +375,7 @@ figure.snip1384.hover img {
   filter: alpha(opacity=50);
   -webkit-opacity: 0.5;
   opacity: 0.5;
+  
 }
  figure.snip1384:hover:after,
 figure.snip1384.hover:after {
