@@ -95,7 +95,7 @@ public class BbsDaoImpl implements BbsDao {
 	// 0321 수정
 	@Override
 	public int commentUpdate(BbsComment bbs) {		// 댓글 수정
-		return session.update(ns + "updateComment", bbs);
+		return session.update(ns + "commentUpdate", bbs);
 	}
 	
 	@Override

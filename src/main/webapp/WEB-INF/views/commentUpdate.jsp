@@ -9,12 +9,11 @@
 <%
  	MemberDto login = (MemberDto)session.getAttribute("login");
 	BbsDto dto = (BbsDto)request.getAttribute("bbsdto");
-	String uploadFilePath = (String)request.getAttribute("uploadFilePath");
 	BbsComment bbs = (BbsComment)request.getAttribute("comment");
 
 %>
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
 <meta charset="UTF-8">
 <title>상세글 페이지</title>
@@ -74,10 +73,10 @@
             </ul>
         </nav>
         
-     <main class="container">
+     <main class="container" style="text-align:center;">
        
 	      <article class="blog-post">
-	        <h2 class="blog-post-title mb-1">댓글 입력하기</h2>
+	        <h2 class="blog-post-title mb-1">댓글 수정하기</h2>
 	        <form action="commentWrite.do" method="post">
 	        	<input type="hidden" name="recipeSeq" id="recipeSeq" value="<%=dto.getSeq() %>"> 
 	         		<p>
@@ -90,15 +89,12 @@
 		         
 		         <!-- 0320 버튼 태그 수정 -->
 		         <div style="text-align:center; width:742px; margin-top:20px;">
-		        	<button type="submit" id="submitBtn">답글달기</button>
+		        	<button type="submit" id="submitBtn">수정하기</button>
 		        	<button type="button" onclick="location.href='bbslist.do'">목록으로</button>
-	        		<button type="button" onclick="location.href='bbsupdate.do?seq=<%=dto.getSeq() %>'">수정하기</button>
 	        	</div>
 	        </form>
-	      </article>
-    	</div>
-		
-</main>
+	      </article>	
+	</main>
         
         <!-- 하단 푸터 -->
         <footer>
@@ -108,6 +104,7 @@
 
 
 <script type="text/javascript">
+<%-- 
 $(document).ready(function(){
 
 	$.ajax({
@@ -131,17 +128,7 @@ $(document).ready(function(){
 		}
 	});		
 });
-	
-
-  $.ajax({
-	  url: "bbsdetail.do?seq="+ <%=dto.getSeq() %> ,
-	  success: function(result){
-		$("#image").append('<img src="./resources/images'+ result.thumbnail + '" style="width: 100%;">');
-		$("#title").text(result.title);
-		$("#content").text(result.content);
-   }});
-  
-
+	 --%>
 		
 	/* 삭제하기 버튼 */
 	$("#deleteBtn").on("click", function(){

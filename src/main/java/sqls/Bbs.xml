@@ -165,12 +165,12 @@
 	<update id="commentUpdate" parameterType="mul.cam.food.dto.BbsComment">
 		update reply
 		set writer=#{writer}, content=#{content}
-		where seq=#{seq} and recipeSeq=#{recipeSeq}
+		where recipeSeq=#{recipeSeq}
 	</update>
 	
 	<!-- 댓글 삭제 -->
 	<delete id="commentDelete" parameterType="mul.cam.food.dto.BbsComment">
 		delete from reply
-		where seq=#{seq} and recipeSeq=#{recipeSeq}
+		where recipeSeq=#{recipeSeq}
 	</delete>
 </mapper>

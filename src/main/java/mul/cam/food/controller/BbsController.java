@@ -36,7 +36,6 @@ import mul.cam.food.dto.MemberDto;
 import mul.cam.food.service.BbsService;
 
 
-
 @Controller
 public class BbsController {
 
@@ -302,9 +301,9 @@ public class BbsController {
 			}else {
 				System.out.println("댓글 수정에 실패했습니다");
 			}
-			model.addAttribute("comment", bbs);
+			model.addAttribute("commentUpdate", bbs);
 			
-			return "redirect:/bbsdetail.do?seq=" + bbs.getRecipeSeq();
+			return "commentUpdate.do";
 		}
 		
 		// 댓글 삭제
