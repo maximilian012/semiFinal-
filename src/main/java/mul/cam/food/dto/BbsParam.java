@@ -71,13 +71,16 @@ public class BbsParam implements Serializable{
 				+ ", end=" + end + "]";
 	}
 
-	public String getwriter() {
+
+	public String getWriter() {
 		return writer;
 	}
 
-	public void setwriter(String writer) {
+	public void setWriter(String writer) {
 		this.writer = writer;
 	}
+
+	
 	
 	
 }
