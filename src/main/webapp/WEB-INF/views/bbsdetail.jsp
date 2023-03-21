@@ -38,7 +38,7 @@
 
 <!-- 상단 내비게이션 -->
         <nav role="navigation" style="background: lightgoldenrodyellow;">
-            <img src="./images/logo.png" id="logo-img" width="150px" height="90px">
+            <img src="./images/logo2.png" id="logo-img" width="150px" height="90px">
             <ul id="main-menu nav-pills">
                 <li class="left-tab slide"><a href="#" style="margin-left:27px;">카테고리</a>
                     <ul id="sub-menu">

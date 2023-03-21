@@ -56,7 +56,7 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<!-- Navbar brand -->
 				<a class="navbar-brand mt-2 mt-lg-0" href="mainhome.do"> <img
-					src="resources/images/logo.png" height="100" alt="Logo"
+					src="resources/images/logo2.png" height="100" alt="Logo"
 					loading="lazy" />
 				</a>
 				<!-- Left links -->
