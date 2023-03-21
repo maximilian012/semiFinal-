@@ -58,6 +58,7 @@ public class AdminDaoImpl implements AdminDao {
 	@Override
 	public void delfUp(String writer) {
 		
+		session.update(ns + "adminDel", writer);
 		session.update(ns + "delfUp", writer);
 		
 	}
