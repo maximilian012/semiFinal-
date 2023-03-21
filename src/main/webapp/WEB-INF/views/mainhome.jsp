@@ -519,7 +519,7 @@ and
 			<!-- Collapsible wrapper -->
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<!-- Navbar brand -->
-				<a class="navbar-brand mt-2 mt-lg-0" href="#"> 
+				<a class="navbar-brand mt-2 mt-lg-0" href=""> 
 				<img
 					src="resources/images/logo.png" height="100" alt="Logo"
 					loading="lazy" />
@@ -544,7 +544,7 @@ and
 					</li>
 					<li class="nav-item"><a class="nav-link" href="bbslist.do">게시판</a></li>
 					<li class="nav-item"><a class="nav-link" href="login.do">로그인</a></li>
-					<li class="nav-item"><a class="nav-link" href="regi.do">회원가입</a></li>
+					<li class="nav-item"><a class="nav-link" href="login.do">회원가입</a></li>
 				</ul>
 				<!-- Left links -->
 			</div>
@@ -565,7 +565,7 @@ and
 	%>
 	<!-- login 하면 나오는 Navbar -->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light"
-		style="background-color: orange !important">
+		style="background-color: #FFFCEC !important"> <!-- FFF6BD FFFCEC FDF9F3 FFFAFA-->
 		<!-- Container wrapper -->
 		<div class="container-fluid" style="height: 100px; font-weight: 700;">
 			<!-- Toggle button -->
@@ -579,8 +579,8 @@ and
 			<!-- Collapsible wrapper -->
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<!-- Navbar brand -->
-				<a class="navbar-brand mt-2 mt-lg-0" href="#"> <img
-					src="resources/images/logo.png" height="100" alt="Logo"
+				<a class="navbar-brand mt-2 mt-lg-0" href=""> <img
+					src="resources/images/logo2.png" height="100" alt="Logo"
 					loading="lazy" />
 				</a>
 				<!-- Left links -->

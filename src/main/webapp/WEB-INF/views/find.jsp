@@ -54,14 +54,14 @@
 	  </div>
      </div>
     <div class="leftbox">
-	  <a href="mainhome.do"><img class="logo" src="./images/homebob.png"/></a>
+	  <a href="mainhome.do"><img class="logo" src="./images/logo_login.png"/></a>
       <p class="desc">회원님의 <span>"HomeBOB"</span>을</p>
       <p>책임지겠습니다.</p>
       <p class="account">forget your id?</p>
       <button id="signin" class="button">password check</button>
     </div>
     <div class="rightbox">
-      <a href="mainhome.do"><img class="logo" src="./images/homebob.png"/></a>
+      <a href="mainhome.do"><img class="logo" src="./images/logo_login.png"/></a>
       <p class="desc">회원님의 <span>"HomeBOB"</span>을</p>
       <p>책임지겠습니다.</p>
       <p class="account">forget your password?</p>
@@ -75,7 +75,7 @@ $(function(){
 	
 	// 왼쪽 페이지 클릭 시
 	$('#signup').click(function() {
-		  $('.pinkbox').css('transform', 'translateX(80%)');
+		  $('.pinkbox').css('transform', 'translateX(90%)');
 		  $('.signin').addClass('nodisplay');
 		  $('.signup').removeClass('nodisplay');
 	});
