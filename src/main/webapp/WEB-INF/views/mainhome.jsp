@@ -565,7 +565,7 @@ and
 	%>
 	<!-- login 하면 나오는 Navbar -->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light"
-		style="background-color: #FFFCEC !important"> <!-- FFF6BD FFFCEC FDF9F3 FFFAFA-->
+		style="background-color: #FFF6BD !important"> <!-- FFF6BD FFFCEC FDF9F3 FFFAFA-->
 		<!-- Container wrapper -->
 		<div class="container-fluid" style="height: 100px; font-weight: 700;">
 			<!-- Toggle button -->
