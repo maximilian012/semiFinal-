@@ -25,8 +25,10 @@ public class BbsDto implements Serializable{
 	}
 
 
+
+
 	public BbsDto(int seq, String writer, String thumbnail, String title, String content, String ingredients,
-			String cookingtime, String serving, int category, String regdate, double star, String tag, String delf) {
+			String cookingtime, String serving, int category, String regdate, double star, String tag, int delf) {
 		super();
 		this.seq = seq;
 		this.writer = writer;
