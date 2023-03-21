@@ -85,15 +85,23 @@ public class MemberController {
 	public String login(HttpServletRequest req, Model model, MemberDto dto) {
 		MemberDto mem = service.login(dto);
 		String msg = "";
-		if (mem != null) {
-			req.getSession().setAttribute("login", mem); // "login"이란 이름으로 mem 저장
+		if(mem != null && !mem.getDelflg().equals("0")) { // 김건우 수정 --------------------------
+			req.getSession().setAttribute("login", mem);	// 
+			
 			msg = "LOGIN_OK";
-		} else {
+			
+		}else if(mem != null && mem.getDelflg().equals("0")) {
+			
+			 msg = "Withdrawal member";
+		
+		}else {
+			
 			msg = "LOGIN_FAIL";
+			
 		}
 		model.addAttribute("login", msg); // model에 로그인 결과 전달
-
-		return "message"; // message View로 반환
+		model.addAttribute("mem", mem);//------------------------------------
+		return "message";	// message View로 반환
 	}
 
 	// 아이디 찾기

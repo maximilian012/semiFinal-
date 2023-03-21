@@ -17,13 +17,7 @@
 <%-- jQuery --%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
-<%-- 부트스트랩 --%>
-<%-- 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
---%>
+
 
 <%-- cookie 저장 --%>
 <script src="http://lab.alexcican.com/set_cookies/cookie.js" type="text/javascript" ></script>
@@ -61,7 +55,7 @@
 	  	<h1>sign in</h1>
 	  	<form action="loginAf.do" method="post" class="more-padding" autocomplete="off">
 			<input type="text" id="id" name="userId" placeholder="아이디">
-			<input type="text" id="pwd" name="password" placeholder="패스워드">
+			<input type="password" id="pwd" name="password" placeholder="패스워드">
          	<div class="checkbox">
 				<input type="checkbox" id="chk_save_id" class="checkbox">
 				<label for="chk_save_id">remember me</label>

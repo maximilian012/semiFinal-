@@ -82,7 +82,7 @@ img {
 header {
 	width: auto;
 	height: 110px;
-	background-color: #ff0000;
+	background-color: #FFF6BD;
 	/*#ffd26f #ffe64f #fff9ee */
 }
 
@@ -175,71 +175,13 @@ main {
 #recipe-post {
 	margin: 0 auto;
 }
-/* 
-#recipe-post-left {
-	width: 600px;
-	background-color: pink;
-	float: left;
-} */
-/* .card p:nthimg{
-	width: 600px !important;
-} */
+
 .card p img {
 	max-width: 100% !important;
 	height: 370px !important;
 }
 
-/* .card-one {
-	float: left;
-} */
 
-/* 게시글 때문에 조절  */
-/* #recipe-post-left table {
-	display: block;
-}
-
-#recipe-post-left table tbody, #recipe-post-right table tbody {
-	display: block;
-	width: 600px;
-} */
-
-/* .imgSize {
-	display: block;
-	clear: both;
-}
-
-.imgSize td {
-	display: block;
-}
-
-.imgSize td p {
-	display: block;
-}
-
-.imgSize td p img {
-	width: 100% !important;
-	height: 300px;
-}
-
-.imgSizeSmall {
-	width: 300px;
-	float: left;
-}
-
-.imgSizeSmall td {
-	width: 300px;
-}
-
-.imgSizeSmall td p img {
-	width: 100% !important;
-	height: 250px;
-} */
-
-/* #recipe-post-right {
-	width: 600px;
-	float: left;
-	background-color: green;
-} */
 @media screen and (min-width:1350px) {
 	.g-3 {
 		width: 1300px;
@@ -251,42 +193,7 @@ main {
 	}
 }
 
-/* footer {
-	width: 100%;
-	height: 140px;
-	background-color: #000;
-	color: #fff;
-	clear: both;
-}
 
-#footer {
-	width: 1200px;
-	margin: 0 auto;
-}
-
-footer #footer-text, #footer-icon {
-	width: 600px;
-	float: left;
-	background-color: red;
-	height: 140px;
-}
-
-footer #footer-text p {
-	margin: 0 auto;
-}
-
-#footer-icon ul {
-	list-style: none;
-	float: right;
-	display: inline-block;
-	margin-top: 50px;
-}
-
-#footer-icon ul li {
-	float: left;
-	width: 100px;
-	text-align: center;
-} */
 .carousel-control-prev-icon:after {
 	content: "◀";
 	font-size: 50px;
@@ -498,35 +405,13 @@ and
 </head>
 
 <body>
-	<!-- <header>
-		<div id="headerNav">
-			<img alt="로고이미지" src="resources/images/logo.png" width="100"
-				height="100" style="margin-top: 5px;">
-			<ul>
-				<li><a class="categoryBtn">카테고리</a>
-					<ul class="categoryHide">
-						<li>종류</li>
-						<li>재료</li>
-						<li>방법</li>
-						<li>테마</li>
-						<li>기념일</li>
-						<li>도구</li>
-					</ul></li>
-			</ul>
-			<ul class="member">
-				<li><a href="test.do">로그인</a></li>
-				<li><a href="regi.do">회원가입</a></li>
-			</ul>
-		</div>
-		headerNav end
-	</header> -->
+
 
 	<!-- login 전일 때 나오는 Navbar -->
 	<%
 	MemberDto login = (MemberDto) session.getAttribute("login");
 
 
-//	System.out.println("mainhome.jsp "+login);
 
 	if (login == null ) {
 	%>

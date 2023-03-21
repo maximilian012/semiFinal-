@@ -257,7 +257,7 @@
 			</tbody>
 		</table>
       </div>
-<%--       
+
       <div class="bbs-main">
       <!-- 게시판 소개글? -->
       <h2 class="text-center" id="bbsname">
@@ -287,66 +287,24 @@
 			for(int i = 0;i < list.size(); i++)
 			{
 				BbsDto dto = list.get(i);
-		%>
-			<td class="card bbs-recipt " onclick="location.href = 'bbsdetail.do?seq=<%=dto.getSeq() %>'">
+			if(dto.getDelf().equals("0")){
+			%>
+			<td class="card bbs-recipt ">
 				<div class="overflowHidden bbs-thumbnali">
-					<%=dto.getThumbnail()%>
+					 <img alt="" src="./images/x.png" > 
 				</div>	
 				<div class="card-body">					
-						<p id="recipt-title"><%=dto.getTitle() %></p>
+						<p id="recipt-title">@@@@</p>
 						<div class="hash-tag" id="recipt-hashtag">
-						 <span><%=dto.getTag() %></span>
+						 <span>이글은 관리자에 의해 삭제</span>
 						</div>
-						<input hidden id="seq" name="seq" value="<%=dto.getSeq() %>"/>	
 				</div>					
 			</td>
 			
-		<%
-			}
-		}
-		%>
-		</tr>
-		</tbody>
-  
-      	</table>  
-      	
-      	 <div class="container page-bar">
-			<nav aria-label="Page navigation">
-			    <ul class="pagination" id="pagination" style="justify-content:center"></ul>
-			</nav>
-		 </div>	
-  	   </div> --%>
-      <div class="bbs-main">
-      <!-- 게시판 소개글? -->
-      <h2 class="text-center" id="bbsname">
-      	전체 게시판
-      </h2>
-      
-      <!-- 게시판 메인 -->
-      	<table class="bbs-table" id="bbs-table">
-		      	
-		<%
-		if(list == null || list.size() == 0){
-		%>
-		<tbody>
-			<tr>
-				<td colspan="4">작성된 글이 없습니다</td>
-			</tr>
-		</tbody>
-
-	    <%
-		}else{
-		%>
-		
-		<tbody>
-      			<tr>
-		<%
-		
-			for(int i = 0;i < list.size(); i++)
-			{
-				BbsDto dto = list.get(i);
-		%>
-			<td class="card bbs-recipt " onclick="location.href = 'bbsdetail.do?seq=<%=dto.getSeq() %>'">
+			<%					
+			}else {
+				%>
+				<td class="card bbs-recipt " onclick="location.href = 'bbsdetail.do?seq=<%=dto.getSeq() %>'">
 				<div class="overflowHidden bbs-thumbnali">
 					<%=dto.getThumbnail()%>
 				</div>	
@@ -358,6 +316,12 @@
 						<input hidden id="seq" name="seq" value="<%=dto.getSeq() %>"/>	
 				</div>					
 			</td>
+				
+				
+				<%
+			}
+		%>
+			
 			
 		<%
 			}
