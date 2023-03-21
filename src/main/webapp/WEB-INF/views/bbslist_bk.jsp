@@ -34,18 +34,6 @@
 .bbsname{
     padding-left: 5rem;
 }
-
-.category-image {
- width: 52% !important;
-    margin-left: 2.5rem;
-} 
-
-.category-text {
-	
-    font-size: large
-}
-
-
 </style>
 
 </head>
@@ -56,9 +44,7 @@
 	int pageBbs = (Integer)request.getAttribute("pageBbs");
 	int pageNumber = (Integer)request.getAttribute("pageNumber");
 	String boardName = (String)request.getAttribute("boardName");
-	int category = (Integer)request.getAttribute("category");
-	System.out.println(pageNumber);
-	System.out.println(pageBbs);
+	System.out.println(boardName);
 %> 
 
 
@@ -236,86 +222,122 @@
       
       <div class="category category-main">
       	<table>
-      		<tr>
-      			<td>
-      				<a href="categorysearch.do?category=3&pageNumber=0">
-      					<figure class="snip1384">
-						  <img class="category-image" alt="" src="./images/sushi.png">
-						  <figcaption>
-						    <h3 style="margin-left: 39px">일식</h3>
-						  </figcaption>
+			<tbody>				
+				<tr>
+					<th>종류</th>
+					<td>
+					
+					<a href="">밥</a>
+					
+					<a href="">반찬</a>
+					
+					<a href="">국물</a>
+					
+					<a href="">면</a>
+					
+					<a href="">디저트</a>
+					
+					<a href="">분식</a>
+					
+					<a href="">샐러드</a>
+					
+					<a href="">음료</a>
+					
+					<a href="">기타</a>
+					
+					</td>
+				</tr>
+				
+				<tr>
+					<th>재료</th>
+					<td>
+					
+					<a href="">쇠고기</a>
+					
+					<a href="">돼지고기</a>
+					
+					<a href="">닭고기</a>
+					
+					<a href="">채소</a>
+					
+					<a href="">해물</a>
+					
+					<a href="">계란</a>
+					
+					<a href="">유제품</a>
+					
+					<a href="">기타</a>
+					
+					</td>
+				</tr>
+				
+				<tr>
+					<th>방법</th>
+					<td>
+					
+					<a href="">구이</a>
+					
+					<a href="">찜</a>
+					
+					<a href="">국탕찌개</a>
+					
+					<a href="">볶음</a>
+					
+					<a href="">조림</a>
+					
+					<a href="">튀김</a>
+					
+					<a href="">무침·비빔</a>
+					
+					<a href="">기타</a>
+					
+					</td>
+				</tr>
+				
+				<tr>
+					<th>테마</th>
+					<td>
+					
+					<a href="">스피드</a>
+					
+					<a href="">브런치</a>
+					
+					<a href="">집밥</a>
+					
+					<a href="">야식</a>
+					
+					<a href="">간식</a>
+					
+					<a href="">도시락</a>
+					
+					<a href="">1인분</a>
+					
+					<a href="">해장</a>
+					
+					<a href="">채식</a>
 
-						</figure>
-      				</a>
-		      		
-
-      			</td>
-      			 <td>
-	      			 <a href="categorysearch.do?category=1&pageNumber=0">
-	      			 		 <figure class="snip1384">
-							  <img class="category-image" alt="" src="./images/steak.png">
-							  <figcaption>
-							    <h3 style="margin-left: 39px">양식</h3>
-							  </figcaption>
-							</figure>
-	      			 
-	      			 </a>
-	      		 	
-      			</td>
-      			
-      			 <td>
-      			 	<a href="categorysearch.do?category=5&pageNumber=0">
-      			 		<figure class="snip1384">
-						  <img class="category-image" alt="" src="./images/bibimbap.png">
-						  <figcaption>
-						    <h3 style="margin-left: 37px">한식</h3>
-						  </figcaption>
-						</figure>
-      			 	</a>
-      		
-      			</td>    		
-      			
-      			 <td>
-      			 	<a href="categorysearch.do?category=2&pageNumber=0">
-      			 	    <figure class="snip1384">
-						  <img class="category-image" alt="" src="./images/bao.png">
-						  <figcaption>
-						    <h3 style="margin-left: 39px">중식</h3>
-						  </figcaption>
-						</figure>
-      			 	</a>
-  
-      			</td>
-      			<td>
-      				<a href="categorysearch.do?category=4&pageNumber=0">
-      				    <figure class="snip1384">
-						  <img class="category-image" alt="" src="./images/tteokbokki.png">
-						  <figcaption>
-						    <h3 style="margin-left: 36px">분식</h3>
-						  </figcaption>
-		
-						</figure>
-      				</a>
-
-      			</td>         			
-      			 <td>
-      			 	<a href="categorysearch.do?category=6&pageNumber=0">
-      			 	    <figure class="snip1384">
-						  <img class="category-image" alt="" src="./images/cake.png">
-						  <figcaption>
-						    <h3 style="margin-left: 26px">디저트</h3>
-						  </figcaption>
-						</figure>
-      			 	
-      			 	</a>
-
-      			</td>      				
-      		</tr>
-      		
-      	
-      	</table>
-
-    
+					<a href="">다이어트</a>
+					
+					</td>
+				</tr>
+				
+				<tr>
+					<th>기념일</th>
+					<td>
+					
+					<a href="">명절</a>
+					
+					<a href="">생일</a>
+					
+					<a href="">카레데이</a>
+			
+					<a href="">크리스마스</a>
+					
+					</td>
+				</tr>			
+				
+			</tbody>
+		</table>
       </div>
 
       <div class="bbs-main">
@@ -324,7 +346,6 @@
       <h2 class="bbsname text-center" id="bbsname">
       	<%= boardName %>
       </h2>
-      <input hidden name="category" id="category" value="<%=category %>"/>
       	
       <!-- 게시판 메인 -->
       	<table class="bbs-table" id="bbs-table">
@@ -454,12 +475,7 @@ $(document).ready(
 		    onPageClick: function (event, page) {
 		    	let choice = document.getElementById('choice').value;
 		    	let search = document.getElementById('search').value;
-		    	let category = document.getElementById('category').value;
-		    	if(category === "0") {
-		    		location.href = "bbslist.do?choice=" + choice + "&search=" + search + "&pageNumber=" + (page-1);		    		
-		    	} else {
-		    		location.href = "categorysearch.do?category=" + category + "&pageNumber=" + (page-1);
-		    	}
+		    	location.href = "bbslist.do?choice=" + choice + "&search=" + search + "&pageNumber=" + (page-1) ;
 		    }
 		})
 )
@@ -485,12 +501,6 @@ function bbsdetail() {
 
 	location.href = "bbsdetail.do?seq="+seq;
 }
-
-$(".hover").mouseleave(
-		  function () {
-		    $(this).removeClass("hover");
-		  }
-		);
 
 </script>
 

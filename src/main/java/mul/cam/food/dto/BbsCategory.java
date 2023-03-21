@@ -5,6 +5,7 @@ public class BbsCategory {
 	private int number;
 	private String name;
 	
+	
 	public BbsCategory() {
 		// TODO Auto-generated constructor stub
 	}

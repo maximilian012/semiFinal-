@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import mul.cam.food.dao.BbsDao;
+import mul.cam.food.dto.BbsCategory;
 import mul.cam.food.dto.BbsComment;
 import mul.cam.food.dto.BbsDto;
 import mul.cam.food.dto.BbsParam;
@@ -52,10 +53,7 @@ public class BbsDaoImpl implements BbsDao {
 	public int commentWrite(BbsComment bbs) {		
 		return session.insert(ns + "commentWrite", bbs);
 	}
-	@Override
-	public List<BbsDto> getSearchlist(BbsParam param) {		
-		return session.selectList(ns+"getSearchList", param);
-	}
+
 	@Override
 	public int getAllBbsLen(BbsParam param) {
 		
@@ -97,6 +95,15 @@ public class BbsDaoImpl implements BbsDao {
 	@Override
 	public int deleteComment(BbsComment bbs) {		// 댓글 삭제
 		return session.delete(ns + "deleteComment", bbs);
+	}
+	@Override
+	public List<BbsDto> getCategorySearchList(BbsParam param) {
+		
+		return session.selectList(ns+"getCategorySearchList", param);
+	}
+	@Override
+	public int getAllCategoryBbsLen(BbsParam param) {
+		return session.selectOne(ns+"getAllCategoryBbsLen", param);
 	}
 	
 

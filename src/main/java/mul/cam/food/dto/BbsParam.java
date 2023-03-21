@@ -11,17 +11,36 @@ public class BbsParam implements Serializable{
 	private int start;
 	private int end;
 	
+	private int categoryNumber; // 카테고리 검색용 넘버
+	
 	public BbsParam() {
 	}
 	
-	public BbsParam(String choice, String search, int pageNumber, int start, int end) {
+	
+
+	public BbsParam(String choice, String search, int pageNumber, int start, int end, int categoryNumber) {
 		super();
 		this.choice = choice;
 		this.search = search;
 		this.pageNumber = pageNumber;
 		this.start = start;
 		this.end = end;
+		this.categoryNumber = categoryNumber;
 	}
+
+
+
+	public int getCategoryNumber() {
+		return categoryNumber;
+	}
+
+
+
+	public void setCategoryNumber(int categoryNumber) {
+		this.categoryNumber = categoryNumber;
+	}
+
+
 
 	public String getChoice() {
 		return choice;
@@ -62,12 +81,11 @@ public class BbsParam implements Serializable{
 	public void setEnd(int end) {
 		this.end = end;
 	}
-
 	@Override
 	public String toString() {
 		return "BbsParam [choice=" + choice + ", search=" + search + ", pageNumber=" + pageNumber + ", start=" + start
-				+ ", end=" + end + "]";
+				+ ", end=" + end + ", categoryNumber=" + categoryNumber + "]";
 	}
-	
+
 	
 }

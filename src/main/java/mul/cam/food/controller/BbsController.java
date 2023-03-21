@@ -28,7 +28,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.JsonObject;
 
-
+import mul.cam.food.dto.BbsCategory;
 import mul.cam.food.dto.BbsComment;
 import mul.cam.food.dto.BbsDto;
 import mul.cam.food.dto.BbsParam;
@@ -45,15 +45,13 @@ public class BbsController {
 
 	@GetMapping(value = "mainhome.do")
 	public String mainhome(Model model, HttpServletRequest req) {
-//		System.out.println("MemberController mainhome() " + new Date());	
-
-//		System.out.println(req.getSession().getAttribute("login")); 
 
 		List<BbsDto> food = service.mainHomegetBbs();
 		List<BbsDto> recent = service.recentBbs();
 
 		model.addAttribute("food", food);
 		model.addAttribute("recent", recent);
+
 
 		return "mainhome";
 	}
@@ -80,23 +78,16 @@ public class BbsController {
 			pageBbs += 1;
 		}
 		
-		if(param.getChoice() == null 
-		   || param.getChoice().equals("")
-		   || param.getSearch().equals("")
-		   || param.getSearch().equals("")
-		  ) {
-			param.setChoice("검색");
-			param.setSearch("");
-		}
 		
-		System.out.println(len);
 		
 		model.addAttribute("bbslist", list);
 		model.addAttribute("pageBbs", pageBbs);
-		model.addAttribute("pageNumber", param.getPageNumber());
+		model.addAttribute("pageNumber", param.getPageNumber());		
 		model.addAttribute("choice", param.getChoice());
 		model.addAttribute("search", param.getSearch());
-
+		// 처음 검색시 카테고리는 0으로 설정
+		model.addAttribute("category", 0);
+		model.addAttribute("boardName", "전체게시판");
 
 		return "bbslist";
 	}
@@ -148,15 +139,23 @@ public class BbsController {
 	public String searchBbslist(String search, String choice, Model model) {
 	
 		BbsParam param = new BbsParam();
+		// 글의 시작과 끝
+		int pn = param.getPageNumber(); // 0 1 2 3 4
+		int start = 1 + (pn * 12); // 1
+		int end = (pn+1) * 12;     // 10
+		param.setStart(start);
+		param.setEnd(end);
+
+		
 		
 		param.setChoice(choice);
 		param.setSearch(search);
 		
-		List<BbsDto> list = service.getSearchList(param);
+		List<BbsDto> list = service.getlist(param);
 		int len = list.size();
 		int pageBbs = (len/12);
 		
-		if((len%10) > 0) {
+		if((len%12) > 0) {
 			pageBbs += 1;
 		}
 		
@@ -174,25 +173,90 @@ public class BbsController {
 		model.addAttribute("pageNumber", param.getPageNumber());
 		model.addAttribute("choice", param.getChoice());
 		model.addAttribute("search", param.getSearch());
+		model.addAttribute("category", 0);
+		if(param.getChoice() == null) {
+			model.addAttribute("boardName", "전체게시판");
+		} else {
+			model.addAttribute("boardName", "검색결과");
+		}
 
 		
 		
 		return "bbslist";
 	}
 	
+	@RequestMapping(value="categorysearch.do" , method = RequestMethod.GET)
+	public String searchBbslist(Model model, int category, int pageNumber) {
+	
+		BbsParam param = new BbsParam();
+		
+		int pn = pageNumber; // 0 1 2 3 4
+		int start = 1 + (pn * 12); // 1
+		int end = (pn+1) * 12;     // 10
+		param.setStart(start);
+		param.setEnd(end);
+
+		param.setCategoryNumber(category);
+		
+		
+		List<BbsDto> list = service.getCategorySearchList(param);
+		int len = service.getAllCategoryBbsLen(param);
+		System.out.println(len+" is len");
+		int pageBbs = (len/12);
+		
+		if((len%12) > 0) {
+			pageBbs += 1;
+		}
+
+		
+		model.addAttribute("bbslist", list);
+		model.addAttribute("pageBbs", pageBbs);
+		model.addAttribute("pageNumber", pageNumber);
+		model.addAttribute("category", category);
+		switch (category) {
+		case 1: {
+			model.addAttribute("boardName", "#마음의 '양식'");
+		}
+		break;
+		case 2: {
+			model.addAttribute("boardName", "#오늘은 자장면이 땡긴다.");
+		}
+		break;
+		case 3: {
+			model.addAttribute("boardName", "#집에서 즐기는 오마카세");
+		}
+		break;
+		case 4: {
+			model.addAttribute("boardName", "#떡볶이가 맛없으면 울어도 괜찮아");
+		}
+		break;
+		case 5: {
+			model.addAttribute("boardName", "#양념치킨은 자랑스러운 한식입니다");
+		}
+		break;
+		case 6: {
+			model.addAttribute("boardName", "#디저트 배는 따로 있음");
+		}
+		break;
+
+		}
+
+		
+		
+		return "bbslist";
+	}
+	
+	
 
 	
 	@RequestMapping(value = "searchMove.do", method = RequestMethod.POST)
 	public String searchMove(String search, String choice, Model model) {
-		System.out.println(search);
-		System.out.println(choice);
-
 		BbsParam param = new BbsParam();
 
 		param.setChoice(choice);
 		param.setSearch(search);
 
-		List<BbsDto> list = service.getSearchList(param);
+		List<BbsDto> list = service.getlist(param);
 		System.out.println(list.size());
 
 		model.addAttribute("bbslist", list);
@@ -277,8 +341,6 @@ public class BbsController {
 		// 댓글 작성
 		@PostMapping(value = "commentWriteAf.do")
 		public String commentWriteAf(BbsComment bbs) {
-			System.out.println("BbsController BbsComment " + new Date());
-			System.out.println(bbs.toString());
 			boolean isS = service.commentWrite(bbs);
 			if(isS) {
 				System.out.println("댓글작성에 성공했습니다");

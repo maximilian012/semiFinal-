@@ -29,10 +29,10 @@
 
 	<!--모든 글 리스트 -->
 	<select id="getlist" parameterType="mul.cam.food.dto.BbsParam" resultType="mul.cam.food.dto.BbsDto" >
-		select seq, writer, title, thumbnail, content, ingredients, cookingtime, serving , category, regdate, star, tag
+		select *
 		from 
 			( select row_number()over(order by regdate desc) as rnum,
-				seq, writer, title, thumbnail, content, ingredients, cookingtime, serving , category, regdate, star, tag
+				seq, writer, title, thumbnail, content, ingredients, cookingtime, serving , category, regdate, star, tag, delf
 			  from recipe
 			  where 1=1
 			  <if test="choice != null and choice != '' and search != null and search != '' ">
@@ -82,29 +82,20 @@
 		where seq=#{seq}		
 	</select>
 
-
 	
-	<!-- 230320 추가 -->
-	<select id="getSearchList"
+	<select id="getCategorySearchList"
 		parameterType="mul.cam.food.dto.BbsParam"
 		resultType="mul.cam.food.dto.BbsDto">
 		select *
-		from recipe
-		where 1=1
-		<if
-			test="choice != null and choice != '' and search != null and search != '' ">
-			<if test="choice == 'title'">
-				and title like concat('%', #{search},'%')
-			</if>
-			<if test="choice == 'content'">
-				and content like concat('%', #{search},'%')
-			</if>
-			<if test="choice == 'writer'">
-				and writer=#{search}
-			</if>
-		</if>
-		order by regdate asc
-
+		from 
+			( select row_number()over(order by regdate desc) as rnum,
+				seq, writer, title, thumbnail, content, ingredients, cookingtime, serving , category, regdate, star, tag, delf
+			  from recipe
+			  where category=#{categoryNumber}
+			  order by regdate desc
+			) a
+		where rnum between ${start} and ${end}
+	
 	</select>
 
 	<!-- 글의 총수 -->
@@ -124,6 +115,18 @@
 			<if test="choice == 'writer'">
 				where id=#{search}
 			</if>
+		</if>
+	</select>
+	
+	<!-- 카테고리별 글의 총수 -->
+	<select id="getAllCategoryBbsLen"
+		parameterType="mul.cam.food.dto.BbsParam"
+		resultType="java.lang.Integer">
+		select ifnull(count(*),0)
+		from recipe
+		<if
+			test="categoryNumber != null  and categoryNumber != null ">
+			where category = #{categoryNumber}
 		</if>
 	</select>
 	
