@@ -53,6 +53,7 @@
 		</form>
 	  </div>
      </div>
+     
     <div class="leftbox">
 	  <a href="mainhome.do"><img class="logo" src="./images/logo_login.png"/></a>
       <p class="desc">회원님의 <span>"HomeBOB"</span>을</p>
@@ -69,13 +70,12 @@
     </div>
  </div>
 </div>
-          
 <script type="text/javascript">
 $(function(){
 	
 	// 왼쪽 페이지 클릭 시
 	$('#signup').click(function() {
-		  $('.pinkbox').css('transform', 'translateX(90%)');
+		  $('.pinkbox').css('transform', 'translateX(80%)');
 		  $('.signin').addClass('nodisplay');
 		  $('.signup').removeClass('nodisplay');
 	});
@@ -109,7 +109,7 @@ $(function(){
 			 history.reload();
 		}else{
 			location.href="find_pwd_result.do";
-		}
+		} // if else end
 	});
 });
 
