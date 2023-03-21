@@ -3,6 +3,7 @@ package mul.cam.food.dao;
 import java.util.List;
 
 import mul.cam.food.dto.BbsDto;
+import mul.cam.food.dto.BbsParam;
 import mul.cam.food.dto.MemberDto;
 
 public interface MemberDao {
@@ -21,4 +22,8 @@ public interface MemberDao {
 	MemberDto getMydata(MemberDto dto);
 	
 	List<BbsDto> getMyrecipe(MemberDto dto);
+	
+	int getMyBbsLen(BbsParam param);
+	
+	List<BbsDto> getMyrecipePage(BbsParam param);
 }

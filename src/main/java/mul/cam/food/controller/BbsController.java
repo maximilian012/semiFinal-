@@ -58,7 +58,7 @@ public class BbsController {
 	
 	
 	@GetMapping(value = "bbslist.do")
-	public String bbslist(Model model,HttpServletRequest req, BbsParam param) {
+	public String bbslist(Model model, BbsParam param) {
 		// 글의 시작과 끝
 		int pn = param.getPageNumber(); // 0 1 2 3 4
 		int start = 1 + (pn * 12); // 1
@@ -88,6 +88,7 @@ public class BbsController {
 		// 처음 검색시 카테고리는 0으로 설정
 		model.addAttribute("category", 0);
 		model.addAttribute("boardName", "전체게시판");
+		model.addAttribute("len", len);
 
 		return "bbslist";
 	}
@@ -98,25 +99,6 @@ public class BbsController {
 	public String bbswrite() {
 		return "bbswrite";
 	}
-	
-	/*
-	 * @PostMapping(value = "bbsTest.do") public String bbsTest() {
-	 * System.out.println("here"); return "bbswrite"; }
-	 */
-	
-	/*
-	 * @PostMapping(value = "bbswriteAF.do") public String bbswriteAf(Model model,
-	 * BbsDto dto) { System.out.println("wrtier : " + dto.getWriter());
-	 * System.out.println("content : " + dto.getContent());
-	 * System.out.println("thumbnail : " + dto.getThumbnail());
-	 * 
-	 * boolean b = service.bbswrite(dto); String bbswrite = ""; if (b) { bbswrite =
-	 * "writeOK"; }else { bbswrite = "writeNO"; } model.addAttribute("bbswrite",
-	 * bbswrite);
-	 * 
-	 * return "message"; // controller 에서 controller로 이동 redirect:/bbslist.do,
-	 * forward }
-	 */
 
 	
 
@@ -179,7 +161,7 @@ public class BbsController {
 		} else {
 			model.addAttribute("boardName", "검색결과");
 		}
-
+		model.addAttribute("len", len);
 		
 		
 		return "bbslist";
@@ -240,7 +222,7 @@ public class BbsController {
 		break;
 
 		}
-
+		model.addAttribute("len", len);
 		
 		
 		return "bbslist";
@@ -251,20 +233,66 @@ public class BbsController {
 	
 	@RequestMapping(value = "searchMove.do", method = RequestMethod.POST)
 	public String searchMove(String search, String choice, Model model) {
+		System.out.println(choice);
+		System.out.println(search);
+
 		BbsParam param = new BbsParam();
 
 		param.setChoice(choice);
 		param.setSearch(search);
 
-		List<BbsDto> list = service.getlist(param);
-		System.out.println(list.size());
-
-		model.addAttribute("bbslist", list);
-
-		return "bbslist";
+//		List<BbsDto> list = service.getSearchList(param);
+//		System.out.println(list.size());
+		
+		model.addAttribute("choice", choice);
+		model.addAttribute("search", search);
+//		model.addAttribute("bbslist", list);
+		model.addAttribute("category", 0);
+		model.addAttribute("boardName", "검색결과");
+		return "forward:/mainSearchbbslist.do";
 	}
 	
-	
+//	//////////////////////////////////////////////////////////////////////////////
+	// 추가 230320 
+	@PostMapping(value = "mainSearchbbslist.do")
+	public String mainSearchbbslist(Model model, BbsParam param) {
+		
+		// 글의 시작과 끝
+		int pn = param.getPageNumber(); // 0 1 2 3 4
+		int start = 1 + (pn * 12); // 1
+		int end = (pn+1) * 12;     // 10
+		
+		System.out.println("pn "+pn);
+		
+		param.setStart(start);
+		param.setEnd(end);
+		
+		List<BbsDto> list = service.getlist(param);
+		int len = service.getAllBbsLen(param);
+		
+		int pageBbs = len / 12; // 25 / 10 -> 2		
+		
+		if((len%12) > 0) {
+			pageBbs += 1;
+		}
+		
+		if(param.getChoice() == null 
+		   || param.getChoice().equals("")
+		   || param.getSearch().equals("")
+		   || param.getSearch().equals("")
+		  ) {
+			param.setChoice("검색");
+			param.setSearch("");
+		}
+		
+		model.addAttribute("bbslist", list);
+		model.addAttribute("pageBbs", pageBbs);
+		model.addAttribute("pageNumber", param.getPageNumber());
+		model.addAttribute("choice", param.getChoice());
+		model.addAttribute("search", param.getSearch());
+		model.addAttribute("len", len);
+		return "bbslist";
+	}
 	
 
 	// 게시물 상세보기
@@ -351,4 +379,41 @@ public class BbsController {
 			return "redirect:/bbsdetail.do?seq=" + bbs.getSeq();
 		}
 	
+		@GetMapping(value= "sort.do")
+		public String sortList(String sort, Model model, int pageNumber) {
+			
+			if(sort.equals("star")) {
+				System.out.println("hello");
+				BbsParam param = new BbsParam();
+				param.setPageNumber(pageNumber);
+				// 글의 시작과 끝
+				int pn = pageNumber; // 0 1 2 3 4
+				int start = 1 + (pn * 12); // 1
+				int end = (pn+1) * 12;     // 10
+				param.setStart(start);
+				param.setEnd(end);
+				
+				List<BbsDto> list = service.getStarlist(param);
+				int len = service.getAllBbsLen(param);
+				
+				int pageBbs = len / 12; // 25 / 10 -> 2		
+				
+				if((len%12) > 0) {
+					pageBbs += 1;
+				}
+
+				model.addAttribute("bbslist", list);
+				model.addAttribute("category", 0);
+				model.addAttribute("pageBbs", pageBbs);
+				model.addAttribute("pageNumber", param.getPageNumber());
+				model.addAttribute("boardName", "전체게시판");
+				model.addAttribute("sort", "stars");
+				model.addAttribute("len", len);
+				return "bbslist";
+			} else {
+				return "redirect:/bbslist.do";
+			}
+		}
+		
+		
 }

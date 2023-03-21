@@ -51,25 +51,75 @@ if(message != null && !message.equals("")){
 	}
 }
 
+MemberDto dto = (MemberDto)request.getAttribute("mem");
 String login = (String)request.getAttribute("login");
-if(login != null && !login.equals("")){
-	if(login.equals("LOGIN_OK")){
-		%>
-		<script type="text/javascript">
-		alert("로그인되었습니다");
-		location.href = "mainhome.do";
-
+if (login != null && !login.equals("")) {
+	if (login.equals("LOGIN_OK")) {
+%>
+<script type="text/javascript">
+		alert("환영합니다!!! <%= dto.getName()%>님");
+		location.href = "mainhome.do?auth=" + <%= dto.getAuth()%>;
 		</script>
-		<%
-	}else{
-		%>
-		<script type="text/javascript">
-		alert("아이디나 패스워드를 확인해 주십시오");
+<%
+} else if(login.equals("LOGIN_FAIL")) {
+	%>
+<script type="text/javascript">
+		alert("로그인 실패");
 		location.href = "login.do";
 		</script>
-		<%
-	}	
+<%
+} else if(login.equals("Withdrawal member")){
+	%>
+	<script type="text/javascript">
+		alert("탈퇴된 회원입니다.");
+		location.href = "login.do";
+		</script>
+	
+	<%
+	
+}
+}
+
+// 230320 추가
+String sessionOut = (String)request.getAttribute("sessionOut");
+
+if(sessionOut != null && !sessionOut.equals("")){
+	if(sessionOut.equals("logout")){
+	//		System.out.println("여기는오니..");
+			session.removeAttribute("login");
+			%>
+			<script type="text/javascript">
+			alert("로그아웃되었습니다");
+			location.href = "mainhome.do";
+			</script>
+			<%
+	}
 }
 %>
+
+
+<%
+String delete = (String) request.getAttribute("delete");
+if (delete != null && !delete.equals("")) {
+	if (delete.equals("deleteOK")) {
+%>
+<script type="text/javascript">
+		alert("삭제 성공");
+		location.href = "adminList.do";
+		</script>
+<%
+} else if(delete.equals("deleteNO")) {
+	%>
+<script type="text/javascript">
+		alert("삭제 실패");
+		location.href = "adminList.do";
+		</script>
+<%
+}
+}
+%>
+
+
+
 
 

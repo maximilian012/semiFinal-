@@ -340,7 +340,7 @@ and
 
 .small-img {
 	height: 400px;
-	background-color: #fff9ee;
+	background-color: #FFF6BD;
 }
 
 .small-img p img {
@@ -360,7 +360,7 @@ and
 .arrow-img {
 	width: 100px;
 	height: 100px;
-	background-color: pink;
+	background-color: #FFBB0A;
 }
 
 .tag-style a:hover {
@@ -421,6 +421,7 @@ and
 		width: 100%;
 		background-color: rgb(244, 238, 231);
 		margin: 50px 0;
+		position: relative;
 	}
 	.center-style {
 		width: 1400px;
@@ -429,7 +430,7 @@ and
 	.image-label-style {
 		position: absolute;
 		left: auto;
-		top: 130%;
+		bottom: 10%;
 		font-size: 35px;
 		font-weight: 700;
 	}
@@ -440,6 +441,7 @@ and
 		width: 100%;
 		background-color: rgb(244, 238, 231);
 		margin: 50px 0;
+		position: relative;
 	}
 	.center-style {
 		width: 800px;
@@ -449,7 +451,7 @@ and
 	.image-label-style {
 		position: absolute;
 		left: auto;
-		top: 1660px;
+		bottom: 10%;
 		font-size: 30px;
 		font-weight: 700;
 	}
@@ -458,7 +460,7 @@ and
 		background-color: #fff9ee;
 	}
 	.d-flex {
-		margin-top: 50px;
+		/* margin-top: 50px; */
 	}
 	.minmax2 {
 		font-size: 23px !important;
@@ -467,7 +469,44 @@ and
 		font-size: 23px;
 	}
 }
+.none-img{
+	background-color: #fff9ee;
+}
+
+@media screen and (max-width:950px){
+	.small-img {
+		height: 403px;
+		background-color: #fff9ee;
+	}
+	.carousel-inner{
+		margin: 50px auto;
+	}
+}
+.selectStyle{
+	width: 130px;
+	padding-left: 10px;
+    border: 1px solid #bdbdbd;
+}
+.selectStyle:focus{
+	transition: all .2s linear;
+    border-color: #3b71ca;
+    outline: 0;
+    box-shadow: inset 0 0 0 1px #3b71ca;
+}
+
+@media screen and (min-width:369px) and (max-width:767px){
+	h5.card-title.minmax2{
+		font-size:20px;
+	}
+}
+
+@media screen and (max-width:368px){
+	h5.card-title.minmax2{
+		font-size:16px;
+	}
+}
 </style>
+
 
 </head>
 
@@ -505,7 +544,7 @@ and
 	if (login == null ) {
 	%>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light"
-		style="background-color: orange !important">
+		style="background-color: #FFF6BD !important">
 		<!-- Container wrapper -->
 		<div class="container-fluid" style="height: 100px; font-weight: 700;">
 			<!-- Toggle button -->
@@ -520,9 +559,8 @@ and
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<!-- Navbar brand -->
 				<a class="navbar-brand mt-2 mt-lg-0" href="#"> 
-				<img
-					src="resources/images/logo.png" height="100" alt="Logo"
-					loading="lazy" />
+		<img src="resources/images/logo-update.png" height="100" alt="Logo"
+loading="lazy" style="margin: 0 !important" />
 				</a>
 				<!-- Left links -->
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -565,7 +603,7 @@ and
 	%>
 	<!-- login 하면 나오는 Navbar -->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light"
-		style="background-color: orange !important">
+		style="background-color: #FFF6BD !important">
 		<!-- Container wrapper -->
 		<div class="container-fluid" style="height: 100px; font-weight: 700;">
 			<!-- Toggle button -->
@@ -579,9 +617,8 @@ and
 			<!-- Collapsible wrapper -->
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<!-- Navbar brand -->
-				<a class="navbar-brand mt-2 mt-lg-0" href="#"> <img
-					src="resources/images/logo.png" height="100" alt="Logo"
-					loading="lazy" />
+				<a class="navbar-brand mt-2 mt-lg-0" href="#"><img src="resources/images/logo-update.png" height="100" alt="Logo"
+loading="lazy" style="margin: 0 !important" />>
 				</a>
 				<!-- Left links -->
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -618,15 +655,12 @@ and
 			<div class="dropdown">
 				<a class="dropdown-toggle d-flex align-items-center hidden-arrow"
 					href="#" id="navbarDropdownMenuAvatar" role="button"
-					data-mdb-toggle="dropdown" aria-expanded="false"> <img
-					src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
-					class="rounded-circle" height="25"
-					alt="Black and White Portrait of a Man" loading="lazy" />
+					data-mdb-toggle="dropdown" aria-expanded="false"> <img src="resources/images/logo-update.png" height="100" alt="Logo"
+loading="lazy" style="margin: 0 !important" />
 				</a>
 
 				<ul class="dropdown-menu dropdown-menu-end"
 					aria-labelledby="navbarDropdownMenuAvatar">
-					<li><a class="dropdown-item" href="#">My profile</a></li>
 				 	<%
 					if(login.getAuth().equals("1")){
 					%>
@@ -634,7 +668,7 @@ and
 					<%	
 					}
 					%> 
-					<li><a class="dropdown-item" href="setting.do?login=" + <%=login %> >Settings</a></li>
+					<li><a class="dropdown-item" href="setting.do?login=" + <%=login %> >Mypage</a></li>
 					<li><a class="dropdown-item" onclick="navLogout()">Logout</a></li>
 				</ul>
 			</div>
@@ -726,10 +760,15 @@ and
 
 		<div class="input-group">
 			<form class="input-group" action="searchMove.do" method="post">
+			<select class="selectStyle" id="choice" name="choice">
+					<option selected>검색</option>
+					<option value="title">제목</option>
+					<option value="content">내용</option>
+					<option value="writer">작성자</option>
+			</select>
 			<input type="search" class="form-control rounded" name="search"
 				placeholder="Search" aria-label="Search"
-				aria-describedby="search-addon" style="height: 65px;" />
-			<input type="hidden" value="title" name="choice">	
+				aria-describedby="search-addon" style="height: 65px;" />	
 			<button type="submit" class="btn btn-outline-primary">search</button>
 			</form>
 		</div>
@@ -759,46 +798,255 @@ and
 						</div>
 
 						<%
-						for (int i = 0; i < 3; i++) {
-							BbsDto dto = recent.get(i);
-						%>
-						<div class="card small-img recipe-bbs-move"
-							onclick="recipeMove(<%=dto.getSeq()%>)" style="width: 18rem;">
-							<h4 class="card-ceter-title">
-								<b>신규 레시피</b>
-							</h4>
-							<%=dto.getThumbnail()%>
-							<div class="card-body">
-								<h4 class="card-title card-bottom-title"><%=dto.getTitle()%></h4>
+						if(recent.size()==0){
+							for(int i=0; i<3; i++){
+							%>
+							<div class="card small-img recipe-bbs-move" style="width: 18rem;">
+								<h4 class="card-ceter-title">
+									<b>아직 레시피가 없어요!</b>
+								</h4>
+								<div class="card-body">
+									<p>
+										<img src="resources/images/none-img.png">
+									</p>
+									<h4 class="card-title card-bottom-title"></h4>
+								</div>
 							</div>
-						</div>
-						<%
+							<%
+							}
+							// for
 						}
+						// if
+						else if(recent.size() == 1 ){
+							for (int i = 0; i < recent.size(); i++) {
+								BbsDto dto = recent.get(i);
+							%>
+							<div class="card small-img recipe-bbs-move"
+								onclick="recipeMove(<%=dto.getSeq()%>)" style="width: 18rem;">
+								<h4 class="card-ceter-title">
+									<b>신규 레시피</b>
+								</h4>
+								<%=dto.getThumbnail()%>
+								<div class="card-body">
+									<h4 class="card-title card-bottom-title"><%=dto.getTitle()%></h4>
+								</div>
+							</div>
+							<%
+							}
+							//for
+							for(int i=0; i<2; i++){
+							%>
+							<div class="card small-img recipe-bbs-move" style="width: 18rem;">
+								<h4 class="card-ceter-title">
+									<b>아직 레시피가 없어요!</b>
+								</h4>
+								<div class="card-body">
+									<p>
+										<img src="resources/images/none-img.png">
+									</p>
+									<h4 class="card-title card-bottom-title"></h4>
+								</div>
+							</div>
+							<%
+							}
+							// for
+						}
+						//else if
+						else if(recent.size() == 2){
+							for (int i = 0; i < recent.size(); i++) {
+								BbsDto dto = recent.get(i);
+								%>
+								<div class="card small-img recipe-bbs-move"
+									onclick="recipeMove(<%=dto.getSeq()%>)" style="width: 18rem;">
+									<h4 class="card-ceter-title">
+										<b>신규 레시피</b>
+									</h4>
+									<%=dto.getThumbnail()%>
+									<div class="card-body">
+										<h4 class="card-title card-bottom-title"><%=dto.getTitle()%></h4>
+									</div>
+								</div>
+								<%
+							}
+							//for
+							for(int i=0; i<1; i++){
+							%>	
+							<div class="card small-img recipe-bbs-move" style="width: 18rem;">
+								<h4 class="card-ceter-title">
+									<b>아직 레시피가 없어요!</b>
+								</h4>
+								<div class="card-body">
+									<p>
+										<img src="resources/images/none-img.png">
+									</p>
+									<h4 class="card-title card-bottom-title"></h4>
+								</div>
+							</div>
+							<%
+							}		
+							//for
+						}
+						// else for
+						else if(recent.size() >= 3){
+							for(int i=0; i<3; i++){
+								BbsDto dto = recent.get(i);
+							%>
+								<div class="card small-img recipe-bbs-move"
+									onclick="recipeMove(<%=dto.getSeq()%>)" style="width: 18rem;">
+									<h4 class="card-ceter-title">
+										<b>신규 레시피</b>
+									</h4>
+									<%=dto.getThumbnail()%>
+									<div class="card-body">
+										<h4 class="card-title card-bottom-title"><%=dto.getTitle()%></h4>
+									</div>
+								</div>
+							<%
+							}
+							//for
+						}	
+						//else for
 						%>
-
-
 					</div>
 				</div>
+				
 				<div class="carousel-item my-change">
 					<div
-						class="card-wrapper container-sm d-flex   justify-content-around">
+						class="card-wrapper container-sm d-flex justify-content-around">
 						<%
-						for (int i = 3; i < 7; i++) {
-							BbsDto dto = recent.get(i);
-						%>
-						<div class="card small-img recipe-bbs-move"
-							onclick="recipeMove(<%=dto.getSeq()%>)" style="width: 18rem;">
-							<h4 class="card-ceter-title">
-								<b>신규 레시피</b>
-							</h4>
-							<%=dto.getThumbnail()%>
-							<div class="card-body">
-								<h4 class="card-title card-bottom-title"><%=dto.getTitle()%></h4>
+						if(recent.size() <= 3){
+							for(int i=0; i<4; i++){
+							%>
+							<div class="card small-img recipe-bbs-move" style="width: 18rem;">
+								<h4 class="card-ceter-title">
+									<b>아직 레시피가 없어요!</b>
+								</h4>
+								<div class="card-body">
+									<p>
+										<img src="resources/images/none-img.png">
+									</p>
+									<h4 class="card-title card-bottom-title"></h4>
+								</div>
 							</div>
-						</div>
-						<%
+							<%
+							}
 						}
-						%>
+						else if(recent.size() == 4){
+							for (int i = 3; i <recent.size() ; i++) {
+								BbsDto dto = recent.get(i);
+								%>
+								<div class="card small-img recipe-bbs-move"
+									onclick="recipeMove(<%=dto.getSeq()%>)" style="width: 18rem;">
+									<h4 class="card-ceter-title">
+										<b>신규 레시피</b>
+									</h4>
+									<%=dto.getThumbnail()%>
+									<div class="card-body">
+										<h4 class="card-title card-bottom-title"><%=dto.getTitle()%></h4>
+									</div>
+								</div>
+								<%
+							}
+							for (int i = 0; i <3 ; i++){
+								%>
+								<div class="card small-img recipe-bbs-move" style="width: 18rem;">
+									<h4 class="card-ceter-title">
+										<b>아직 레시피가 없어요!</b>
+									</h4>
+									<div class="card-body">
+										<p>
+											<img src="resources/images/none-img.png">
+										</p>
+										<h4 class="card-title card-bottom-title"></h4>
+									</div>
+								</div>
+								<%
+							}
+						}
+						else if(recent.size() == 5){
+							for (int i = 3; i <recent.size() ; i++){
+								BbsDto dto = recent.get(i);
+							%>
+								<div class="card small-img recipe-bbs-move"
+									onclick="recipeMove(<%=dto.getSeq()%>)" style="width: 18rem;">
+									<h4 class="card-ceter-title">
+										<b>신규 레시피</b>
+									</h4>
+									<%=dto.getThumbnail()%>
+									<div class="card-body">
+										<h4 class="card-title card-bottom-title"><%=dto.getTitle()%></h4>
+									</div>
+								</div>
+							<%
+							}
+							for(int i = 0; i <3 ; i++){							
+							%>
+								<div class="card small-img recipe-bbs-move" style="width: 18rem;">
+									<h4 class="card-ceter-title">
+										<b>아직 레시피가 없어요!</b>
+									</h4>
+									<div class="card-body">
+										<p>
+											<img src="resources/images/none-img.png">
+										</p>
+										<h4 class="card-title card-bottom-title"></h4>
+									</div>
+								</div>
+							<%
+							}
+						}
+						else if(recent.size() ==  6){
+							for (int i = 3; i <recent.size() ; i++){
+								BbsDto dto = recent.get(i);	
+							%>
+								<div class="card small-img recipe-bbs-move"
+									onclick="recipeMove(<%=dto.getSeq()%>)" style="width: 18rem;">
+									<h4 class="card-ceter-title">
+										<b>신규 레시피</b>
+									</h4>
+									<%=dto.getThumbnail()%>
+									<div class="card-body">
+										<h4 class="card-title card-bottom-title"><%=dto.getTitle()%></h4>
+									</div>
+								</div>
+							<%
+							}
+							for(int i = 0; i <1 ; i++){
+							%>	
+							<div class="card small-img recipe-bbs-move" style="width: 18rem;">
+									<h4 class="card-ceter-title">
+										<b>아직 레시피가 없어요!</b>
+									</h4>
+									<div class="card-body">
+										<p>
+											<img src="resources/images/none-img.png">
+										</p>
+										<h4 class="card-title card-bottom-title"></h4>
+									</div>
+							</div>
+							<%
+							}
+						}
+						else if(recent.size() >=  7){
+							for(int i=3; i<7; i++){		
+								BbsDto dto = recent.get(i);	
+							%>
+								<div class="card small-img recipe-bbs-move"
+									onclick="recipeMove(<%=dto.getSeq()%>)" style="width: 18rem;">
+									<h4 class="card-ceter-title">
+										<b>신규 레시피</b>
+									</h4>
+									<%=dto.getThumbnail()%>
+									<div class="card-body">
+										<h4 class="card-title card-bottom-title"><%=dto.getTitle()%></h4>
+									</div>
+								</div>
+							<%							
+							}
+						}	
+						
+						%>		
+							
 					</div>
 				</div>
 
@@ -840,20 +1088,187 @@ and
 
 			<div class="row row-cols-3 g-3">
 				<%
-				for (int i = 0; i < 6; i++) {
-					BbsDto dto = food.get(i);
-				%>
-				<div class="col">
-					<div class="card bg-image hover-zoom cursor-change recipe-bbs-move"
-						onclick="recipeMove(<%=dto.getSeq()%>)">
-						<%=dto.getThumbnail()%>
-						<div class="card-body">
-							<h5 class="card-title"><%=dto.getTitle()%></h5>
-							<p class="card-text"><%=dto.getTag()%></p>
+				if(food.size()==0){
+					for(int i=0; i<6; i++){
+					%>
+					<div class="col">
+						<div class="card bg-image hover-zoom cursor-change recipe-bbs-move"">
+							<p><img src="resources/images/logo-update.png" class="none-img"></p>
+							<div class="card-body">
+								<h5 class="card-title">아직 레시피가 없어요!</h5>
+								<p class="card-text">태그와 같이 작성해보세요!</p>
+							</div>
 						</div>
 					</div>
-				</div>
+					<%	
+					}
+				}
+				else if(food.size()==1){
+					for(int i = 0; i < food.size(); i++){
+						BbsDto dto = food.get(i);
+					%>
+					<div class="col">
+						<div class="card bg-image hover-zoom cursor-change recipe-bbs-move"
+							onclick="recipeMove(<%=dto.getSeq()%>)">
+							<%=dto.getThumbnail()%>
+							<div class="card-body">
+								<h5 class="card-title"><%=dto.getTitle()%></h5>
+								<p class="card-text"><%=dto.getTag()%></p>
+							</div>
+						</div>
+					</div>					
+					<%										
+					}
+					for (int i = 0; i < 5; i++){					
+					%>
+					<div class="col">
+						<div class="card bg-image hover-zoom cursor-change recipe-bbs-move"">
+							<p><img src="resources/images/logo-update.png" class="none-img"></p>
+							<div class="card-body">
+								<h5 class="card-title">아직 레시피가 없어요!</h5>
+								<p class="card-text">태그와 같이 작성해보세요!</p>
+							</div>
+						</div>
+					</div>
+					<%
+					}
+				}
+				else if(food.size()==2){
+					for(int i = 0; i < food.size(); i++){
+						BbsDto dto = food.get(i);
+					%>
+					<div class="col">
+						<div class="card bg-image hover-zoom cursor-change recipe-bbs-move"
+							onclick="recipeMove(<%=dto.getSeq()%>)">
+							<%=dto.getThumbnail()%>
+							<div class="card-body">
+								<h5 class="card-title"><%=dto.getTitle()%></h5>
+								<p class="card-text"><%=dto.getTag()%></p>
+							</div>
+						</div>
+					</div>					
+					<%										
+					}
+					for (int i = 0; i < 4; i++){					
+					%>
+					<div class="col">
+						<div class="card bg-image hover-zoom cursor-change recipe-bbs-move"">
+							<p><img src="resources/images/logo-update.png" class="none-img"></p>
+							<div class="card-body">
+								<h5 class="card-title">아직 레시피가 없어요!</h5>
+								<p class="card-text">태그와 같이 작성해보세요!</p>
+							</div>
+						</div>
+					</div>
+					<%
+					}
+				}
+				else if(food.size()==3){
+					for(int i = 0; i < food.size(); i++){
+						BbsDto dto = food.get(i);
+					%>
+					<div class="col">
+						<div class="card bg-image hover-zoom cursor-change recipe-bbs-move"
+							onclick="recipeMove(<%=dto.getSeq()%>)">
+							<%=dto.getThumbnail()%>
+							<div class="card-body">
+								<h5 class="card-title"><%=dto.getTitle()%></h5>
+								<p class="card-text"><%=dto.getTag()%></p>
+							</div>
+						</div>
+					</div>					
+					<%										
+					}
+					for (int i = 0; i < 3; i++){					
+					%>
+					<div class="col">
+						<div class="card bg-image hover-zoom cursor-change recipe-bbs-move"">
+							<p><img src="resources/images/logo-update.png" class="none-img"></p>
+							<div class="card-body">
+								<h5 class="card-title">아직 레시피가 없어요!</h5>
+								<p class="card-text">태그와 같이 작성해보세요!</p>
+							</div>
+						</div>
+					</div>
+					<%
+					}
+				}
+				else if(food.size()==4){
+					for(int i = 0; i < food.size(); i++){
+						BbsDto dto = food.get(i);
+					%>
+					<div class="col">
+						<div class="card bg-image hover-zoom cursor-change recipe-bbs-move"
+							onclick="recipeMove(<%=dto.getSeq()%>)">
+							<%=dto.getThumbnail()%>
+							<div class="card-body">
+								<h5 class="card-title"><%=dto.getTitle()%></h5>
+								<p class="card-text"><%=dto.getTag()%></p>
+							</div>
+						</div>
+					</div>					
+					<%										
+					}
+					for (int i = 0; i < 2; i++){					
+					%>
+					<div class="col">
+						<div class="card bg-image hover-zoom cursor-change recipe-bbs-move"">
+							<p><img src="resources/images/logo-update.png" class="none-img"></p>
+							<div class="card-body">
+								<h5 class="card-title">아직 레시피가 없어요!</h5>
+								<p class="card-text">태그와 같이 작성해보세요!</p>
+							</div>
+						</div>
+					</div>
+					<%
+					}
+				}
+				else if(food.size()==5){
+					for(int i = 0; i < food.size(); i++){
+						BbsDto dto = food.get(i);
+					%>
+					<div class="col">
+						<div class="card bg-image hover-zoom cursor-change recipe-bbs-move"
+							onclick="recipeMove(<%=dto.getSeq()%>)">
+							<%=dto.getThumbnail()%>
+							<div class="card-body">
+								<h5 class="card-title"><%=dto.getTitle()%></h5>
+								<p class="card-text"><%=dto.getTag()%></p>
+							</div>
+						</div>
+					</div>					
+					<%										
+					}
+					for (int i = 0; i < 1; i++){					
+					%>
+					<div class="col">
+						<div class="card bg-image hover-zoom cursor-change recipe-bbs-move"">
+							<p><img src="resources/images/logo-update.png" class="none-img"></p>
+							<div class="card-body">
+								<h5 class="card-title">아직 레시피가 없어요!</h5>
+								<p class="card-text">태그와 같이 작성해보세요!</p>
+							</div>
+						</div>
+					</div>
+					<%
+					}
+				}
+				else if(food.size() >= 6){
+					for (int i = 0; i < 6; i++) {
+						BbsDto dto = food.get(i);
+					%>
+					<div class="col">
+						<div class="card bg-image hover-zoom cursor-change recipe-bbs-move"
+							onclick="recipeMove(<%=dto.getSeq()%>)">
+							<%=dto.getThumbnail()%>
+							<div class="card-body">
+								<h5 class="card-title"><%=dto.getTitle()%></h5>
+								<p class="card-text"><%=dto.getTag()%></p>
+							</div>
+						</div>
+					</div>	
 				<%
+					}
 				}
 				%>
 			</div>

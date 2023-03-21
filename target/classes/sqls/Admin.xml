@@ -63,12 +63,12 @@
 	</update>
 		<!--recipe 테이블의 delf를 0으로 update하고 게시글에서 delf가 0인것은 삭제된 것 처럼 보여주기  -->
 	
-	<update id="delfUp">
 	
-	update recipe set delf = 0 where writer = #{writer}
+	<update id="delfUp" parameterType="String">
+	
+	update recipe set delf = "0" where writer = #{writer}
 	
 	</update>
-	
 	
 	<!--아이디 모달 보여주기  -->
 	<select id="getInfo" parameterType="String" resultType="mul.cam.food.dto.MemberDto">

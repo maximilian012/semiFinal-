@@ -21,6 +21,8 @@ public interface BbsService {
 	List<BbsDto> mainHomegetBbs();
 
 	List<BbsDto> recentBbs();
+
+	List<BbsDto>getStarlist(BbsParam param);
 	
 	int getAllBbsLen(BbsParam param);
 	// searchResult

@@ -158,4 +158,10 @@ public class BbsServiceImpl implements BbsService {
 		public int getAllCategoryBbsLen(BbsParam param) {
 			return dao.getAllCategoryBbsLen(param);
 		}
+
+
+		@Override
+		public List<BbsDto> getStarlist(BbsParam param) {
+			return dao.getStarlist(param);
+		}
 }

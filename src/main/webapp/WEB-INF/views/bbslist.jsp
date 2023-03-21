@@ -16,6 +16,12 @@
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+  <link
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap"
+	rel="stylesheet">
+
+
+	
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
@@ -31,9 +37,6 @@
     margin-right: 3rem;
 }
 
-.bbsname{
-    padding-left: 5rem;
-}
 
 .category-image {
  width: 52% !important;
@@ -45,33 +48,106 @@
     font-size: large
 }
 
+.card-body{
+
+    padding: 1rem;
+}
+
+.star-rating {
+
+}
+.rate{background: url(https://aldo814.github.io/jobcloud/html/images/user/star_bg02.png) no-repeat;
+	width: 121px;
+	height: 20px;
+	position: relative;
+	float: right;
+    top: -2px;
+    left: -48px;
+	
+	}
+.rate span{position: absolute;background: url(https://aldo814.github.io/jobcloud/html/images/user/star02.png);width: auto;height: 20px;}
+
+
+.sort_util {
+    position: absolute;
+    right: 0;
+    top: 0px;
+    list-style: none;
+}
+
+.sort_util li {
+    float: left;
+    padding: 0 10px 0 20px;
+    position: relative;
+}
+
+.search-sort{
+display: block;
+    width: 100%;
+    padding: 0 0;
+    position: relative;
+        padding-left: 2rem;
+}
+
+
 
 </style>
 
 </head>
 <%
-	MemberDto login = (MemberDto)session.getAttribute("login");
+
 	List<BbsDto> list = (List<BbsDto>)request.getAttribute("bbslist");
 	String uploadFilePath = (String)request.getAttribute("uploadFilePath");
 	int pageBbs = (Integer)request.getAttribute("pageBbs");
 	int pageNumber = (Integer)request.getAttribute("pageNumber");
 	String boardName = (String)request.getAttribute("boardName");
 	int category = (Integer)request.getAttribute("category");
-	System.out.println(pageNumber);
-	System.out.println(pageBbs);
+	String sort = "new";
+	if(null != (String)request.getAttribute("sort")) {
+		sort = (String)request.getAttribute("sort");
+	}
+	
+	int len = (Integer)request.getAttribute("len");
 %> 
 
 
 <body>
-       
+	<!-- <header>
+		<div id="headerNav">
+			<img alt="로고이미지" src="resources/images/logo.png" width="100"
+				height="100" style="margin-top: 5px;">
+			<ul>
+				<li><a class="categoryBtn">카테고리</a>
+					<ul class="categoryHide">
+						<li>종류</li>
+						<li>재료</li>
+						<li>방법</li>
+						<li>테마</li>
+						<li>기념일</li>
+						<li>도구</li>
+					</ul></li>
+			</ul>
+			<ul class="member">
+				<li><a href="test.do">로그인</a></li>
+				<li><a href="regi.do">회원가입</a></li>
+			</ul>
+		</div>
+		headerNav end
+	</header> -->
+
+	<!-- login 전일 때 나오는 Navbar -->
 	<%
+	MemberDto login = (MemberDto) session.getAttribute("login");
+
+
+//	System.out.println("mainhome.jsp "+login);
 
 	if (login == null ) {
 	%>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light"
 		style="background-color: #FFF6BD !important">
 		<!-- Container wrapper -->
-		<div class="container-fluid" style="height: 100px; font-weight: 700;">
+		<div class="container-fluid pl-0 pr-0" style="height: 100px; font-weight: 700;">
 			<!-- Toggle button -->
 			<button class="navbar-toggler" type="button"
 				data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent"
@@ -84,9 +160,8 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<!-- Navbar brand -->
 				<a class="navbar-brand mt-2 mt-lg-0" href="mainhome.do"> 
-				<img
-					src="resources/images/logo.png" height="100" alt="Logo"
-					loading="lazy" />
+			<img src="resources/images/logo-update.png" height="100" alt="Logo"
+loading="lazy" style="margin: 0 !important" />
 				</a>
 				<!-- Left links -->
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -131,7 +206,7 @@
 	<nav class="navbar navbar-expand-lg navbar-light bg-light"
 		style="background-color: #FFF6BD !important">
 		<!-- Container wrapper -->
-		<div class="container-fluid" style="height: 100px; font-weight: 700;">
+		<div class="container-fluid pl-0 pr-0" style="height: 100px; font-weight: 700;">
 			<!-- Toggle button -->
 			<button class="navbar-toggler" type="button"
 				data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent"
@@ -141,11 +216,10 @@
 			</button>
 
 			<!-- Collapsible wrapper -->
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<div class="collapse navbar-collapse " id="navbarSupportedContent">
 				<!-- Navbar brand -->
-				<a class="navbar-brand mt-2 mt-lg-0" href="mainhome.do"> <img
-					src="resources/images/logo.png" height="100" alt="Logo"
-					loading="lazy" />
+				<a class="navbar-brand mt-2 mt-lg-0" href="mainhome.do"> <img src="resources/images/logo-update.png" height="100" alt="Logo"
+loading="lazy" style="margin: 0 !important" />
 				</a>
 				<!-- Left links -->
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -166,17 +240,21 @@
 						</div>
 					</li>
 					<li class="nav-item"><a class="nav-link" href="bbslist.do">게시판</a></li>
+					<li class="nav-item"><a class="nav-link" href="bbswrite.do">글쓰기</a><li>
 				</ul>
 				<!-- Left links -->
 			</div>
 			<!-- Collapsible wrapper -->
 
 			<!-- Right elements -->
+				
 			<div class="dropdown">
 				<p id="demo"></p>
+			
 				<p style="margin: 0 15px 0 0; height: 38px;"><%=login.getUserId()%>
 					님 반갑습니다!
 				</p>
+				
 			</div>
 			
 			<div class="dropdown">
@@ -190,7 +268,6 @@
 
 				<ul class="dropdown-menu dropdown-menu-end"
 					aria-labelledby="navbarDropdownMenuAvatar">
-					<li><a class="dropdown-item" href="#">My profile</a></li>
 				 	<%
 					if(login.getAuth().equals("1")){
 					%>
@@ -198,7 +275,7 @@
 					<%	
 					}
 					%> 
-					<li><a class="dropdown-item" href="setting.do?login=" + <%=login %> >Settings</a></li>
+					<li><a class="dropdown-item" href="setting.do?login=" + <%=login %> >Mypage</a></li>
 					<li><a class="dropdown-item" onclick="navLogout()">Logout</a></li>
 				</ul>
 			</div>
@@ -210,6 +287,9 @@
 		<!-- Container wrapper -->
 	</nav>
 	<!-- Navbar -->
+
+
+
     <div class="container main">
 	   	<div class="category_tag_div">
 	   	    <div class="category_tag text-center">			
@@ -320,10 +400,65 @@
 
       <div class="bbs-main">
       <!-- 게시판 소개글 -->
-		<a class="writeButton" href="bbswrite.do">글쓰기</a>
+		
+			
       <h2 class="bbsname text-center" id="bbsname">
       	<%= boardName %>
       </h2>
+      <div class="search-sort">
+        <span>전체 
+      	<strong><%=len  %></strong>건 
+      	조회
+      	</span>
+      	<%
+			if(boardName.equals("전체게시판")) {
+		%>
+				
+					<select style="margin-left: 54rem;" id="sort" name="sort" onchange="sortFunction()">
+						<%
+							if(sort.equals("new")){
+								
+							
+						%>
+						<option selected value="new">최신순</option>
+						<option value="star">평점순</option>
+						<%
+							} else {
+						%>
+						<option  value="new">최신순</option>
+						<option selected value="star">평점순</option>
+						<%
+							}
+						%>
+					</select>
+		<%
+			} else {
+		%>
+		
+				<select hidden style="margin-left: 54rem;" id="sort" name="sort" onchange="sortFunction()">
+						<%
+							if(sort.equals("new")){
+								
+							
+						%>
+						<option selected value="new">최신순</option>
+						<option value="star">평점순</option>
+						<%
+							} else {
+						%>
+						<option  value="new">최신순</option>
+						<option selected value="star">평점순</option>
+						<%
+							}
+						%>
+					</select>
+			
+		<%
+			} 
+		%>
+      </div>
+ 
+   
       <input hidden name="category" id="category" value="<%=category %>"/>
       	
       <!-- 게시판 메인 -->
@@ -373,9 +508,19 @@
 				</div>	
 				<div class="card-body">					
 						<p id="recipt-title"><%=dto.getTitle() %></p>
+				
 						<div class="hash-tag" id="recipt-hashtag">
-						 <span><%=dto.getTag() %></span>
+						 <p><%=dto.getTag() %></p>			
+						 </div>
+						 
+						 <div class="hash-tag star-rating">
+						 	<span>평점:</span>
+							 <div class="rate">
+		        				<span style="width: <%=dto.getStar()*20 %>%"></span>
+		   					</div>
 						</div>
+				</div>
+						
 						<input hidden id="seq" name="seq" value="<%=dto.getSeq() %>"/>	
 				</div>					
 			</td>
@@ -455,11 +600,19 @@ $(document).ready(
 		    	let choice = document.getElementById('choice').value;
 		    	let search = document.getElementById('search').value;
 		    	let category = document.getElementById('category').value;
-		    	if(category === "0") {
-		    		location.href = "bbslist.do?choice=" + choice + "&search=" + search + "&pageNumber=" + (page-1);		    		
+		    	let sortValue = document.getElementById('sort');
+		    	let sv = sortValue.options[sortValue.selectedIndex].value;
+
+		    	// 일반검색/최신순의 경우
+		    	if(category === "0" && sv !== "star" ) {
+		    		location.href = "bbslist.do?choice=" + choice + "&search=" + search + "&pageNumber=" + (page-1);
+		    		
+		    	} else if(sv === "star") {
+		    		location.href =  "sort.do?sort="+sv +"&pageNumber=" + (page-1);
+		    		
 		    	} else {
 		    		location.href = "categorysearch.do?category=" + category + "&pageNumber=" + (page-1);
-		    	}
+		    	} 
 		    }
 		})
 )
@@ -491,7 +644,12 @@ $(".hover").mouseleave(
 		    $(this).removeClass("hover");
 		  }
 		);
+function sortFunction(){
+	let sortValue = document.getElementById('sort');
 
+	location.href = "sort.do?sort="+sortValue.options[sortValue.selectedIndex].value +"&pageNumber="+ 0;
+
+}
 </script>
 
 

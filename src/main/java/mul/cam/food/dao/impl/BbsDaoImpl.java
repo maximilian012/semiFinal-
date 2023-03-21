@@ -105,6 +105,10 @@ public class BbsDaoImpl implements BbsDao {
 	public int getAllCategoryBbsLen(BbsParam param) {
 		return session.selectOne(ns+"getAllCategoryBbsLen", param);
 	}
+	@Override
+	public List<BbsDto> getStarlist(BbsParam param) {
+		return session.selectList(ns+"getStarlist", param);
+	}
 	
 
 }

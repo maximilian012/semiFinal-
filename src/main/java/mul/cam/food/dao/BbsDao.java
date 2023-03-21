@@ -21,6 +21,7 @@ public interface BbsDao {
 	// searchList
 	List<BbsDto> recentBbs();
 	List<BbsDto> getCategorySearchList(BbsParam param);
+	List<BbsDto> getStarlist(BbsParam param);
 	
 	// 카테고리별 글의 갯수
 	int getAllCategoryBbsLen(BbsParam param);

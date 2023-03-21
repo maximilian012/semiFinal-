@@ -8,85 +8,86 @@ body {
 
 }
 
+body {
+	margin: 0;
+	font-family: 'Noto Sans KR', sans-serif;
+}
 
-.header{
-	position: relative;
-    width: 100%;
-    min-width: 1300px;
-    height: 150px;
-    box-sizing: border-box;
-    z-index: 13;
-    background: #f5f5dc;
-    font-family: 'Noto Sans KR', sans-serif;
-
+a {
+	text-decoration: none;
 }
 
 img {
 	width: 100% !important;
-	
+}
+
+header {
+	width: auto;
+	height: 110px;
+	background-color: #ff0000;
+	/*#ffd26f #ffe64f #fff9ee */
+}
+
+header #headerNav {
+	width: 1200px;
+	margin: 0 auto;
+	background-color: #fff9ee;
+	height: 110px;
+	position: relative;
+}
+
+header img {
+	float: left;
+}
+
+header ul {
+	list-style: none;
+	float: left;
+	margin: 0 auto;
+	/* height: 110px; */
+	text-align: center;
+}
+
+header .member {
+	float: right;
+}
+
+header ul li {
+	float: left;
+	font-weight: 700;
+	font-size: 20px;
+	/* height: 30px; */
+	vertical-align: middle;
+	margin-top: 40px;
+	width: 120px;
+}
+
+#headerNav ul li ul {
+	width: 1200px;
+	background-color: royalblue;
+	position: absolute;
+	left: 0;
+	top: 110px;
+	padding: 0;
+	z-index: 10;
+}
+
+header .categoryHide {
+	display: none;
+}
+
+header a {
+	cursor: pointer;
+}
+
+.nav-link {
+	font-size: 22px;
 }
 
 
-.header > .bob_head {
-    width: 1280px;
-    height: 105px;
-    margin: 0 auto;
-    position: relative;
-}
 
- .header > .bob_head > h1 {
-position: relative;
-    float: left;
-    display: block;
-    width: 130px;
-    height: 105px;
-
-}
-
- .header > .bob_head > h1 > .logo {
-position: absolute;
-    top: 38%;
-    display: block;
-    width: 240px;
-    height: 140px;
-    margin-left: 0px;
-    margin-top: -33px;
-    background: url(./images/homebob.png) no-repeat;
-    background-size: 140px;
-}
-
-.right-header {
-	float:right;
-}
-
-.header > .bob_head> .gnb_head_area{
-width: 1070px;
-    height: 75px;
-    /* margin-left: 370px; */
-    position: relative;
-    padding-top: 46px;
-    text-align: left;
-    vertical-align: top;
-    display: table;
-    font-size: xx-large;
-}
-
-.header > .bob_head > .gnb_head_area .bob_head_form {
-    float: left;
-    position: relative;
-}
-
-
-.header > .bob_head > .gnb_head_area .tag_top {
-    text-align: right;
-    float: right;
-    width: 300px;
-    overflow: hidden;
-}
-
-
-.main {
-	margin-top: 2rem;
+ .main {
+margin: 0 auto;
 }
 
 .search_area {
@@ -146,15 +147,6 @@ width: auto;
 
 
 
-/* .category-main a:after {
-    width: 1px;
-    height: 18px;
-    background: #c2c2c2;
-    display: inline-block;
-    content: '';
-    margin: 0 20px;
-}
- */
 .bbs-main {
 	width: 100%;
 
@@ -205,8 +197,6 @@ td.card > div > p > img {
 
 .hash-tag {
 	font-size: small;
-	float: left;
-
 }
 
 .bbs-table {
@@ -397,6 +387,4 @@ figure.snip1384.hover i {
   transform: translate(0px, 0px);
   opacity: 1;
 }
-
-
 

@@ -13,23 +13,33 @@
     	MemberDto login = (MemberDto)session.getAttribute("login");	
     %>
     
-    
-    
 <!DOCTYPE html>
 <html>
 <head>
-<body bgcolor="#e9e9e9">
-<meta charset="UTF-8">
-<title>Insert title here</title>
 
+<meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Insert title here</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap"
+	rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
   <script type="text/javascript" src="./jquery/jquery.twbsPagination.min.js"></script>
+  
+    <!-- Google Fonts -->
+<link
+	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+	rel="stylesheet" />
+<!-- MDB -->
+
   <style type="text/css">
+  
 body {
 	margin: 0;
 	font-family: 'Noto Sans KR', sans-serif;
@@ -46,7 +56,7 @@ img {
 header {
 	width: auto;
 	height: 110px;
-	background-color: #ff0000;
+	background-color: #FFF6BD;
 	/*#ffd26f #ffe64f #fff9ee */
 }
 
@@ -267,6 +277,7 @@ main {
   
   
 </head>
+<body bgcolor="#e9e9e9">
 <body>
 	
 	<!-- login 전일 때 나오는 Navbar -->
@@ -308,13 +319,10 @@ main {
 		<!-- Container wrapper -->
 	</nav>
 	<%
-	}
+	}else if (login != null) {
 	%>
 	<!-- Navbar -->
-	
-	<%
-	if (login != null) {
-	%>
+
 	<!-- login 하면 나오는 Navbar -->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<!-- Container wrapper -->
@@ -330,7 +338,7 @@ main {
 			<!-- Collapsible wrapper -->
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<!-- Navbar brand -->
-				<a class="navbar-brand mt-2 mt-lg-0" href="#"> <img
+				<a class="navbar-brand mt-2 mt-lg-0" href="mainhome.do"> <img
 					src="resources/images/logo.png" height="100" alt="Logo"
 					loading="lazy" />
 				</a>
@@ -341,15 +349,14 @@ main {
 				</ul>
 				<!-- Left links -->
 			</div>
-			<!-- Collapsible wrapper -->
 
 			<!-- Right elements -->
-			<div clas="dropdown">
+			<div class="">
 				<p style="margin: 0 15px 0 0"><%=login.getUserId()%>
 					님 반갑습니다!
 				</p>
 			</div>
-			<div class="dropdown">
+				<div class=" dropdown">
 				<a class="dropdown-toggle d-flex align-items-center hidden-arrow"
 					href="#" id="navbarDropdownMenuAvatar" role="button"
 					data-mdb-toggle="dropdown" aria-expanded="false"> <img
@@ -360,11 +367,19 @@ main {
 
 				<ul class="dropdown-menu dropdown-menu-end"
 					aria-labelledby="navbarDropdownMenuAvatar">
-					<li><a class="dropdown-item" href="#">My profile</a></li>
-					<li><a class="dropdown-item" href="#">Settings</a></li>
-					<li><a class="dropdown-item" href="#">Logout</a></li>
+				 	<%
+					if(login.getAuth().equals("1")){
+					%>
+					<li><a class="dropdown-item" href="adminList.do">회원관리</a></li>
+					<%	
+					}
+					%> 
+					<li><a class="dropdown-item" href="setting.do?login=" + <%=login %> >Mypage</a></li>
+					<li><a class="dropdown-item" onclick="navLogout()">Logout</a></li>
 				</ul>
 			</div>
+			
+			
 		<%
 		}
 		%>
@@ -374,7 +389,7 @@ main {
 	</nav>
 
 
-<button type="button" onclick="location.href='bbslist.do'" class="btn btn-primary">목록으로</button>
+
 <div align="center">
 <table  style="text-align: center; width: 1000px;" class="table table-striped">
 
@@ -441,7 +456,7 @@ main {
 			}else{
 			%>
 			
-			 <button type="button" value="" class=""
+			 <button type="button" value="" class="btn btn-primary"
 			  onclick="location.href='adminDel.do?seq=<%=admin.getSeq()%>&writer=<%=admin.getUserId()%>'">
 			 회원 추방</button>
 			<%
@@ -476,7 +491,7 @@ main {
 <div class="form-row align-items-center d-flex justify-content-center align-items-center container" style="margin: 0 auto;">
 <select id="choice">
 	<option value="">검색</option>
-	<option value="user_id">아이디</option>
+	<option value="userId">아이디</option>
 	<option value="name">이름</option>
 </select>
 
@@ -485,7 +500,46 @@ main {
 </div>
 
 <button type="button" onclick="searchBtn()" class="btn btn-primary">검색</button>
+<button type="button" onclick="location.href='bbslist.do'" class="btn btn-primary" style="margin-left: 10px">목록으로</button>
 </div>
+
+
+<!-- Footer -->
+	<footer class="bg-dark text-center text-white"
+		style="margin-top: 50px;">
+		<!-- Grid container -->
+		<div class="container p-4">
+			<!-- Section: Social media -->
+			<section class="mb-4">
+				<!-- Facebook -->
+				<a class="btn btn-outline-light m-1" href="#!" role="button"><i
+					class="fab fa-facebook-f">FaceBook </i></a>
+
+				<!-- Twitter -->
+				<a class="btn btn-outline-light  m-1" href="#!" role="button"><i
+					class="fab fa-twitter">Youtube</i></a>
+
+				<!-- Google -->
+				<a class="btn btn-outline-light m-1" href="#!" role="button"><i
+					class="fab fa-google">Instagram</i></a>
+			</section>
+			<!-- Section: Social media -->
+
+			<!-- Section: Text -->
+			<section class="mb-4">
+				<p>3조 프로젝트 HOME BOB</p>
+			</section>
+			<!-- Section: Text -->
+		</div>
+		<!-- Grid container -->
+
+		<!-- Copyright -->
+		<div class="text-center p-3"
+			style="background-color: rgba(0, 0, 0, 0.2);">
+			Copyright2023.Multicampus_3조</div>
+		<!-- Copyright -->
+	</footer>
+
 
 
 
@@ -545,7 +599,7 @@ function callModal(id){
 	$.ajax({
 		url: "./getuserInfo.do",
 		type: "post",
-		data: {"user_id": id},
+		data: {"userId": id},
 		success:function(data){
 			
 			//alert('success');
@@ -553,10 +607,13 @@ function callModal(id){
 			$(".modal-body").html("");
 			$("#modals").empty();
 				let str = "<tr class='modal-bodybody'>"
-						+ "<td>아이디: " + data.user_id  + "</td>"
+						+ "<td>아이디: " + data.userId  + "</td>"
 						+ "</tr>"
 						+ "<tr>"
 						+ "<td>나이: " + data.age + "</td>"
+						+ "</tr>"
+						+ "<tr>"
+						+ "<td>이메일: " + data.email + "</td>"
 						+ "</tr>"
 						+ "<tr>"
 						+ "<td> 주소: " + data.address + "</td>"
@@ -583,7 +640,7 @@ function callModal2(id){
 	$.ajax({
 		url: "./getListCnt.do",
 		type: "post",
-		data: {"user_id": id},
+		data: {"userId": id},
 		success:function(data){
 			
 			//alert('success');
@@ -638,7 +695,7 @@ function callModal3(id){
 	$.ajax({
 		url: "./getComentCnt.do",
 		type: "post",
-		data: {"user_id": id},
+		data: {"userId": id},
 		success:function(data){
 			
 			//alert('success');

@@ -51,6 +51,21 @@
 		where rnum between ${start} and ${end}
 	
 	</select>
+	
+	<!--  평점순 리스트 -->
+	<select id="getStarlist" parameterType="mul.cam.food.dto.BbsParam" resultType="mul.cam.food.dto.BbsDto" >
+		select *
+		from 
+			( select row_number()over(order by star desc) as rnum,
+				seq, writer, title, thumbnail, content, ingredients, cookingtime, serving , category, regdate, star, tag, delf
+			  from recipe
+
+			) a
+		where rnum between ${start} and ${end}
+	
+	</select>
+	
+	
 	<!-- 검색 글 리스트 -->
 
 	<!-- bbs wirte -->
@@ -64,7 +79,7 @@
 		values(#{writer}, #{title}, #{thumbnail},
 		#{content}, #{ingredients}, #{cookingtime},
 		#{serving}, #{category},
-		now(), 0, #{tag}, 0)
+		now(), 0, #{tag}, '3')
 
 	</insert>
 
@@ -77,12 +92,12 @@
 	</select>
 	<!-- 게시글 상세보기 -->
 	<select id="detailBbs" resultType="mul.cam.food.dto.BbsDto">
-		select seq, writer, title, thumbnail, content, ingredients, cookingtime, serving , category, regdate, star, tag
+		select seq, writer, title, thumbnail, content, ingredients, cookingtime, serving , category, regdate, star, tag, delf
 		from recipe
 		where seq=#{seq}		
 	</select>
 
-	
+	<!-- 카테고리서치 -->
 	<select id="getCategorySearchList"
 		parameterType="mul.cam.food.dto.BbsParam"
 		resultType="mul.cam.food.dto.BbsDto">
@@ -113,7 +128,7 @@
 				where content like concat('%', #{search},'%')
 			</if>
 			<if test="choice == 'writer'">
-				where id=#{search}
+				where writer=#{search}
 			</if>
 		</if>
 	</select>
@@ -130,11 +145,12 @@
 		</if>
 	</select>
 	
-	
 		<!-- 게시판 수정 -->
 	<update id="updateBbs" parameterType="mul.cam.food.dto.BbsDto">
 		update recipe
-		set thumbnail=#{thumbnail}, title=#{title}, content=#{content}, ingredients=#{ingredients}, cookingtime=#{cookingtime}, serving=#{serving}, category=#{category}, regdate=now(), tag=#{tag}
+		set thumbnail=#{thumbnail}, title=#{title},
+		 content=#{content}, ingredients=#{ingredients},
+		  cookingtime=#{cookingtime}, serving=#{serving}, category=#{category}, regdate=now(), tag=#{tag}, delf=#{delf}
 		where seq=#{seq}
 	</update>
 	

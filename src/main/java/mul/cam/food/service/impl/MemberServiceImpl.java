@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import mul.cam.food.dao.MemberDao;
 import mul.cam.food.dto.BbsDto;
+import mul.cam.food.dto.BbsParam;
 import mul.cam.food.dto.MemberDto;
 import mul.cam.food.service.MemberService;
 
@@ -62,6 +63,16 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public List<BbsDto> getMyrecipe(MemberDto dto) {
 		return dao.getMyrecipe(dto);
+	}
+	
+	@Override
+	public int getMyBbsLen(BbsParam param) {
+		return dao.getMyBbsLen(param);
+	}
+	
+	@Override
+	public List<BbsDto> getMyrecipePage(BbsParam param) {
+		return dao.getMyrecipePage(param);
 	}
 	
 }

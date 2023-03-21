@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import mul.cam.food.dao.MemberDao;
 import mul.cam.food.dto.BbsDto;
+import mul.cam.food.dto.BbsParam;
 import mul.cam.food.dto.MemberDto;
 
 @Repository // 저장소
@@ -59,5 +60,17 @@ public class MemberDaoImpl implements MemberDao{
 	public List<BbsDto> getMyrecipe(MemberDto dto) {
 		return session.selectList(ns + "getMyrecipe", dto);
 	}
+	
+	@Override
+	public int getMyBbsLen(BbsParam param) {
+		return session.selectOne(ns + "getMyBbsLen", param);
+	}
+	
+
+	@Override
+	public List<BbsDto> getMyrecipePage(BbsParam param) {		
+		return session.selectList(ns + "getMyrecipePage", param);
+	}
+	
 	
 }

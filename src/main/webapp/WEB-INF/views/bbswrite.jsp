@@ -11,10 +11,26 @@
 	rel="stylesheet"
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap"
+	rel="stylesheet">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
 	crossorigin="anonymous"></script>
+		<!-- Google Fonts -->
+<link
+	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+	rel="stylesheet" />
+<!-- MDB -->
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css"
+	rel="stylesheet" />
+<!-- MDB -->
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"></script>
 	
 	<!-- include libraries(jQuery, bootstrap) -->
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
@@ -41,7 +57,7 @@ img {
 header {
 	width: auto;
 	height: 110px;
-	background-color: #ff0000;
+	background-color: #FFF6BD;
 	/*#ffd26f #ffe64f #fff9ee */
 }
 
@@ -289,7 +305,7 @@ main {
 				</a>
 				<!-- Left links -->
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-					<li class="nav-item"><a class="nav-link" href="#">카테고리</a></li>
+					<li class="nav-item"><a class="nav-link" href="">카테고리</a></li>
 					<li class="nav-item"><a class="nav-link" href="bbslist.do">게시판</a></li>
 					<li class="nav-item"><a class="nav-link" href="login.do">로그인</a></li>
 					<li class="nav-item"><a class="nav-link" href="regi.do">회원가입</a></li>
@@ -326,7 +342,7 @@ main {
 			<!-- Collapsible wrapper -->
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<!-- Navbar brand -->
-				<a class="navbar-brand mt-2 mt-lg-0" href="#"> <img
+				<a class="navbar-brand mt-2 mt-lg-0"  href="mainhome.do"> <img
 					src="resources/images/logo.png" height="100" alt="Logo"
 					loading="lazy" />
 				</a>
@@ -340,7 +356,7 @@ main {
 			<!-- Collapsible wrapper -->
 
 			<!-- Right elements -->
-			<div clas="dropdown">
+			<div class="dropdown">
 				<p style="margin: 0 15px 0 0"><%=login.getUserId()%>
 					님 반갑습니다!
 				</p>
@@ -356,9 +372,15 @@ main {
 
 				<ul class="dropdown-menu dropdown-menu-end"
 					aria-labelledby="navbarDropdownMenuAvatar">
-					<li><a class="dropdown-item" href="#">My profile</a></li>
-					<li><a class="dropdown-item" href="#">Settings</a></li>
-					<li><a class="dropdown-item" href="#">Logout</a></li>
+						<%
+					if(login.getAuth().equals("1")){
+					%>
+					<li><a class="dropdown-item" href="adminList.do">회원관리</a></li>
+					<%	
+					}
+					%> 
+					<li><a class="dropdown-item" href="setting.do?login=" + <%=login %>>Mypage</a></li>
+					<li><a class="dropdown-item" onclick="navLogout()">Logout</a></li>
 				</ul>
 			</div>
 		<%
@@ -371,7 +393,7 @@ main {
 	<!-- Navbar -->
 	<div style="margin: 0 auto;">
 	<main role="main" class="container">
-		<form action="bbswriteAFs.do" method="post" enctype="multipart/form-data" id="writeForm"  name="writeForm">
+		<form action="bbswriteAFs.do" method="post" enctype="multipart/form-data" id="writeForm"  name="writeForm" onsubmit="return valid();">
 	<!-- 	<form action="#" method="get" enctype="multipart/form-data" id="writeForm"  name="writeForm" > --> 	
 		 <input type="hidden" name="writer" value="<%=login.getUserId() %>">
 		 <input type="hidden" name="auth" value="<%=login.getAuth()%>">
@@ -446,6 +468,13 @@ main {
 				</div>
 
 				
+				<div class="mb-3">
+
+					<label for="tag">평점</label>
+
+					<input type="text" class="form-control" name="star" id="star" placeholder="평점을 입력해 주세요">
+
+				</div>
 
 				<div class="mb-3">
 
@@ -475,18 +504,43 @@ main {
 	</main>
 	</div>
 
-
-	
 	<div class="b-example-divider "></div>
-	<div class="container-fluid ">
-<!--    <footer class="py-3 my-4">
-    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-      
-    </ul>
-    <p class="text-center text-muted">© 2023 Company, Inc</p>
-  </footer>  -->
-</div>
+	<div class="container-fluid "></div>
+<!-- Footer -->
+	<footer class="bg-dark text-center text-white"
+		style="margin-top: 50px;">
+		<!-- Grid container -->
+		<div class="container p-4">
+			<!-- Section: Social media -->
+			<section class="mb-4">
+				<!-- Facebook -->
+				<a class="btn btn-outline-light m-1" href="#!" role="button"><i
+					class="fab fa-facebook-f">FaceBook </i></a>
 
+				<!-- Twitter -->
+				<a class="btn btn-outline-light  m-1" href="#!" role="button"><i
+					class="fab fa-twitter">Youtube</i></a>
+
+				<!-- Google -->
+				<a class="btn btn-outline-light m-1" href="#!" role="button"><i
+					class="fab fa-google">Instagram</i></a>
+			</section>
+			<!-- Section: Social media -->
+
+			<!-- Section: Text -->
+			<section class="mb-4">
+				<p>3조 프로젝트 HOME BOB</p>
+			</section>
+			<!-- Section: Text -->
+		</div>
+		<!-- Grid container -->
+
+		<!-- Copyright -->
+		<div class="text-center p-3"
+			style="background-color: rgba(0, 0, 0, 0.2);">
+			Copyright2023.Multicampus_3조</div>
+		<!-- Copyright -->
+	</footer>
 
 			
 		<script>
@@ -567,6 +621,13 @@ main {
 			return flag;
 			
 		}
+		
+		function navLogout() {
+			location.href="sessionOut.do";
+		}
+		
+		
+		
 		
 		</script>
 </body>
