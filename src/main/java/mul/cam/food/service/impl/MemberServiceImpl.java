@@ -70,4 +70,10 @@ public class MemberServiceImpl implements MemberService{
 		return dao.getMyBbsLen(param);
 	}
 	
+	@Override
+	public List<BbsDto> getMyrecipePage(BbsParam param) {
+		return dao.getMyrecipePage(param);
+	}
+	
+	
 }

@@ -74,13 +74,62 @@
 		order by r.seq desc;
 	</select> --> 
 	
+
+	
+	
+	<select id="getMyrecipePage" parameterType="mul.cam.food.dto.BbsParam"
+		resultType="mul.cam.food.dto.BbsDto">
+
+		select a.seq, a.writer ,a.title, a.thumbnail, a.star,
+		a.regdate, a.tag
+		from user u,
+		( select row_number()over(order by regdate desc) as rnum,
+		seq, writer, title, thumbnail, content, ingredients, cookingtime, serving
+		, category, regdate, star, tag
+		from recipe
+		where 1=1 
+			<if
+				test="choice != null and choice != '' and search != null and search != '' ">
+				<if test="choice == 'title'">
+					and title like concat('%', #{search}, '%') and delf=3
+				</if>
+				<if test="choice == 'content'">
+					and content like concat('%', #{search}, '%') and delf=3
+				</if>
+			</if> 
+		order by regdate desc ) a
+		where u.userId = a.writer and u.userId = #{writer} and rnum between #{start} and #{end};
+	</select>
+
 	<!-- /////////////////////////////////////////// -->
 	<!-- 내가 쓴 글 총 페이지 -->
-	<select id="getMyBbsLen" parameterType="mul.cam.food.dto.BbsParam" resultType="java.lang.Integer">
+	<select id="getMyBbsLen"
+		parameterType="mul.cam.food.dto.BbsParam"
+		resultType="java.lang.Integer">
 		select ifnull(count(*),0)
 		from recipe
 		where writer=#{writer}
+		<if
+			test="choice != null and choice != '' and search != null and search != '' ">
+			<if test="choice == 'title'">
+				and title like concat('%', #{search},'%')
+			</if>
+			<if test="choice == 'content'">
+				and content like concat('%', #{search},'%')
+			</if>
+		</if>
 	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	</mapper>
 	
 	

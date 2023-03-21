@@ -36,6 +36,17 @@ public class BbsDaoImpl implements BbsDao {
 		
 		return session.selectList(ns + "getlist", param);
 	}
+	
+	@Override
+	public List<BbsDto> getCategorySearchList(BbsParam param) {
+		
+		return session.selectList(ns+"getCategorySearchList", param);
+	}
+	@Override
+	public int getAllCategoryBbsLen(BbsParam param) {
+		return session.selectOne(ns+"getAllCategoryBbsLen", param);
+	}
+	
 
 
 	@Override

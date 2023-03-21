@@ -52,6 +52,16 @@ public class BbsServiceImpl implements BbsService {
 	}
 
 
+	@Override
+	public List<BbsDto> getCategorySearchList( BbsParam param) {
+		return dao.getCategorySearchList( param);
+	}
+
+
+	@Override
+	public int getAllCategoryBbsLen(BbsParam param) {
+		return dao.getAllCategoryBbsLen(param);
+	}
 
 	@Override
 	public JsonObject SummerNoteImageFile(MultipartFile file) {

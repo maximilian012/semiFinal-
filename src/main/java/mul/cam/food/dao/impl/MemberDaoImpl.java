@@ -66,4 +66,10 @@ public class MemberDaoImpl implements MemberDao{
 		return session.selectOne(ns + "getMyBbsLen", param);
 	}
 	
+
+	@Override
+	public List<BbsDto> getMyrecipePage(BbsParam param) {		
+		return session.selectList(ns + "getMyrecipePage", param);
+	}
+	
 }

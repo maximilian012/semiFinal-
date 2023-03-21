@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&family=Sunflower:wght@300&display=swap');
+
 body {
   background: #FFF9EE;
 }
@@ -57,6 +59,7 @@ body {
 h1 {
   font-family: "Open Sans", sans-serif;
   text-align: center;
+  text-shadow: 2px 0 10px #ce7d88;
   margin-top: 40px;
   text-transform: uppercase;
   color: white;
@@ -74,15 +77,16 @@ h1 {
 }
 
 p {
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Noto Sans KR', sans-serif;
   font-size: 0.7em;
+  font-weight: bold;
   letter-spacing: 2px;
   color: #8E9AAF;
   text-align: center;
 }
 
 span {
-  color: #EAC7CC;
+  color: #EAB4BB;
   font-weight: bold;
 }
 
@@ -93,7 +97,6 @@ span {
   top: -25%;
   left: 0%;
   margin-top: 20%;
-  color: FFBB0A;
 }
 
 button {
@@ -109,8 +112,8 @@ button {
 }
 
 button:hover {
-  background: #FFE6AF !important;
-  color: #f6f6f6 !important;
+  background: #ffffff !important;
+  color: #000000 !important;
   transition: background-color 0.5s ease-out;
 }
 
@@ -120,7 +123,7 @@ button:hover {
   margin-top: 7px;
   background: white;
   color: #ce7d88;
-  border: solid 1px #FFD26F;
+  border: solid 1px #FFBB0A;
   
 }
 
@@ -145,7 +148,7 @@ button:hover {
   height:30%;
   background: white;
   color: #ce7d88;
-  border: solid 1px #FFD26F;
+  border: solid 1px #FFBB0A;
   padding: 1px 2px;
 }
 
@@ -168,7 +171,8 @@ form {
 }
 
 input {
-  background: #FFE6AF;
+  font-family: 'Noto Sans KR', sans-serif;
+  background: #FFBB0A;
   width: 65%;
   color: white;
   border: none;

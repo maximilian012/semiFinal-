@@ -27,7 +27,13 @@ public interface BbsService {
 
 	JsonObject SummerNoteImageFile(MultipartFile file);
 
-
+	// 카테고리별 글의 갯수
+	int getAllCategoryBbsLen(BbsParam param);
+	
+	// searchResult
+	List<BbsDto> getCategorySearchList(BbsParam param);
+	
+	
 	BbsDto getBbs(int seq);
 	
 	boolean commentWrite(BbsComment bbs);

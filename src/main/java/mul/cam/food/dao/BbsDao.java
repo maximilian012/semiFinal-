@@ -43,4 +43,9 @@ public interface BbsDao {
 		
 		// 댓글 삭제
 		int deleteComment(BbsComment bbs);
+		
+		List<BbsDto> getCategorySearchList(BbsParam param);
+		
+		// 카테고리별 글의 갯수
+		int getAllCategoryBbsLen(BbsParam param);
 }

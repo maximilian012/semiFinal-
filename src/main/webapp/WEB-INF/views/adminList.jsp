@@ -13,7 +13,6 @@
     	MemberDto login = (MemberDto)session.getAttribute("login");	
     %>
     
-    
 <!DOCTYPE html>
 <html>
 <head>

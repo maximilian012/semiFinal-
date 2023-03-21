@@ -26,4 +26,7 @@ public interface MemberService {
 	
 	int getMyBbsLen(BbsParam param);
 	
+	
+	List<BbsDto> getMyrecipePage(BbsParam param);
+	
 }

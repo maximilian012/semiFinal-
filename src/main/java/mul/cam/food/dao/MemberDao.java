@@ -24,5 +24,9 @@ public interface MemberDao {
 	List<BbsDto> getMyrecipe(MemberDto dto);
 	
 	// 20 추가 
+	
 	int getMyBbsLen(BbsParam param);
+	
+	List<BbsDto> getMyrecipePage(BbsParam param);
+	
 }

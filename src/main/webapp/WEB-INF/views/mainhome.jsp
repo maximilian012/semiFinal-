@@ -82,7 +82,7 @@ img {
 header {
 	width: auto;
 	height: 110px;
-	background-color: #FFF6BD;
+	background-color: #ff0000;
 	/*#ffd26f #ffe64f #fff9ee */
 }
 
@@ -175,13 +175,71 @@ main {
 #recipe-post {
 	margin: 0 auto;
 }
-
+/* 
+#recipe-post-left {
+	width: 600px;
+	background-color: pink;
+	float: left;
+} */
+/* .card p:nthimg{
+	width: 600px !important;
+} */
 .card p img {
 	max-width: 100% !important;
 	height: 370px !important;
 }
 
+/* .card-one {
+	float: left;
+} */
 
+/* 게시글 때문에 조절  */
+/* #recipe-post-left table {
+	display: block;
+}
+
+#recipe-post-left table tbody, #recipe-post-right table tbody {
+	display: block;
+	width: 600px;
+} */
+
+/* .imgSize {
+	display: block;
+	clear: both;
+}
+
+.imgSize td {
+	display: block;
+}
+
+.imgSize td p {
+	display: block;
+}
+
+.imgSize td p img {
+	width: 100% !important;
+	height: 300px;
+}
+
+.imgSizeSmall {
+	width: 300px;
+	float: left;
+}
+
+.imgSizeSmall td {
+	width: 300px;
+}
+
+.imgSizeSmall td p img {
+	width: 100% !important;
+	height: 250px;
+} */
+
+/* #recipe-post-right {
+	width: 600px;
+	float: left;
+	background-color: green;
+} */
 @media screen and (min-width:1350px) {
 	.g-3 {
 		width: 1300px;
@@ -193,7 +251,42 @@ main {
 	}
 }
 
+/* footer {
+	width: 100%;
+	height: 140px;
+	background-color: #000;
+	color: #fff;
+	clear: both;
+}
 
+#footer {
+	width: 1200px;
+	margin: 0 auto;
+}
+
+footer #footer-text, #footer-icon {
+	width: 600px;
+	float: left;
+	background-color: red;
+	height: 140px;
+}
+
+footer #footer-text p {
+	margin: 0 auto;
+}
+
+#footer-icon ul {
+	list-style: none;
+	float: right;
+	display: inline-block;
+	margin-top: 50px;
+}
+
+#footer-icon ul li {
+	float: left;
+	width: 100px;
+	text-align: center;
+} */
 .carousel-control-prev-icon:after {
 	content: "◀";
 	font-size: 50px;
@@ -247,7 +340,7 @@ and
 
 .small-img {
 	height: 400px;
-	background-color: #fff9ee;
+	background-color: #FFF6BD;
 }
 
 .small-img p img {
@@ -267,7 +360,7 @@ and
 .arrow-img {
 	width: 100px;
 	height: 100px;
-	background-color: pink;
+	background-color: #FFBB0A;
 }
 
 .tag-style a:hover {
@@ -367,7 +460,7 @@ and
 		background-color: #fff9ee;
 	}
 	.d-flex {
-		margin-top: 50px;
+		/* margin-top: 50px; */
 	}
 	.minmax2 {
 		font-size: 23px !important;
@@ -400,23 +493,58 @@ and
     outline: 0;
     box-shadow: inset 0 0 0 1px #3b71ca;
 }
+
+@media screen and (min-width:369px) and (max-width:767px){
+	h5.card-title.minmax2{
+		font-size:20px;
+	}
+}
+
+@media screen and (max-width:368px){
+	h5.card-title.minmax2{
+		font-size:16px;
+	}
+}
 </style>
+
 
 </head>
 
 <body>
-
+	<!-- <header>
+		<div id="headerNav">
+			<img alt="로고이미지" src="resources/images/logo.png" width="100"
+				height="100" style="margin-top: 5px;">
+			<ul>
+				<li><a class="categoryBtn">카테고리</a>
+					<ul class="categoryHide">
+						<li>종류</li>
+						<li>재료</li>
+						<li>방법</li>
+						<li>테마</li>
+						<li>기념일</li>
+						<li>도구</li>
+					</ul></li>
+			</ul>
+			<ul class="member">
+				<li><a href="test.do">로그인</a></li>
+				<li><a href="regi.do">회원가입</a></li>
+			</ul>
+		</div>
+		headerNav end
+	</header> -->
 
 	<!-- login 전일 때 나오는 Navbar -->
 	<%
 	MemberDto login = (MemberDto) session.getAttribute("login");
 
 
+//	System.out.println("mainhome.jsp "+login);
 
 	if (login == null ) {
 	%>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light"
-		style="background-color: orange !important">
+		style="background-color: #FFF6BD !important">
 		<!-- Container wrapper -->
 		<div class="container-fluid" style="height: 100px; font-weight: 700;">
 			<!-- Toggle button -->
@@ -444,18 +572,17 @@ and
 
 							<ul class="dropdown-menu dropdown-menu-end drop-StyleChange"
 								aria-labelledby="navbarDropdownMenuAvatar">
-								<li><a class="dropdown-item" href="#">종류</a></li>
-								<li><a class="dropdown-item" href="#">재료</a></li>
-								<li><a class="dropdown-item" href="#">방법</a></li>
-								<li><a class="dropdown-item" href="#">테마</a></li>
-								<li><a class="dropdown-item" href="#">기념일</a></li>
-								<li><a class="dropdown-item" href="#">게시판 바로가기</a></li>
+								<li><a class="dropdown-item" href="categorysearch.do?category=3&pageNumber=0">일식</a></li>
+								<li><a class="dropdown-item"href="categorysearch.do?category=1&pageNumber=0">양식</a></li>
+								<li><a class="dropdown-item" href="categorysearch.do?category=5&pageNumber=0">한식</a></li>
+								<li><a class="dropdown-item" href="categorysearch.do?category=2&pageNumber=0">중식</a></li>
+								<li><a class="dropdown-item" href="categorysearch.do?category=4&pageNumber=0">분식</a></li>
+								<li><a class="dropdown-item" href="categorysearch.do?category=6&pageNumber=0">디저트</a></li>
 							</ul>
 						</div>
 					</li>
 					<li class="nav-item"><a class="nav-link" href="bbslist.do">게시판</a></li>
-					<li class="nav-item"><a class="nav-link" href="login.do">로그인</a></li>
-					<li class="nav-item"><a class="nav-link" href="regi.do">회원가입</a></li>
+					<li class="nav-item"><a class="nav-link" href="login.do">로그인/회원가입</a></li>
 				</ul>
 				<!-- Left links -->
 			</div>
@@ -476,7 +603,7 @@ and
 	%>
 	<!-- login 하면 나오는 Navbar -->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light"
-		style="background-color: orange !important">
+		style="background-color: #FFF6BD !important">
 		<!-- Container wrapper -->
 		<div class="container-fluid" style="height: 100px; font-weight: 700;">
 			<!-- Toggle button -->
@@ -503,12 +630,12 @@ and
 
 							<ul class="dropdown-menu dropdown-menu-end drop-StyleChange"
 								aria-labelledby="navbarDropdownMenuAvatar">
-								<li><a class="dropdown-item" href="#">종류</a></li>
-								<li><a class="dropdown-item" href="#">재료</a></li>
-								<li><a class="dropdown-item" href="#">방법</a></li>
-								<li><a class="dropdown-item" href="#">테마</a></li>
-								<li><a class="dropdown-item" href="#">기념일</a></li>
-								<li><a class="dropdown-item" href="#">게시판 바로가기</a></li>
+								<li><a class="dropdown-item" href="categorysearch.do?category=3&pageNumber=0">일식</a></li>
+								<li><a class="dropdown-item"href="categorysearch.do?category=1&pageNumber=0">양식</a></li>
+								<li><a class="dropdown-item" href="categorysearch.do?category=5&pageNumber=0">한식</a></li>
+								<li><a class="dropdown-item" href="categorysearch.do?category=2&pageNumber=0">중식</a></li>
+								<li><a class="dropdown-item" href="categorysearch.do?category=4&pageNumber=0">분식</a></li>
+								<li><a class="dropdown-item" href="categorysearch.do?category=6&pageNumber=0">디저트</a></li>
 							</ul>
 						</div>
 					</li>
@@ -596,9 +723,9 @@ and
 				<img src="resources/images/ohk_main33.jpg" class="d-block w-100"
 					alt="ohk_main3" width="100%" height="700" />
 				<div class="carousel-caption d-none d-md-block">
-					<h5>향신료의 매력에</h5>
-					<h5>푹 빠지고 싶다면?!</h5>
-					<p>라이브러리 H</p>
+					<h5 style="color: #000;">향신료의 매력에</h5>
+					<h5 style="color: #000;">푹 빠지고 싶다면?!</h5>
+					<p style="color: #000;">라이브러리 H</p>
 				</div>
 			</div>
 			<div class="carousel-item">
@@ -635,17 +762,17 @@ and
 	<main>
 
 		<div class="input-group">
-			<form class="input-group" action="searchMove.do" method="post">
+			<form class="input-group" action="searchMove.do" method="post" onsubmit="return searchValid()">
 			<select class="selectStyle" id="choice" name="choice">
-					<option selected>검색</option>
+					<option selected value="option">검색</option>
 					<option value="title">제목</option>
 					<option value="content">내용</option>
 					<option value="writer">작성자</option>
 			</select>
-			<input type="search" class="form-control rounded" name="search"
+			<input type="search" class="form-control rounded" name="search" id="search"
 				placeholder="Search" aria-label="Search"
 				aria-describedby="search-addon" style="height: 65px;" />	
-			<button type="submit" class="btn btn-outline-primary">search</button>
+			<button type="submit" class="btn btn-outline-primary" >search</button>
 			</form>
 		</div>
 
@@ -1200,6 +1327,20 @@ and
 		location.reload("mainhome.do?login=" + <%=login %>);
 	}); --%>
 	
+	function searchValid() {
+		let choice = document.getElementById('choice').value;
+		let search = document.getElementById('search').value;
+		if(choice == "option") {
+			alert("검색옵션을 선택해주세요");
+			return false;
+		}else if(search == ""){
+			alert("검색내용을 입력해주세요");
+			return false;
+		}else {
+			return true;
+		}
+		
+	}
 
 	</script>
 

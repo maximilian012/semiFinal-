@@ -1,20 +1,10 @@
 package mul.cam.food.controller;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,11 +18,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.JsonObject;
 
-
 import mul.cam.food.dto.BbsComment;
 import mul.cam.food.dto.BbsDto;
 import mul.cam.food.dto.BbsParam;
-import mul.cam.food.dto.MemberDto;
 import mul.cam.food.service.BbsService;
 
 
@@ -61,7 +49,7 @@ public class BbsController {
 	
 	// 수정 230320 req 삭제함
 	@GetMapping(value = "bbslist.do")
-	public String bbslist(Model model, BbsParam param) {
+	public String bbslist(Model model, BbsParam param, HttpServletRequest req) {
 		// 글의 시작과 끝
 		int pn = param.getPageNumber(); // 0 1 2 3 4
 		int start = 1 + (pn * 12); // 1
@@ -97,6 +85,9 @@ public class BbsController {
 		model.addAttribute("pageNumber", param.getPageNumber());
 		model.addAttribute("choice", param.getChoice());
 		model.addAttribute("search", param.getSearch());
+		// 처음 검색시 카테고리는 0으로 설정
+		model.addAttribute("category", 0);
+		model.addAttribute("boardName", "전체게시판");
 
 
 		return "bbslist";
@@ -175,13 +166,78 @@ public class BbsController {
 		model.addAttribute("pageNumber", param.getPageNumber());
 		model.addAttribute("choice", param.getChoice());
 		model.addAttribute("search", param.getSearch());
+		model.addAttribute("category", 0);
+		if(param.getChoice() == null) {
+			model.addAttribute("boardName", "전체게시판");
+		} else {
+			model.addAttribute("boardName", "검색결과");
+		}
+
+		
+		return "bbslist";
+	}
+	@RequestMapping(value="categorysearch.do" , method = RequestMethod.GET)
+	public String searchBbslist(Model model, int category, int pageNumber) {
+	
+		BbsParam param = new BbsParam();
+		
+		int pn = pageNumber; // 0 1 2 3 4
+		int start = 1 + (pn * 12); // 1
+		int end = (pn+1) * 12;     // 10
+		param.setStart(start);
+		param.setEnd(end);
+
+		param.setCategoryNumber(category);
+		
+		
+		List<BbsDto> list = service.getCategorySearchList(param);
+		int len = service.getAllCategoryBbsLen(param);
+		System.out.println(len+" is len");
+		int pageBbs = (len/12);
+		
+		if((len%12) > 0) {
+			pageBbs += 1;
+		}
+
+		
+		model.addAttribute("bbslist", list);
+		model.addAttribute("pageBbs", pageBbs);
+		model.addAttribute("pageNumber", pageNumber);
+		model.addAttribute("category", category);
+		switch (category) {
+		case 1: {
+			model.addAttribute("boardName", "#마음의 '양식'");
+		}
+		break;
+		case 2: {
+			model.addAttribute("boardName", "#오늘은 자장면이 땡긴다.");
+		}
+		break;
+		case 3: {
+			model.addAttribute("boardName", "#집에서 즐기는 오마카세");
+		}
+		break;
+		case 4: {
+			model.addAttribute("boardName", "#떡볶이가 맛없으면 울어도 괜찮아");
+		}
+		break;
+		case 5: {
+			model.addAttribute("boardName", "#양념치킨은 자랑스러운 한식입니다");
+		}
+		break;
+		case 6: {
+			model.addAttribute("boardName", "#디저트 배는 따로 있음");
+		}
+		break;
+
+		}
 
 		
 		
 		return "bbslist";
 	}
-	
 
+	
 //	//////////////////////////////////////////////////////////////////////////////
 	// 수정 230320 
 	@RequestMapping(value = "searchMove.do", method = RequestMethod.POST)
@@ -200,6 +256,9 @@ public class BbsController {
 		model.addAttribute("choice", choice);
 		model.addAttribute("search", search);
 //		model.addAttribute("bbslist", list);
+		
+		model.addAttribute("category", 0);
+		model.addAttribute("boardName", "검색결과");
 
 		return "forward:/mainSearchbbslist.do";
 	}
@@ -247,6 +306,7 @@ public class BbsController {
 
 		return "bbslist";
 	}
+	
 
 	// 게시물 상세보기
 	@GetMapping(value = "bbsdetail.do")
